@@ -1,4 +1,4 @@
 
 
 Codebase:
-https://example.com/internal-github/redacted/sap-cloud-infrastructure/persephone/tree/main
+https://github.wdf.ppp.corp/ppp-cloud-infrastructure/persephone/tree/main

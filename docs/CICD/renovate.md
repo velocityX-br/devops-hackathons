@@ -1,2 +1,2 @@
 
-https://example.com/redacted/wiki/display/CONROME/Renovate+Bot+Setup+and+Usage
+https://wiki.one.int.ppp/wiki/display/CONROME/Renovate+Bot+Setup+and+Usage

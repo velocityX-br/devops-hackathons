@@ -11,14 +11,18 @@ tags: [kubernetes, Audit, cloud-native, Client-Source-IP]
 import TrackLink from '@site/src/components/TrackLink';
 import PostEngagement from '@site/src/components/PostEngagement';
 
-Preserving the client source IP in kubernetes is critical for security, logging, auditing/compliance and application logics. 
-By default, many kubernetes networking configurations (like `service` type `NodePort` or `LoadBalancer`) perform Source NAT (SNAT), which replaces the original client IP with the IP of worker node.
+## Introduction
 
-In a typical Kubernetes cluster using Calico CNI and kube-proxy (iptables mode), an UDP request from a LoadBalancer to a backend Pod undergoes one DNAT and one SNAT by default, resulting in two NAT operations. If externalTrafficPolicy is set to Local, SNAT is avoided, reducing it to a single DNAT.
+Preserving the client source IP in Kubernetes is critical for security, logging, auditing/compliance, and application logic. 
+By default, many Kubernetes networking configurations (like `Service` types `NodePort` or `LoadBalancer`) perform Source NAT (SNAT), which replaces the original client IP with the worker node IP.
+
+For UDP (same kube-proxy pattern as TCP), a typical cluster with Calico pod networking and **kube-proxy iptables** handles client → `LoadBalancer` / `NodePort` → Pod like this: on the node, kube-proxy **DNAT**s to the Pod and, with default `externalTrafficPolicy: Cluster`, usually **SNAT**s (e.g. MASQUERADE) for a symmetric return path — **one DNAT and one SNAT**, i.e. two NAT *roles*, not SNAT applied twice. With `externalTrafficPolicy: Local`, that SNAT step is skipped and only DNAT remains in the local-endpoint scenarios covered below.
 
 {/* truncate */}
 
-> **DNAT is applied in the PREROUTING chain before routing decisions are made, typically affecting incoming traffic. SNAT is applied in the POSTROUTING chain after routing, modifying packages as they leave the nodes. In Kubernetes, a single incoming request can experience both DNAT (on ingress) and SNAT(on egress) within the same node.
+## DNAT vs SNAT (iptables recap)
+
+> **DNAT** is applied in the **PREROUTING** chain before routing decisions are made, typically affecting incoming traffic. **SNAT** is applied in the **POSTROUTING** chain after routing, modifying **packets** as they leave the node. In Kubernetes, a single incoming flow can hit both DNAT (on ingress) and SNAT (on egress) on the same node.
 
 
 | NAT type    | Where it happens (iptables) | From a “traffic flow” perspective |
@@ -26,10 +30,13 @@ In a typical Kubernetes cluster using Calico CNI and kube-proxy (iptables mode),
 | **DNAT**    | PREROUTING / OUTPUT           | 👉 Ingress (as traffic enters the node) |
 | **SNAT**    | POSTROUTING                   | 👉 Egress (as traffic leaves the node)  |
 
-> Now it's time to figure out PREROUTING and POSTROUTING in iptables. 😊
+> PREROUTING decides *where the packet goes*; POSTROUTING can rewrite the *source* before it leaves. 😊
 
-An flow example:
-> UDP Traffic: `CLinet -> LB -> Node(IP:NodePort) -> kube-proxy -> Pod (Calico CNI)`
+A flow example:
+
+> UDP Traffic: `Client → LB → Node(IP:NodePort) → kube-proxy → Pod (via CNI, e.g. Calico)`
+
+## On-node path: Calico PREROUTING → KUBE-SERVICES
 
 In this setup, all incoming packets traverse **cali-PREROUTING** first for Calico's pre-processing, then continue to **KUBE-SERVICES** where kube-proxy performs service matching and DNAT. Equal counters indicate no early packet drops or bypass before kube-proxy.
 ```
@@ -51,11 +58,12 @@ Chain PREROUTING (policy ACCEPT 43084 packets, 2586K bytes)
 >>> 做负载均衡
 ```
 
-#### Take fluent-bit service as an example
-:::warning
-The described procedure is kube-proxy(iptables mode)'s standard service routing chain. To be clear, __this chain has no direct relationship with Calico CNI__. 
+### Example: fluent-bit `Service`
 
-Calico is responsible for Pods' routing、IPAM and network policy. While Service's NAT forwarding is independently implemented by kube-proxy.(unless you open Calico eBPF mode, then it will be bypassing those iptables chains)
+:::warning
+The described procedure is **kube-proxy** (iptables mode)'s standard service routing chain. Those **`KUBE-*` NAT chains** are **not** implemented by Calico CNI for `Service` forwarding.
+
+Calico handles Pod routing, IPAM, and network policy; **kube-proxy** implements `Service` DNAT/SNAT forwarding (unless you use Calico eBPF dataplane or another path that replaces these iptables rules).
 :::
 ```
 >>> Overall Kube-proxy builds the chain for NATing the traffic to the backend Pods.
@@ -100,34 +108,34 @@ KUBE-SEP-OGFQV6RG7YG5JWNJ  all  --  anywhere             anywhere             /*
 The rules implement a two-stage NAT pipeline: first, kube-proxy matches the ClusterIP and selects a backend Pod using probabilistic load balancing via KUBE-SVC and KUBE-SEP chains. Then, DNAT rewrites the destination IP to the selected Pod. In parallel, KUBE-MARK-MASQ marks traffic originating outside the cluster CIDR for SNAT, ensuring symmetric return paths via MASQUERADE in POSTROUTING.
 :::
 
-#### Symmetric route VS Asymmetric route
+## Symmetric vs asymmetric paths
 
-Openstack LB is designed to provide symmetric routing for UDP traffic therefore disabling SNAT from listener will break UDP forwarding.
+Many cloud load balancers default to **symmetric** paths for UDP; turning off listener-side SNAT without a deliberate DSR design can **break UDP** forwarding.
 
-DSR = Asymmetric route
+**DSR (Direct Server Return)** is an **asymmetric** pattern: requests may pass through an LB while replies go straight from backends to clients.
 
-iptables kube-proxy is implemented by Calico. Using Cilium eBPF or hostNetwork is an optimal solution but it is not an easy implementation, in terms of the efforts of modifying CNI from Gardener Shoot Clusters.
-
-iptables kube-proxy offerred by Calico CNI is designed to provide symmetric routing for UDP traffic therefore disabling SNAT from listener will break UDP forwarding.
+Kube-proxy iptables seeks **symmetric** return paths (often involving SNAT/MARK-MASQ) on standard clusters. Replacing it with **Cilium eBPF**, **hostNetwork**, or other dataplanes is powerful but implies CNI/cluster changes (for example on Gardener shoot clusters).
 
 
 __一句话总结（核心）__
 
-👉 DSR（Direct Server Return）的本质就是 asymmetric routing：请求经过 LoadBalancer，但响应直接从后端服务器返回客户端，不再经过 LB；UDP 因为是无连接协议，非常适合高性能 DSR，但也正因为缺少连接状态，Linux conntrack、kube-proxy、OpenStack NAT、rp_filter 等组件更容易因为“请求路径”和“响应路径”不一致而出现 SNAT、丢包或转发异常。
+👉 DSR 的本质就是 asymmetric routing：请求经过 LoadBalancer，但响应直接从后端返回客户端；UDP 无连接，很适合高性能 DSR，但也因此 conntrack、kube-proxy、OpenStack NAT、`rp_filter` 等更易在“来去路径不一致”时出现 SNAT、丢包或转发异常。
+
+### How to read the kube-proxy chains
+
 ```
-How to Read iptables ? 
 1. KUBE-SVC → 入口（匹配谁）
 2. KUBE-SEP → 转发到谁
 3. KUBE-MARK-MASQ → 是否 SNAT
 ```
 
-### Overview of the three traffic models
+## Three traffic models
 
 1. kube-proxy default (Cluster + MASQUERADE)
-2. externalTrafficPolicy: Local
+2. `externalTrafficPolicy: Local`
 3. DSR (Direct Server Return)
 
-#### Model one: kube-proxy（Cluster + MASQUERADE）
+### Model one: kube-proxy（Cluster + MASQUERADE）
 
 ```text
 Client (1.2.3.4)
@@ -177,7 +185,7 @@ POSTROUTING (nat) → 检查到 MARK → MASQUERADE/SNAT（重写源地址为 No
 > HTTP / TCP
 > 不关心真实 client IP
 
-#### Model two: externalTrafficPolicy=Local
+### Model two: externalTrafficPolicy=Local
 
 ```text
 Client
@@ -203,7 +211,7 @@ Client
 >
 > Drawback: 如果 Node 上没有 Pod → 请求直接丢弃 ❌
 
-#### Model three: DSR (Direct Server Return)
+### Model three: DSR (Direct Server Return)
 
 ```text
 Client (1.2.3.4)
@@ -241,7 +249,7 @@ Pod
       -vv：will analyze DNS header flag bit（QR、Opcode、AA、TC、RD、RA 等）
 - 对网络要求高
 
-#### 三种对比
+### Side-by-side comparison
 
 |           | kube-proxy | Local  | DSR     |
 | --------- | ---------- | ------ | ------- |
@@ -252,17 +260,21 @@ Pod
 | 性能        | 中等         | 较高     | 最高 🚀   |
 | 复杂度       | 低          | 中      | 高       |
 
-#### How Client Source IP plays a role while decommissioning a Core Service running in enterprise infrastructure ?
-Preserving the client source IP a critical aspect when decommissioning a service running on a traditional VM. The decommissioning process is typically carried out in several phases:
+## Client source IP when decommissioning core services
+
+Preserving the client source IP is a critical aspect when decommissioning a service running on a traditional VM. The decommissioning process is typically carried out in several phases:
 1. Notify stakeholders in advance and request them to stop using the service
 2. Monitor incoming traffic to the service
 3. Identify any remaining client source IPs still accessing the service and proactively reach out to those users.
 4. Shut down the service for a grace period (e.g., two weeks) to ensure no dependencies remain.
 5. Fully decommission the service
 
-Typically, software provides its own mechanisms to capture and log the client's source IP address - for example, BIND and 389 Directory Server both include native capabilities to record client connection details. From a technical pespectives, this works across several layers:
+Typically, software provides its own mechanisms to capture and log the client's source IP address—for example, BIND and 389 Directory Server both include native capabilities to record client connection details. From a technical perspective, this works across several layers:
+
 1. Transport / socket layer (L3/L4)
-At the lowest lower, the application obtains the client IP from TCP/UDP socket. When a client connects, the kernel exposes the peer address via system calls like `accept()` (TCP) or `recvfrom()`(UDP). 
+
+At the lowest layer, the application obtains the client IP from the TCP/UDP socket. When a client connects, the kernel exposes the peer address via system calls like `accept()` (TCP) or `recvfrom()` (UDP).
+
 - In DNS (BIND), each query arrives over UDP or TCP, and the service logs the source IP directly from the packet metadata.
 - In LDAP (389ds), the server retrieves the client IP from the established TCP session.
 
@@ -272,13 +284,13 @@ Those approaches are most reliable, as long as the source IP remains unmodified 
 While preserving source IP via `externalTrafficPolicy: Local`, please be aware of [Caveats and Limitations](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#caveats-and-limitations-when-preserving-source-ips)
 :::
 
-Reference:
+## References
+
 - [How to Get a Client’s “Real” IP Address with Envoy Gateway](https://tetrate.io/blog/client-source-ip-in-kubernetes-ingress)
-- 
+- [Preserving the client source IP (Kubernetes docs)](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip)
+- [Tencent Cloud - Real Servers Obtaining the Real Client IP](https://www.tencentcloud.com/document/product/214/70455)
 
 ![Kubernetes ExternalTrafficPolicy preserves source IP](https://kubernetes.io/images/docs/sourceip-externaltrafficpolicy.svg)
-
-https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
 
 <PostEngagement postId="k8s-get-udp-requestor-real-ip" postTitle="K8S Get UDP Requestor Real IP" enableComments />
 

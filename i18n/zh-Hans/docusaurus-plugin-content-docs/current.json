@@ -1,0 +1,342 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Basics": {
+    "message": "Tutorial - Basics",
+    "description": "The label for category 'Tutorial - Basics' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Basics.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
+    "description": "The generated-index page description for category 'Tutorial - Basics' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Tutorial - Extras": {
+    "message": "Tutorial - Extras",
+    "description": "The label for category 'Tutorial - Extras' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.AI": {
+    "message": "AI",
+    "description": "The label for category 'AI' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ClaudeCode_Prompt": {
+    "message": "ClaudeCode_Prompt",
+    "description": "The label for category 'ClaudeCode_Prompt' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.LangChain": {
+    "message": "LangChain",
+    "description": "The label for category 'LangChain' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Ansible": {
+    "message": "Ansible",
+    "description": "The label for category 'Ansible' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Architect": {
+    "message": "Architect",
+    "description": "The label for category 'Architect' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Authorization": {
+    "message": "Authorization",
+    "description": "The label for category 'Authorization' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.CICD": {
+    "message": "CICD",
+    "description": "The label for category 'CICD' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.dns-root": {
+    "message": "DNS",
+    "description": "The label for category 'DNS' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Bind_Containerization_Design": {
+    "message": "Bind_Containerization_Design",
+    "description": "The label for category 'Bind_Containerization_Design' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Known_Limitation": {
+    "message": "Known_Limitation",
+    "description": "The label for category 'Known_Limitation' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.VM&K8S_Dual_Design_Core": {
+    "message": "VM&K8S_Dual_Design_Core",
+    "description": "The label for category 'VM&K8S_Dual_Design_Core' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.DNS-API": {
+    "message": "DNS-API",
+    "description": "The label for category 'DNS-API' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Known_issues": {
+    "message": "Known_issues",
+    "description": "The label for category 'Known_issues' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.dns-k8s-bind-product": {
+    "message": "k8s_bind_product",
+    "description": "The label for category 'k8s_bind_product' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Docker": {
+    "message": "Docker",
+    "description": "The label for category 'Docker' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Documentation_Solution": {
+    "message": "Documentation_Solution",
+    "description": "The label for category 'Documentation_Solution' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ELK": {
+    "message": "ELK",
+    "description": "The label for category 'ELK' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.GOLANG": {
+    "message": "GOLANG",
+    "description": "The label for category 'GOLANG' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ConcurrentProgramming": {
+    "message": "ConcurrentProgramming",
+    "description": "The label for category 'ConcurrentProgramming' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Foundamentals": {
+    "message": "Foundamentals",
+    "description": "The label for category 'Foundamentals' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.HTTP": {
+    "message": "HTTP",
+    "description": "The label for category 'HTTP' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.KubernetesSDK": {
+    "message": "KubernetesSDK",
+    "description": "The label for category 'KubernetesSDK' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.StandardLib": {
+    "message": "StandardLib",
+    "description": "The label for category 'StandardLib' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.TESTS": {
+    "message": "TESTS",
+    "description": "The label for category 'TESTS' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Basics": {
+    "message": "Basics",
+    "description": "The label for category 'Basics' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.分布式": {
+    "message": "分布式",
+    "description": "The label for category '分布式' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Gardener": {
+    "message": "Gardener",
+    "description": "The label for category 'Gardener' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.SCI_Gardener_Integration": {
+    "message": "SCI_Gardener_Integration",
+    "description": "The label for category 'SCI_Gardener_Integration' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Training-0715": {
+    "message": "Training-0715",
+    "description": "The label for category 'Training-0715' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Training-0716": {
+    "message": "Training-0716",
+    "description": "The label for category 'Training-0716' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.GitOps": {
+    "message": "GitOps",
+    "description": "The label for category 'GitOps' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.HELM": {
+    "message": "HELM",
+    "description": "The label for category 'HELM' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Hyperscalar": {
+    "message": "Hyperscalar",
+    "description": "The label for category 'Hyperscalar' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.JIRA_Automation": {
+    "message": "JIRA_Automation",
+    "description": "The label for category 'JIRA_Automation' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.K8S-Stacks": {
+    "message": "K8S-Stacks",
+    "description": "The label for category 'K8S-Stacks' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.k8s-stacks-monitoring": {
+    "message": "Monitoring",
+    "description": "The label for category 'Monitoring' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.caseCollection": {
+    "message": "caseCollection",
+    "description": "The label for category 'caseCollection' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Kubernetes": {
+    "message": "Kubernetes",
+    "description": "The label for category 'Kubernetes' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.CloudAuthorization_IAS": {
+    "message": "CloudAuthorization_IAS",
+    "description": "The label for category 'CloudAuthorization_IAS' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Experience": {
+    "message": "Experience",
+    "description": "The label for category 'Experience' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Istio": {
+    "message": "Istio",
+    "description": "The label for category 'Istio' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.K8S_Applications": {
+    "message": "K8S_Applications",
+    "description": "The label for category 'K8S_Applications' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.K8S_Network": {
+    "message": "K8S_Network",
+    "description": "The label for category 'K8S_Network' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.KubeBuilder_Controller": {
+    "message": "KubeBuilder_Controller",
+    "description": "The label for category 'KubeBuilder_Controller' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.kubernetes-monitoring": {
+    "message": "Monitoring",
+    "description": "The label for category 'Monitoring' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.loki": {
+    "message": "loki",
+    "description": "The label for category 'loki' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Security": {
+    "message": "Security",
+    "description": "The label for category 'Security' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Standardizations": {
+    "message": "Standardizations",
+    "description": "The label for category 'Standardizations' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Vault": {
+    "message": "Vault",
+    "description": "The label for category 'Vault' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ldap-root": {
+    "message": "LDAP",
+    "description": "The label for category 'LDAP' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.LanguageSkills": {
+    "message": "LanguageSkills",
+    "description": "The label for category 'LanguageSkills' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Linux": {
+    "message": "Linux",
+    "description": "The label for category 'Linux' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Alert_Handle": {
+    "message": "Alert_Handle",
+    "description": "The label for category 'Alert_Handle' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Cases_Collection": {
+    "message": "Cases_Collection",
+    "description": "The label for category 'Cases_Collection' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Layer2Problem": {
+    "message": "Layer2Problem",
+    "description": "The label for category 'Layer2Problem' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.linux-dns": {
+    "message": "DNS",
+    "description": "The label for category 'DNS' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.linux-dns-k8s-bind-product": {
+    "message": "k8s_bind_product",
+    "description": "The label for category 'k8s_bind_product' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.KVM": {
+    "message": "KVM",
+    "description": "The label for category 'KVM' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.linux-ldap": {
+    "message": "LDAP",
+    "description": "The label for category 'LDAP' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Linux Network": {
+    "message": "Linux Network",
+    "description": "The label for category 'Linux Network' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.NFS": {
+    "message": "NFS",
+    "description": "The label for category 'NFS' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.NetFilters": {
+    "message": "NetFilters",
+    "description": "The label for category 'NetFilters' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.OBS": {
+    "message": "OBS",
+    "description": "The label for category 'OBS' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.OSImage_Base": {
+    "message": "OSImage_Base",
+    "description": "The label for category 'OSImage_Base' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.OpenSUSE": {
+    "message": "OpenSUSE",
+    "description": "The label for category 'OpenSUSE' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.RMT": {
+    "message": "RMT",
+    "description": "The label for category 'RMT' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.RPM_native": {
+    "message": "RPM_native",
+    "description": "The label for category 'RPM_native' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.MCP": {
+    "message": "MCP",
+    "description": "The label for category 'MCP' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.MISC": {
+    "message": "MISC",
+    "description": "The label for category 'MISC' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.MISC_Bookmarks": {
+    "message": "MISC_Bookmarks",
+    "description": "The label for category 'MISC_Bookmarks' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ML_Kubeflow": {
+    "message": "ML_Kubeflow",
+    "description": "The label for category 'ML_Kubeflow' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Net-Layer7": {
+    "message": "Net-Layer7",
+    "description": "The label for category 'Net-Layer7' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Openstack": {
+    "message": "Openstack",
+    "description": "The label for category 'Openstack' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ProjectManagement": {
+    "message": "ProjectManagement",
+    "description": "The label for category 'ProjectManagement' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Social_Eng_Shanghai": {
+    "message": "Social_Eng_Shanghai",
+    "description": "The label for category 'Social_Eng_Shanghai' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Staging": {
+    "message": "Staging",
+    "description": "The label for category 'Staging' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.TLS": {
+    "message": "TLS",
+    "description": "The label for category 'TLS' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Ticketing": {
+    "message": "Ticketing",
+    "description": "The label for category 'Ticketing' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.VersionControl": {
+    "message": "VersionControl",
+    "description": "The label for category 'VersionControl' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.WEB": {
+    "message": "WEB",
+    "description": "The label for category 'WEB' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.云计算-CloudComputing": {
+    "message": "云计算-CloudComputing",
+    "description": "The label for category '云计算-CloudComputing' in sidebar 'tutorialSidebar'"
+  }
+}

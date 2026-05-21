@@ -27,6 +27,27 @@ gidNumber: 58006
 
 
 ```
+ldapsearch -x \
+  -H ldap://adldap.global.corp.sap \
+  -ZZ \
+  -D "GMP_GETJUMPHOST@global.corp.sap" \
+  -W \
+  -b "" \
+  -s base
+
+
+ldapsearch -x \
+  -H ldap://adldap.global.corp.sap \
+  -ZZ \
+  -D "GMP_GETJUMPHOST@global.corp.sap" \
+  -W \
+  -b "" \
+  -s base
+ONQ0u4N=n,F>T7,msE/N>h=!e~L-!d
+```
+
+
+```
 # Check user's details in LDAP 
 ldapsearch -o ldif-wrap=no -LLL -H ldaps://ldap-eude2-spc.cis-spc-tic.gmp.eu-de-2.cloud.ppp -b dc=cis-spc-tic,dc=gmp,dc=eu-de-2,dc=cloud,dc=ppp -D cn=slave,ou=users,ou=SYS,dc=cis-spc-tic,dc=gmp,dc=eu-de-2,dc=cloud,dc=ppp -w $pwd cn=nzaadm dn
 

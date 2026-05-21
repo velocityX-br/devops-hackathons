@@ -329,9 +329,6 @@ Istio 的作用：Istio Gateway 正是利用这个“明文漏洞”来实现智
 
 
 
-
-
-
 TLS 透传 (TLS Passthrough) 是 Istio Gateway 中一种特殊的流量处理模式。在这种模式下，Istio Gateway 完全不触碰 TLS 加密内容（不解密、不验证证书、不查看 HTTP 头），它仅仅充当一个「智能管道」，根据 TCP 握手阶段的 SNI (Server Name Indication) 字段，将加密数据包原封不动地转发给后端的 Kubernetes Service。
 
 以下是最适合使用 TLS 透传的几种典型场景，以及为什么要这样做的深度解析：

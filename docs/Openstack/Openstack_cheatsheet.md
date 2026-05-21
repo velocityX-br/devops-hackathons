@@ -66,6 +66,9 @@ openstack port show 8f35fbe5-387c-4787-96d9-3c09b7b909a
 # Change dns-name 
 openstack port set --dns-name initvm 8f35fbe5-387c-4787-96d9-3c09b7b909a7
 
+# Disable gateway from one of the subnet.
+openstack subnet set --gateway none --tag "env:prod" --tag "team:network" my-subnet-01
+
 # List user's permission
 openstack group/user list / openstack group/user show
 

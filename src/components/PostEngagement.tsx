@@ -1,6 +1,8 @@
 import React from 'react';
 import Giscus from '@giscus/react';
 import {useColorMode, useThemeConfig} from '@docusaurus/theme-common';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Translate from '@docusaurus/Translate';
 
 type PostEngagementProps = {
   postId?: string;
@@ -28,6 +30,16 @@ declare global {
   }
 }
 
+function useGiscusLang(defaultLang: string | undefined): string {
+  const {
+    i18n: {currentLocale},
+  } = useDocusaurusContext();
+  if (currentLocale === 'zh-Hans') {
+    return 'zh-CN';
+  }
+  return defaultLang ?? 'en';
+}
+
 export default function PostEngagement({
   postId,
   postTitle,
@@ -36,6 +48,7 @@ export default function PostEngagement({
   const {colorMode} = useColorMode();
   const themeConfig = useThemeConfig() as {giscus?: GiscusConfig};
   const giscus = themeConfig.giscus;
+  const giscusLang = useGiscusLang(giscus?.lang);
   const hasRequiredGiscusConfig =
     Boolean(giscus?.repo) &&
     Boolean(giscus?.repoId) &&
@@ -61,20 +74,30 @@ export default function PostEngagement({
   return (
     <section className="postEngagement">
       <div className="postEngagementHeader">
-        <h3>What Do You Think ? 😊</h3>
-        <p>Welcome to share your thoughts and join the discussion.</p>
+        <h3>
+          <Translate id="postEngagement.title">What Do You Think ? 😊</Translate>
+        </h3>
+        <p>
+          <Translate id="postEngagement.subtitle">
+            Welcome to share your thoughts and join the discussion.
+          </Translate>
+        </p>
       </div>
 
       <div className="postEngagementActions">
         <button type="button" className="postLikeButton" onClick={onOpenFeedback}>
-         Navigate to the discussion ➡️
+          <Translate id="postEngagement.cta">
+            Navigate to the discussion ➡️
+          </Translate>
         </button>
       </div>
 
       {enableComments ? (
         hasRequiredGiscusConfig ? (
           <div className="postComments" id="post-comments">
-            <h4>Comments</h4>
+            <h4>
+              <Translate id="postEngagement.comments">Comments</Translate>
+            </h4>
             <Giscus
               repo={giscus!.repo! as `${string}/${string}`}
               repoId={giscus!.repoId!}
@@ -86,15 +109,17 @@ export default function PostEngagement({
               emitMetadata={giscus?.emitMetadata ?? '0'}
               inputPosition={giscus?.inputPosition ?? 'top'}
               theme={colorMode === 'dark' ? 'dark' : 'light'}
-              lang={giscus?.lang ?? 'en'}
+              lang={giscusLang}
               loading={giscus?.loading ?? 'lazy'}
               term={postId}
             />
           </div>
         ) : (
           <p className="postCommentHint">
-            Comments are enabled, but Giscus is not fully configured yet. Please set
-            `repoId` and `categoryId` in `docusaurus.config.js`.
+            <Translate id="postEngagement.giscusHint">
+              Comments are enabled, but Giscus is not fully configured yet. Please
+              set repoId and categoryId in docusaurus.config.js.
+            </Translate>
           </p>
         )
       ) : null}

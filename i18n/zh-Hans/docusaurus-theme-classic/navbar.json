@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "DevOps 站点",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "站点 Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Cloud-Native": {
+    "message": "云原生",
+    "description": "Navbar item with label Cloud-Native"
+  },
+  "item.label.Blog": {
+    "message": "博客",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

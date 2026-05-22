@@ -70,6 +70,8 @@ const config = {
         },
         blog: {
           showReadingTime: true,
+          // Show all posts in the blog sidebar ("Recent posts" / 最新文章).
+          blogSidebarCount: "ALL",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: `https://github.com/${organizationName}/${projectName}/tree/main/`,

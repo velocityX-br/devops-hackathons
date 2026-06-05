@@ -4,8 +4,8 @@ title: K8S-Networking-Model
 authors:
   name: Bryan Chen
   title: Innovation junkie. Linux & Kubernetes obsessed
-  url: https://github.com/BryanPersonal
-  image_url: https://github.com/BryanPersonal.png
+  url: https://github.com/velocityX-br
+  image_url: https://github.com/velocityX-br.png
 tags: [CNI, Kubernetes, Cloud-native, ClientIP,]
 ---
 

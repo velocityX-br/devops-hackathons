@@ -33,7 +33,7 @@
   },
   "link.item.label.GitHub": {
     "message": "GitHub",
-    "description": "The label of footer link with label=GitHub linking to https://github.com/BryanPersonal/devops-hackathons"
+    "description": "The label of footer link with label=GitHub linking to https://github.com/velocityX-br/devops-hackathons"
   },
   "copyright": {
     "message": "Copyright © 2026 My Project, Inc. 基于 Docusaurus 构建。",

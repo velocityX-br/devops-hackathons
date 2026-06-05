@@ -11,6 +11,7 @@ Agentic AI workflows: An agentic AI workflow is a process where LLM-based app ex
 
 Research Agent: ??? TO build ??
 
+
 > The degree to which agentic workflows can be autonomous. 
 Degree of autonomy:
 

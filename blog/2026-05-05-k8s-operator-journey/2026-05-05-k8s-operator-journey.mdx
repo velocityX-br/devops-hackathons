@@ -4,8 +4,8 @@ title: K8S-operator-journey
 authors:
   name: Bryan Chen
   title: Innovation junkie. Linux & Kubernetes obsessed
-  url: https://github.com/BryanPersonal
-  image_url: https://github.com/BryanPersonal.png
+  url: https://github.com/velocityX-br
+  image_url: https://github.com/velocityX-br.png
 tags: []
 ---
 
@@ -28,6 +28,73 @@ Conceptual Formula: Operator = Controller + Domain Knowledege (Industry experien
 资源类型,通常管理内置资源,通常管理自定义资源 (CRD)
 复杂度,通用、简单,复杂，包含特定软件的运维逻辑
 关系,是一个技术实现机制,是利用该机制的一种设计模式
+
+##### controller-gen 是什么？
+`controller-gen` 是 Kubernetes 社区（具体是由 Kubebuilder 和 Controller-Runtime 项目）开发的一个代码和清单文件生成工具。
+在 Kubernetes 开发中，如果你想自定义一个资源（CRD），你通常需要写两样东西：
+
+1. Go 语言的结构体（Struct）：让你的控制器代码能理解这个资源。
+2. YAML 配置文件（CRD 清单）：让 Kubernetes 集群能理解这个资源。
+
+如果手动去维护这两份文件，不仅低效而且极易出错。`controller-ge 的核心工作就是通过阅读你 Go 代码中的特定注释（Markers），自动帮你把 YAML 文件、深度拷贝代码（`zz_generated.deepcopy.go`）等生成出来。
+
+#### `api/v1/zz_generated.deepcopy.go` 是什么？
+controller-gen` 根据你在 `bindoperator_types.go` 里定义的类型，为每个 API 类型生成 深拷贝（DeepCopy） 方能安全地复制对象，而不会出现「两个地方共享同一块法，让 Kubernetes 客户端和 controller-runtime  slice/map 指针、改一处影响另一处」的问题。
+`zz_generated.deepcopy.go` 就像是架在你的 Go 结构体与 Kubernetes 核心机制（ApiServer/Informer）之间的一座桥梁。它让你的自定义资源合法地变成了一个“Kubernetes 认可的对象”，并确保了控制器在处理数据时的并发安全。你不需要读懂它，也不需要修改它，只要确保在修改了 API 结构体后，运行命令让它自动更新即可
+
+
+## Q/A
+
+Question:
+deepcopy.go:
+Kubernetes uses runtime object copying extensively (e.g., caching, version conversion). You must generate DeepCopy methods so your CR can be safely duplicated by the Kubernetes API machinery. These methods are required for implementing the runtime.Object interface. 由哪里复制到哪里？ 
+
+
+
+Answer:
+```
+简单直接地回答，“由哪里复制到哪里”可以从 “数据流向” 和 “内存底层” 两个维度来理解：
+
+1. 宏观数据流向：由「共享的本地缓存」复制到「你的控制器」
+在 Kubernetes 中，为了减轻 API Server 的压力，你的 Operator/控制器不会每次都去集群里查数据，而是通过一个叫 Informer 的机制，在本地内存中维护一份集群资源的只读缓存（Cache）。
+
+当你的控制器需要处理一个事件（比如一个 Pod 或你的 CR 发生了变化）时：
+
+源头（哪里）： 本地缓存（Informer Cache）中的那个原始对象。这个对象是所有协程共享的、绝对不允许修改的。
+
+终点（到哪里）： 你的控制器逻辑中新开辟的内存变量。
+
+过程： DeepCopy() 会在内存中把缓存对象的属性完整克隆一份。拿到这个“独立副本”后，你的控制器就可以安全地在代码里修改它的 Status（状态）或 Spec（期望），然后再把修改后的副本发回给 API Server。
+
+2. 微观内存底层：由「指针指向的旧内存」复制到「全新分配的新内存」
+在 Go 语言中，如果只是普通的赋值（A = B），拷贝的往往只是指针地址（浅拷贝）。
+
+DeepCopy 在底层的复制方式是：
+
+源头（哪里）： 指针 A 指向的结构体，以及它内部嵌套的切片（Slice）、映射（Map）和子指针所指向的旧内存空间。
+
+终点（到哪里）： 使用 Go 的 new() 或内置机制在堆（Heap）上全新分配的一块内存空间 B。
+
+举个例子：
+假设你的 CRD 里有一个切片字段 Tags: []string{"a", "b"}。
+
+浅拷贝：只是复制了切片的指针，新旧变量依然指向同一个底层数组。如果你改了新变量的 Tags[0] = "x"，缓存里的数据也被污染了，这会导致严重的并发冲突。
+
+DeepCopy（深拷贝）：在内存中重新申请一块地方，把 "a", "b" 复制过去。此时新旧变量在内存上完全隔离，互不影响。
+
+总结
+DeepCopy 的本质就是：由「不可变的、大家共享的缓存内存」，复制到「可变的、属于你当前处理流程的私有内存」。
+
+正是因为有了这个防污染的“隔离带”，Kubernetes 的高并发高吞吐架构才能稳定运行。
+
+SideNote:
+在 Kubernetes 中，Informer 机制是控制器（Controller / Operator）能够高效、实时监听集群资源变化的核心引擎。
+
+如果让控制器每次都直接去向 API Server 查询（通过 HTTP REST API）资源状态，不仅网络开销极大，API Server 也会因为承受不住成百上千个控制器的频繁轮询而崩溃。
+
+为了解决这个问题，Kubernetes 设计了 Informer 机制。简单来说，它就像是一个带自动同步功能的本地高性能缓存和事件分发器。
+
+```
 
 #### CNCF Operator Whitepaper
 https://github.com/cncf/tag-app-delivery/blob/main/operator-wg/whitepaper/Operator-WhitePaper_v1-0.md

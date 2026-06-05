@@ -3,7 +3,7 @@
 
 const {themes} = require('prism-react-renderer');
 
-const organizationName = "BryanPersonal";
+const organizationName = "velocityX-br";
 const projectName = "devops-hackathons";
 
 /** @type {import('@docusaurus/types').Config} */
@@ -161,7 +161,7 @@ const config = {
         darkTheme: themes.dracula,
       },
       giscus: {
-        repo: 'BryanPersonal/devops-hackathons',
+        repo: 'velocityX-br/devops-hackathons',
         repoId: 'R_kgDOOUvUFQ',
         category: 'General',
         categoryId: 'DIC_kwDOOUvUFc4C8CkN',

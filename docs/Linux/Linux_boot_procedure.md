@@ -170,7 +170,7 @@ if [ "${next_entry}" ] ; then
    fi
    set boot_once=true
 else
-   set default="SLES_SAP 15-SP7"
+   set default="SLES_PPP 15-SP7"
 fi
 
 

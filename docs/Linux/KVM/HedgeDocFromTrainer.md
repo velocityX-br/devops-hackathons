@@ -4,75 +4,75 @@
 ## Organisation
 
 For Emergencies Trainer
-- Whatsapp +639274336737
-- wurfbaum@b1-systems.de
+- Whatpppp +639274336737
+- trainer@example.com
 
 - obsolete, replaced by teams: https://meet.google.com/eat-gmea-tdu
 - Linus explains things: https://www.youtube.com/watch?v=5IfHm6R5le0
 
 ## Training material
 
-https://share.b1-systems.de/index.php/s/ss1j6zIkLgSk3c5
+https://share.training.example.com/index.php/s/ss1j6zIkLgSk3c5
 
 
 ## Training participants
-nagadeesh.nagaraja@sap.com
-vlad.koychev@sap.com
-adam.karath@sap.com
-nina.guo01@sap.com
-furong.lei@sap.com
-emma.wang04@sap.com
-eisen.wang@sap.com [suresh.ramasamy@sap.com]
-bryan.chen01@sap.com
-boyu.yang01@sap.com
-konstantin.koslowski@sap.com
+user@example.com
+user@example.com
+user@example.com
+user@example.com
+user@example.com
+user@example.com
+user@example.com [user@example.com]
+user@example.com
+user@example.com
+user@example.com
 
 
 ## Access the labs:
 
-training_url=201918.training.b1-systems.de
+training_url=training.example.com
 (best browser is Chrome)
 
 - [user0] Tom (Trainer)
     guacamole_password=o3TR5p6Atw
-    hypervisor-0=100.80.3.85
+    hypervisor-0=10.0.0.1
 - [user1] Adam K.
     guacamole_password=Sp8p5PXiVc
-    hypervisor-1=100.80.3.66
+    hypervisor-1=10.0.0.2
 - [user2] Furong
     guacamole_password=x5WyqStlYz
-    hypervisor-2=100.80.1.39
+    hypervisor-2=10.0.0.3
 - [user3] Nagadeesh 
     guacamole_password=cN5YPISvlt
-    hypervisor-3=100.80.0.78
-- [user4] suresh 
+    hypervisor-3=10.0.0.4
+- [user4] user04 
     guacamole_password=1UbcibpKWt
-    hypervisor-4=100.80.2.240
+    hypervisor-4=10.0.0.5
 - [user5] Emma
     guacamole_password=b2YiLrSCGR
-    hypervisor-5=100.80.0.248
+    hypervisor-5=10.0.0.6
 - [user6] Boyu
     guacamole_password=1Prtxctfsz
-    hypervisor-6=100.80.1.78
+    hypervisor-6=10.0.0.7
 - [user7] - Nina 
     guacamole_password=w0WZhPRHJZ
-    hypervisor-7=100.80.3.76
+    hypervisor-7=10.0.0.8
 - [user8] - Bryan
     guacamole_password=s6Suv3gih3
-    hypervisor-8=100.80.3.19
+    hypervisor-8=10.0.0.9
 - [user9 - Vlad]
     guacamole_password=bCLe3d85Ud
-    hypervisor-9=100.80.1.166
+    hypervisor-9=10.0.0.10
 - [user10] Konstantin
     guacamole_password=Gb1CQGXfeq
-    hypervisor-10=100.80.1.20
+    hypervisor-10=10.0.0.11
 
 Hypervisor root password 
 - `b1s`
 
 Connect from local SSH client like putty:
 ```
-ssh userX@201918.training.b1-systems.de
+ssh userX@training.example.com
 ```
 
 key-combo for opening guacamole submenu for copy-paste
@@ -87,7 +87,7 @@ export LANG=en_US.UTF-8
 QEMU Command to start VM
 
 ```
-/usr/bin/qemu-kvm -name guest=SLE301v15-server1,debug-threads=on -S -object {"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-SLE301v15-server1/master-key.aes"} -machine pc-i440fx-2.3,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram,hpet=off,acpi=on -accel kvm -cpu qemu64 -m size=4194304k -object {"qom-type":"memory-backend-ram","id":"pc.ram","size":4294967296} -overcommit mem-lock=off -smp 4,sockets=4,cores=1,threads=1 -uuid 5b54c8b6-f0bb-4ee7-8d57-92a0c9c3f4a8 -no-user-config -nodefaults -chardev socket,id=charmonitor,fd=30,server=on,wait=off -mon chardev=charmonitor,id=monitor,mode=control -rtc base=utc,driftfix=slew -global kvm-pit.lost_tick_policy=delay -no-down -global PIIX4_PM.disable_s3=1 -global PIIX4_PM.disable_s4=1 -boot strict=on -device {"driver":"ich9-usb-ehci1","id":"usb","bus":"pci.0","addr":"0x6.0x7"} -device {"driver":"ich9-usb-uhci1","masterbus":"usb.0","firstport":0,"bus":"pci.0","multifunction":true,"addr":"0x6"} -device {"driver":"ich9-usb-uhci2","masterbus":"usb.0","firstport":2,"bus":"pci.0","addr":"0x6.0x1"} -device {"driver":"ich9-usb-uhci3","masterbus":"usb.0","firstport":4,"bus":"pci.0","addr":"0x6.0x2"} -device {"driver":"lsi","id":"scsi0","bus":"pci.0","addr":"0xf"} -device {"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.0","addr":"0x5"} -blockdev {"driver":"file","filename":"/home/VMs/SLE301v15/SLE301v15-server1/SLE301v15-server1.qcow2","node-name":"libvirt-7-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-7-format","read-only":false,"driver":"qcow2","file":"libvirt-7-storage","backing":null} -device {"driver":"virtio-blk-pci","bus":"pci.0","addr":"0x7","drive":"libvirt-7-format","id":"virtio-disk0","bootindex":1} -blockdev {"driver":"file","filename":"/home/VMs/SLE301v15/SLE301v15-server1/SLE301v15-server1-2.qcow2","node-name":"libvirt-6-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-6-format","read-only":false,"driver":"qcow2","file":"libvirt-6-storage","backing":null} -device {"driver":"virtio-blk-pci","bus":"pci.0","addr":"0xa","drive":"libvirt-6-format","id":"virtio-disk1"} -blockdev {"driver":"file","filename":"/home/VMs/SLE301v15/SLE301v15-server1/SLE301v15-server1-3.qcow2","node-name":"libvirt-5-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-5-format","read-only":false,"driver":"qcow2","file":"libvirt-5-storage","backing":null} -device {"driver":"virtio-blk-pci","bus":"pci.0","addr":"0xb","drive":"libvirt-5-format","id":"virtio-disk2"} -blockdev {"driver":"file","filename":"/home/VMs/SLE301v15/SLE301v15-server1/SLE301v15-server1-4.qcow2","node-name":"libvirt-4-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-4-format","read-only":false,"driver":"qcow2","file":"libvirt-4-storage","backing":null} -device {"driver":"virtio-blk-pci","bus":"pci.0","addr":"0xe","drive":"libvirt-4-format","id":"virtio-disk3"} -device {"driver":"ide-cd","bus":"ide.0","unit":0,"id":"ide0-0-0"} -blockdev {"driver":"file","filename":"/home/iso/SLE301v15/SLE-15-Packages-DVD-x86_64-GMC-DVD1.iso","node-name":"libvirt-2-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-2-format","read-only":true,"driver":"raw","file":"libvirt-2-storage"} -device {"driver":"ide-cd","bus":"ide.0","unit":1,"drive":"libvirt-2-format","id":"ide0-0-1"} -blockdev {"driver":"file","filename":"/home/iso/SLE301v15/SLE-15-Installer-DVD-x86_64-GMC-DVD1.iso","node-name":"libvirt-1-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-1-format","read-only":true,"driver":"raw","file":"libvirt-1-storage"} -device {"driver":"scsi-cd","bus":"scsi0.0","scsi-id":0,"device_id":"drive-scsi0-0-0","drive":"libvirt-1-format","id":"scsi0-0-0"} -netdev {"type":"tap","fd":"31","vhost":true,"vhostfd":"33","id":"hostnet0"} -device {"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:07:e8:e8","bus":"pci.0","addr":"0x3"} -netdev {"type":"tap","fd":"34","vhost":true,"vhostfd":"35","id":"hostnet1"} -device {"driver":"virtio-net-pci","netdev":"hostnet1","id":"net1","mac":"52:54:00:35:3e:13","bus":"pci.0","addr":"0xc"} -netdev {"type":"tap","fd":"36","vhost":true,"vhostfd":"37","id":"hostnet2"} -device {"driver":"virtio-net-pci","netdev":"hostnet2","id":"net2","mac":"52:54:00:c6:2c:20","bus":"pci.0","addr":"0xd"} -chardev pty,id=charserial0 -device {"driver":"isa-serial","chardev":"charserial0","id":"serial0","index":0} -chardev socket,id=charchannel0,fd=29,server=on,wait=off -device {"driver":"virtserialport","bus":"virtio-serial0.0","nr":1,"chardev":"charchannel0","id":"channel0","name":"org.qemu.guest_agent.0"} -chardev spicevmc,id=charchannel1,name=vdagent -device {"driver":"virtserialport","bus":"virtio-serial0.0","nr":2,"chardev":"charchannel1","id":"channel1","name":"com.redhat.spice.0"} -device {"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"} -audiodev {"id":"audio1","driver":"spice"} -spice port=5900,addr=127.0.0.1,disable-ticketing=on,image-compression=off,seamless-migration=on -device {"driver":"qxl-vga","id":"video0","max_outputs":1,"ram_size":67108864,"vram_size":67108864,"vram64_size_mb":0,"vgamem_mb":16,"bus":"pci.0","addr":"0x2"} -device {"driver":"intel-hda","id":"sound0","bus":"pci.0","addr":"0x4"} -device {"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"} -chardev spicevmc,id=charredir0,name=usbredir -device {"driver":"usb-redir","chardev":"charredir0","id":"redir0","bus":"usb.0","port":"2"} -chardev spicevmc,id=charredir1,name=usbredir -device {"driver":"usb-redir","chardev":"charredir1","id":"redir1","bus":"usb.0","port":"3"} -device {"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.0","addr":"0x8"} -object {"qom-type":"rng-random","id":"objrng0","filename":"/dev/random"} -device {"driver":"virtio-rng-pci","rng":"objrng0","id":"rng0","bus":"pci.0","addr":"0x9"} -sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny -msg timestamp=on
+/usr/bin/qemu-kvm -name guest=SLE301v15-server1,debug-threads=on -S -object {"qom-type":"secret","id":"masterKey0","format":"raw","file":"/var/lib/libvirt/qemu/domain-1-SLE301v15-server1/master-key.aes"} -machine pc-i440fx-2.3,usb=off,vmport=off,dump-guest-core=off,memory-backend=pc.ram,hpet=off,acpi=on -accel kvm -cpu qemu64 -m size=4194304k -object {"qom-type":"memory-backend-ram","id":"pc.ram","size":4294967296} -overcommit mem-lock=off -smp 4,sockets=4,cores=1,threads=1 -uuid 00000000-0000-4000-8000-000000000001 -no-user-config -nodefaults -chardev socket,id=charmonitor,fd=30,server=on,wait=off -mon chardev=charmonitor,id=monitor,mode=control -rtc base=utc,driftfix=slew -global kvm-pit.lost_tick_policy=delay -no-down -global PIIX4_PM.disable_s3=1 -global PIIX4_PM.disable_s4=1 -boot strict=on -device {"driver":"ich9-usb-ehci1","id":"usb","bus":"pci.0","addr":"0x6.0x7"} -device {"driver":"ich9-usb-uhci1","masterbus":"usb.0","firstport":0,"bus":"pci.0","multifunction":true,"addr":"0x6"} -device {"driver":"ich9-usb-uhci2","masterbus":"usb.0","firstport":2,"bus":"pci.0","addr":"0x6.0x1"} -device {"driver":"ich9-usb-uhci3","masterbus":"usb.0","firstport":4,"bus":"pci.0","addr":"0x6.0x2"} -device {"driver":"lsi","id":"scsi0","bus":"pci.0","addr":"0xf"} -device {"driver":"virtio-serial-pci","id":"virtio-serial0","bus":"pci.0","addr":"0x5"} -blockdev {"driver":"file","filename":"/home/VMs/SLE301v15/SLE301v15-server1/SLE301v15-server1.qcow2","node-name":"libvirt-7-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-7-format","read-only":false,"driver":"qcow2","file":"libvirt-7-storage","backing":null} -device {"driver":"virtio-blk-pci","bus":"pci.0","addr":"0x7","drive":"libvirt-7-format","id":"virtio-disk0","bootindex":1} -blockdev {"driver":"file","filename":"/home/VMs/SLE301v15/SLE301v15-server1/SLE301v15-server1-2.qcow2","node-name":"libvirt-6-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-6-format","read-only":false,"driver":"qcow2","file":"libvirt-6-storage","backing":null} -device {"driver":"virtio-blk-pci","bus":"pci.0","addr":"0xa","drive":"libvirt-6-format","id":"virtio-disk1"} -blockdev {"driver":"file","filename":"/home/VMs/SLE301v15/SLE301v15-server1/SLE301v15-server1-3.qcow2","node-name":"libvirt-5-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-5-format","read-only":false,"driver":"qcow2","file":"libvirt-5-storage","backing":null} -device {"driver":"virtio-blk-pci","bus":"pci.0","addr":"0xb","drive":"libvirt-5-format","id":"virtio-disk2"} -blockdev {"driver":"file","filename":"/home/VMs/SLE301v15/SLE301v15-server1/SLE301v15-server1-4.qcow2","node-name":"libvirt-4-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-4-format","read-only":false,"driver":"qcow2","file":"libvirt-4-storage","backing":null} -device {"driver":"virtio-blk-pci","bus":"pci.0","addr":"0xe","drive":"libvirt-4-format","id":"virtio-disk3"} -device {"driver":"ide-cd","bus":"ide.0","unit":0,"id":"ide0-0-0"} -blockdev {"driver":"file","filename":"/home/iso/SLE301v15/SLE-15-Packages-DVD-x86_64-GMC-DVD1.iso","node-name":"libvirt-2-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-2-format","read-only":true,"driver":"raw","file":"libvirt-2-storage"} -device {"driver":"ide-cd","bus":"ide.0","unit":1,"drive":"libvirt-2-format","id":"ide0-0-1"} -blockdev {"driver":"file","filename":"/home/iso/SLE301v15/SLE-15-Installer-DVD-x86_64-GMC-DVD1.iso","node-name":"libvirt-1-storage","auto-read-only":true,"discard":"unmap"} -blockdev {"node-name":"libvirt-1-format","read-only":true,"driver":"raw","file":"libvirt-1-storage"} -device {"driver":"scsi-cd","bus":"scsi0.0","scsi-id":0,"device_id":"drive-scsi0-0-0","drive":"libvirt-1-format","id":"scsi0-0-0"} -netdev {"type":"tap","fd":"31","vhost":true,"vhostfd":"33","id":"hostnet0"} -device {"driver":"virtio-net-pci","netdev":"hostnet0","id":"net0","mac":"52:54:00:07:e8:e8","bus":"pci.0","addr":"0x3"} -netdev {"type":"tap","fd":"34","vhost":true,"vhostfd":"35","id":"hostnet1"} -device {"driver":"virtio-net-pci","netdev":"hostnet1","id":"net1","mac":"52:54:00:35:3e:13","bus":"pci.0","addr":"0xc"} -netdev {"type":"tap","fd":"36","vhost":true,"vhostfd":"37","id":"hostnet2"} -device {"driver":"virtio-net-pci","netdev":"hostnet2","id":"net2","mac":"52:54:00:c6:2c:20","bus":"pci.0","addr":"0xd"} -chardev pty,id=charserial0 -device {"driver":"isa-serial","chardev":"charserial0","id":"serial0","index":0} -chardev socket,id=charchannel0,fd=29,server=on,wait=off -device {"driver":"virtserialport","bus":"virtio-serial0.0","nr":1,"chardev":"charchannel0","id":"channel0","name":"org.qemu.guest_agent.0"} -chardev spicevmc,id=charchannel1,name=vdagent -device {"driver":"virtserialport","bus":"virtio-serial0.0","nr":2,"chardev":"charchannel1","id":"channel1","name":"com.redhat.spice.0"} -device {"driver":"usb-tablet","id":"input0","bus":"usb.0","port":"1"} -audiodev {"id":"audio1","driver":"spice"} -spice port=5900,addr=127.0.0.1,disable-ticketing=on,image-compression=off,seamless-migration=on -device {"driver":"qxl-vga","id":"video0","max_outputs":1,"ram_size":67108864,"vram_size":67108864,"vram64_size_mb":0,"vgamem_mb":16,"bus":"pci.0","addr":"0x2"} -device {"driver":"intel-hda","id":"sound0","bus":"pci.0","addr":"0x4"} -device {"driver":"hda-duplex","id":"sound0-codec0","bus":"sound0.0","cad":0,"audiodev":"audio1"} -chardev spicevmc,id=charredir0,name=usbredir -device {"driver":"usb-redir","chardev":"charredir0","id":"redir0","bus":"usb.0","port":"2"} -chardev spicevmc,id=charredir1,name=usbredir -device {"driver":"usb-redir","chardev":"charredir1","id":"redir1","bus":"usb.0","port":"3"} -device {"driver":"virtio-balloon-pci","id":"balloon0","bus":"pci.0","addr":"0x8"} -object {"qom-type":"rng-random","id":"objrng0","filename":"/dev/random"} -device {"driver":"virtio-rng-pci","rng":"objrng0","id":"rng0","bus":"pci.0","addr":"0x9"} -sandbox on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny -msg timestamp=on
 ```
 very unhandy and uncomfortable!
 
@@ -216,20 +216,20 @@ virsh list
 zypper install nmap
 ip -br a
 ...
-sle301v15-lan    UP             192.168.13.1/24
-sle301v15-san1   UP             192.168.14.1/24
-sle301v15-san2   UP             192.168.15.1/24
+sle301v15-lan    UP             10.0.0.12/24
+sle301v15-san1   UP             10.0.0.13/24
+sle301v15-san2   UP             10.0.0.14/24
 
-nmap -sn 192.168.13.0/24
+nmap -sn 10.0.0.15/24
 Starting Nmap 7.94 ( https://nmap.org ) at 2025-12-15 13:51 UTC
-Nmap scan report for 192.168.13.21
+Nmap scan report for 10.0.0.16
 Host is up (0.00061s latency).
 MAC Address: 52:54:00:07:E8:E8 (QEMU virtual NIC)
-Nmap scan report for 192.168.13.1
+Nmap scan report for 10.0.0.12
 Host is up.
 Nmap done: 256 IP addresses (2 hosts up) scanned in 2.05 seconds
 
-ssh -l tux 192.168.13.21
+ssh -l tux 10.0.0.16
 <enter password>
 <profit>
 ```
@@ -293,11 +293,11 @@ vi /root/examplenet.xml
 ```xml
 <network>
   <name>isolatednet</name>
-  <uuid>8fa6f0f9-d36e-4541-b165-0a656afcd769</uuid>
+  <uuid>00000000-0000-4000-8000-000000000002</uuid>
   <bridge name='isolated1' stp='on' delay='0'/>
   <mac address='52:54:00:d6:55:79'/>
   <domain name='isolatednet'/>
-  <ip address='192.168.16.1' netmask='255.255.255.0'>
+  <ip address='10.0.0.17' netmask='255.255.255.0'>
   </ip>
 </network>
 ```
@@ -309,7 +309,7 @@ vi /root/mynetwork.xml
 ```
 <network>
   <name>mynetwork</name>
-  <uuid>9a982437-926d-4808-9de0-94b29bc71e53</uuid>
+  <uuid>00000000-0000-4000-8000-000000000003</uuid>
   <forward mode='nat'>
     <nat>
       <port start='1024' end='65535'/>
@@ -318,9 +318,9 @@ vi /root/mynetwork.xml
   <bridge name='virbr1' stp='on' delay='0'/>
   <mac address='52:54:00:19:b5:41'/>
   <domain name='mynetwork'/>
-  <ip address='192.168.100.1' netmask='255.255.255.0'>
+  <ip address='10.0.0.18' netmask='255.255.255.0'>
     <dhcp>
-      <range start='192.168.100.128' end='192.168.100.254'/>
+      <range start='10.0.0.19' end='10.0.0.20'/>
     </dhcp>
   </ip>
 </network>
@@ -605,7 +605,7 @@ virt-viewer --connect qemu:///system win11
 
 We dont do this:
 zypper in openssh-askpass-gnome
-virt-viewer --connect qemu+ssh://tux@hypervisor-2.training.lab/system sles1
+virt-viewer --connect qemu+ssh://tux@hypervisor-02.training.lab/system sles1
     (works only if in libvirtd.conf and qemu.conf remote connection is allowed)
     
 
@@ -874,7 +874,7 @@ vi /root/migratenetwork.xml
 ```
 <network>
   <name>migratenetwork</name>
-  <uuid>5da501c5-84ec-41bb-b058-c40d6fc25d1b</uuid>
+  <uuid>00000000-0000-4000-8000-000000000004</uuid>
   <forward mode='nat'>
     <nat>
       <port start='1024' end='65535'/>
@@ -883,9 +883,9 @@ vi /root/migratenetwork.xml
   <bridge name='virbr5' stp='on' delay='0'/>
   <mac address='52:54:00:6c:f3:81'/>
   <domain name='migratenetwork'/>
-  <ip address='192.168.105.1' netmask='255.255.255.0'>
+  <ip address='10.0.0.21' netmask='255.255.255.0'>
     <dhcp>
-      <range start='192.168.105.128' end='192.168.105.254'/>
+      <range start='10.0.0.22' end='10.0.0.23'/>
     </dhcp>
   </ip>
 </network>
@@ -915,7 +915,7 @@ Replace X with Target Hypervisor Number
 
 
 
-https://feedback.training.b1-systems.de/201918
+https://feedback.training.training.example.com/201918
 1 very good, 2 good, 3 neutral, 4 bad 5 very bad
 
 Translation

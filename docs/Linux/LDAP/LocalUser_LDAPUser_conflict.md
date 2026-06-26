@@ -1,5 +1,5 @@
 ****Issue description****: 
-CLMAM found there same one user having two different UIDs. 
+SVC-A found there same one user having two different UIDs. 
 One locally in OS / another one in LDAP.  --> 本地 uid=502(wvtadm) LDAP uidNumber: 100000013
 
 
@@ -11,13 +11,13 @@ One locally in OS / another one in LDAP.  --> 本地 uid=502(wvtadm) LDAP uidNum
 Found file 
 
 ****Analysis****:
-> stat /usr/ppp/WVT/W80/exe/pppstartsrv
-  File: /usr/ppp/WVT/W80/exe/pppstartsrv
+> stat /usr/example/WVT/W80/exe/pppstartsrv
+  File: /usr/example/WVT/W80/exe/pppstartsrv
   Size: 15763192        Blocks: 30792      IO Block: 4096   regular file
 Device: fe05h/65029d    Inode: 131802      Links: 1
 Access: (0755/-rwxr-xr-x)  Uid: (  502/  wvtadm)   Gid: (   79/  pppsys)
 
-ldapsearch -ZZ -LLL -H ldap://ldap-eude2-spc.cis-spc-tic.gmp.eu-de-2.cloud.ppp -b dc=cis-spc-tic,dc=gmp,dc=eu-de-2,dc=cloud,dc=ppp -D cn=slave,ou=users,ou=SYS,dc=cis-spc-tic,dc=gmp,dc=eu-de-2,dc=cloud,dc=ppp -W "(&(uidNumber=502))"
+ldapsearch -ZZ -LLL -H ldap://ldap-eude2-spc.env-a-spc-tic.plat-a.eu-de-2.cloud.pppdemands.com -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -W "(&(uidNumber=502))"
 Enter LDAP Password:
 
 > ps -u wvtadm
@@ -25,6 +25,6 @@ Enter LDAP Password:
 9028 ?        00:04:16 pppstartsrv
 9167 ?        00:00:00 pppstart
 9176 ?        00:11:04 wd.pppWVT_W80
-(vawd01wvt) i577081@cc02v013193:/etc/openldap>
+(vawd01wvt) USER001@vm-host001:/etc/openldap>
 > ps -ef | grep 9028
-wvtadm    9028     1  0 Oct11 ?        00:04:16 /usr/ppp/WVT/W80/exe/pppstartsrv pf=/usr/ppp/WVT/SYS/profile/WVT_W80_vawd01wvt -D -u wvtadm
+wvtadm    9028     1  0 Oct11 ?        00:04:16 /usr/example/WVT/W80/exe/pppstartsrv pf=/usr/example/WVT/SYS/profile/WVT_W80_vawd01wvt -D -u wvtadm

@@ -2,11 +2,11 @@
 
 
 Source:
-sudo tcpdump -i any host hana-a3q-factoryus4-vtdfvhfu.us4.scp.net.ppp and port 30013 -nn -vv -s 0 -w client_test.pcap
+sudo tcpdump -i any host hana-a3q-factory-reg-4-vtdfvhfu.us4.scp.net.pppdemands.com and port 30013 -nn -vv -s 0 -w client_test.pcap
 
 
 DEST:
-sudo tcpdump -i any host 100.81.53.245 and port 30013 -nn -vv -s 0 -w hana30013.pcap
+sudo tcpdump -i any host 10.0.0.1 and port 30013 -nn -vv -s 0 -w hana30013.pcap
 
 
 HOW TO READ: 

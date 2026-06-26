@@ -57,5 +57,5 @@ sed 命令：替换脚本中的日志命令，确保警告信息通过 echo 输�
 
 It is using headless svc
 ```
-ldap-supplier.factoryeu2.sni.int.sap
+ldap-supplier.factoryeu2.team-a.int.pppdemands.com
 ```

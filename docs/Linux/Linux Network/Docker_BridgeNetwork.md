@@ -10,7 +10,7 @@ __Epic 1: Pod2Pod Communication__
 
 
 - Create bridge network in each node and setting them up
-    - `ip link add v-net-0 type bridge`   # to each node  10.244.1.0|1|2/24 (In same LAN)
+    - `ip link add v-net-0 type bridge`   # to each node  10.0.0.1|1|2/24 (In same LAN)
     - `ip link set dev v-net-0 up`  # to each node
 - Create veth pair and attach to veth pair
     - `ip link add ...`

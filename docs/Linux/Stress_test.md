@@ -1,7 +1,7 @@
 
 
 ```
-iperf3 -c 10.180.112.139 -P 8 -t 300
+iperf3 -c 10.0.0.1 -P 8 -t 300
 
 [ ID] Interval           Transfer     Bitrate         Retr
 [  5]   0.00-300.00 sec  92.8 GBytes  2.66 Gbits/sec  150945             sender

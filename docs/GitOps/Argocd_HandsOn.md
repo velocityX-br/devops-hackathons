@@ -9,4 +9,4 @@
         - /spec/syncPolicy
 ```
 
-`argocd app delete gmp-fluentbit --cascade -y`
+`argocd app delete plat-a-fluentbit --cascade -y`

@@ -3,7 +3,7 @@ repository: https://fluent.github.io/helm-charts
 ```
 fluent-bit:
   octobus:
-    url: in-https.eude2.ccloud.octobus.tools.ppp
+    url: in-https.eude2.ccloud.octobus.tools.pppdemands.com
     index: c0044
     generic: log
     specific: si_shoot_log
@@ -11,7 +11,7 @@ fluent-bit:
   shoot_name: sit081
   image:
     repository:
-      dockerio.int.repositories.cloud.ppp/fluent/fluent-bit
+      dockerio.int.repositories.cloud.pppdemands.com/fluent/fluent-bit
   serviceMonitor:
     enabled: true
   annotations:
@@ -307,8 +307,8 @@ https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/classic-m
 	"time": "2025-10-13T03:14:48.276729433Z",
 	"stream": "stdout",
 	"_p": "F",
-	"message": "[{\"date\":1760325287.0,\"kind\":\"Event\",\"apiVersion\":\"v1\",\"metadata\":{\"name\":\"bot-core-cm.186c62e03e925b66\",\"namespace\":\"patching\",\"uid\":\"d56225cd-d301-4038-bb0c-34aa11848bf9\",\"resourceVersion\":\"555704\",\"creationTimestamp\":\"2025-10-08T02:24:29Z\",\"managedFields\":[{\"manager\":\"vault-secrets-operator\",\"operation\":\"Update\",\"apiVersion\":\"v1\",\"time\":\"2025-10-13T03:14:47Z\",\"fieldsType\":\"FieldsV1\",\"fieldsV1\":{\"f:count\":{},\"f:firstTimestamp\":{},\"f:involvedObject\":{},\"f:lastTimestamp\":{},\"f:message\":{},\"f:reason\":{},\"f:reportingComponent\":{},\"f:source\":{\"f:component\":{}},\"f:type\":{}}}]},\"involvedObject\":{\"kind\":\"VaultStaticSecret\",\"namespace\":\"patching\",\"name\":\"bot-core-cm\",\"uid\":\"3c24092f-92dc-4645-a665-843c6d45685e\",\"apiVersion\":\"secrets.hashicorp.com/v1beta1\",\"resourceVersion\":\"102593641\"},\"reason\":\"VaultClientError\",\"message\":\"Failed to read Vault secret: empty response from Vault, path=\\\"ops-bot/data/mgmt/gitops/new-bot\\\"\",\"source\":{\"component\":\"VaultStaticSecret\"},\"firstTimestamp\":\"2025-10-08T02:24:29Z\",\"lastTimestamp\":\"2025-10-13T03:14:47Z\",\"count\":7213,\"type\":\"Warning\",\"eventTime\":null,\"reportingComponent\":\"VaultStaticSecret\",\"reportingInstance\":\"\",\"inventory.landscape_name\":\"SNI-STAGING\",\"cluster\":\"maxwell\",\"tenant.id\":\"c0044\",\"sourcetype.generic\":\"log\",\"sourcetype.specific\":\"si_shoot_log\"}]",
-	"inventory.landscape_name": "SNI-STAGING",
+	"message": "[{\"date\":1760325287.0,\"kind\":\"Event\",\"apiVersion\":\"v1\",\"metadata\":{\"name\":\"bot-core-cm.186c62e03e925b66\",\"namespace\":\"patching\",\"uid\":\"00000000-0000-4000-8000-000000000001\",\"resourceVersion\":\"555704\",\"creationTimestamp\":\"2025-10-08T02:24:29Z\",\"managedFields\":[{\"manager\":\"vault-secrets-operator\",\"operation\":\"Update\",\"apiVersion\":\"v1\",\"time\":\"2025-10-13T03:14:47Z\",\"fieldsType\":\"FieldsV1\",\"fieldsV1\":{\"f:count\":{},\"f:firstTimestamp\":{},\"f:involvedObject\":{},\"f:lastTimestamp\":{},\"f:message\":{},\"f:reason\":{},\"f:reportingComponent\":{},\"f:source\":{\"f:component\":{}},\"f:type\":{}}}]},\"involvedObject\":{\"kind\":\"VaultStaticSecret\",\"namespace\":\"patching\",\"name\":\"bot-core-cm\",\"uid\":\"00000000-0000-4000-8000-000000000002\",\"apiVersion\":\"secrets.hashicorp.com/v1beta1\",\"resourceVersion\":\"102593641\"},\"reason\":\"VaultClientError\",\"message\":\"Failed to read Vault secret: empty response from Vault, path=\\\"ops-bot/data/mgmt/gitops/new-bot\\\"\",\"source\":{\"component\":\"VaultStaticSecret\"},\"firstTimestamp\":\"2025-10-08T02:24:29Z\",\"lastTimestamp\":\"2025-10-13T03:14:47Z\",\"count\":7213,\"type\":\"Warning\",\"eventTime\":null,\"reportingComponent\":\"VaultStaticSecret\",\"reportingInstance\":\"\",\"inventory.landscape_name\":\"TEAM-A-STAGING\",\"cluster\":\"maxwell\",\"tenant.id\":\"c0044\",\"sourcetype.generic\":\"log\",\"sourcetype.specific\":\"si_shoot_log\"}]",
+	"inventory.landscape_name": "TEAM-A-STAGING",
 	"cluster": "maxwell",
 	"tenant.id": "c0044",
 	"sourcetype.generic": "log",
@@ -357,7 +357,7 @@ modify Add 从 event_0 中提取关键字段到顶层，便于在 Labels 中引�
 [OUTPUT]
     Name                loki
     Match               *
-    host                vali-sidevops-vali
+    host                vali-team-b-vali
     port                3100
     uri                 /vali/api/v1/push
     tenant_id           "{{ .Values.shoot_name }}"

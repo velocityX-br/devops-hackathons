@@ -5,13 +5,13 @@ https://docs.leaf.cloud/en/latest/gardener/gardenctl/
 
 
 ```
-gardenctl target --garden ppp-landscape-canary
+gardenctl target --garden ppp-landscape-lab
 
---project sni --shoot turing
+--project team-a --shoot turing
 
 
 
-i577081@W-PF3NF3XQ ~ garden-sni$ kubectl auth can-i list projects.core.gardener.cloud
+USER001@WS-HOST001 ~ garden-team-a$ kubectl auth can-i list projects.core.gardener.cloud
 Warning: resource 'projects' is not namespace scoped in group 'core.gardener.cloud'
 
 no

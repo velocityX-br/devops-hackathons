@@ -7,6 +7,6 @@ Then why still with stateful not stateless design ? It is about restoration cost
 
 Roadmap:
 - 
-- Check again SNI containerisation guide and SGS Security HardeningContainerOrchestration (https://wiki.one.int.sap/wiki/spaces/itsec/pages/1885283112/Kubernetes+Container+Orchestration+-+Security+Hardening#KubernetesContainerOrchestrationSecurityHardening-1.30NetworkPolicies,CNIandWorkloadSegregation)
+- Check again SNI containerisation guide and SGS Security HardeningContainerOrchestration (https://wiki.one.int.pppdemands.com/wiki/spaces/itsec/pages/1885283112/Kubernetes+Container+Orchestration+-+Security+Hardening#KubernetesContainerOrchestrationSecurityHardening-1.30NetworkPolicies,CNIandWorkloadSegregation)
 - Trendmicro Scan
 -

@@ -4,15 +4,15 @@
 ✅ 总结检查思路：
 - On a VM, an example could be: `tcpdump -n -s 0 -i eth0 -w /tmp/${HOSTNAME}.pcap host <IP of vfiler>` 
 `date +%T:%N; df -h`
-- Gather Lay2 connection also `tcpdump -n -s 0 -i eth1 -w /tmp/${HOSTNAME}.pcap 'arp or host 10.180.64.5' 2>/dev/null`
-- `rpcinfo -p 10.180.240.25`
+- Gather Lay2 connection also `tcpdump -n -s 0 -i eth1 -w /tmp/${HOSTNAME}.pcap 'arp or host 10.0.0.1' 2>/dev/null`
+- `rpcinfo -p 10.0.0.2`
 - `ps -eo pid,state,comm | grep "^ *[0-9]* D"`
 - `nfsstat -c` to check `trans` and `timeouts`
 - `watch -n 1 'ps -eo state | grep -c D'`
 - 请进行正常网络问题排查 -> 先测三层 `ping <StorageIP>`，再测二层 `ip neigh show <StorageIP>` or `tcpdump -i eth0 arp and host <nfs-server-ip>`
 - 定位 state D process `` 
 - 检查Security group NFSv3 requires more than `2049`
-- SUSE case `https://support.scc.suse.com/s/cases/500Tr00000uH6DdIAK/cc02v014382-hana-db-server?language=en_US&tabset-e6c09=2`
+- SUSE case `https://support.scc.suse.com/s/cases/500Tr00000uH6DdIAK/vm-host001-hana-db-server?language=en_US&tabset-e6c09=2`
 - SCI Network requirement `egress port 111 and egress port 2049 
 - `ps -eo pid,stat,wchan,comm | head`    wchan = wait channel
 - `cat /proc/$p/stack` (内核栈（kernel stack）) equals to analyze dump `foreach UN bt | grep -c rpc_wait` 
@@ -227,12 +227,12 @@ echo -e "\n===== END SNAPSHOT =====" | tee -a $OUTFILE
 Error:
 
 ```
-2025-08-14T06:30:22.460940+00:00 cc02v019206 kernel: [T92772] nfs: server ms-cis-clmam-eu-de-2-prod-private-01-01-10-180-236-58.prod.clmam.gmp.eu-de-2.cloud.ppp not responding, still trying
-2025-08-14T06:30:22.460940+00:00 cc02v019206 kernel: [T92772] nfs: server ms-cis-clmam-eu-de-2-prod-private-01-01-10-180-236-58.prod.clmam.gmp.eu-de-2.cloud.ppp not responding, still trying
-2025-08-14T06:30:22.460986+00:00 cc02v019206 kernel: message repeated 9 times: [[T92772] nfs: server ms-cis-clmam-eu-de-2-prod-private-01-01-10-180-236-58.prod.clmam.gmp.eu-de-2.cloud.ppp not responding, still trying]
-2025-08-14T07:15:55.240906+00:00 cc02v019206 kernel: [T12269] bpfilter: Loaded bpfilter_umh pid 12270
-2025-08-14T06:30:22.460986+00:00 cc02v019206 kernel: message repeated 9 times: [[T92772] nfs: server ms-cis-clmam-eu-de-2-prod-private-01-01-10-180-236-58.prod.clmam.gmp.eu-de-2.cloud.ppp not responding, still trying]
-2025-08-14T07:15:55.240906+00:00 cc02v019206 kernel: [T12269] bpfilter: Loaded bpfilter_umh pid 12270
+2025-08-14T06:30:22.460940+00:00 vm-host001 kernel: [T92772] nfs: server ms-env-a-svc-a-eu-de-2-prod-private-01-01-10-180-236-58.prod.svc-a.plat-a.eu-de-2.cloud.pppdemands.com not responding, still trying
+2025-08-14T06:30:22.460940+00:00 vm-host001 kernel: [T92772] nfs: server ms-env-a-svc-a-eu-de-2-prod-private-01-01-10-180-236-58.prod.svc-a.plat-a.eu-de-2.cloud.pppdemands.com not responding, still trying
+2025-08-14T06:30:22.460986+00:00 vm-host001 kernel: message repeated 9 times: [[T92772] nfs: server ms-env-a-svc-a-eu-de-2-prod-private-01-01-10-180-236-58.prod.svc-a.plat-a.eu-de-2.cloud.pppdemands.com not responding, still trying]
+2025-08-14T07:15:55.240906+00:00 vm-host001 kernel: [T12269] bpfilter: Loaded bpfilter_umh pid 12270
+2025-08-14T06:30:22.460986+00:00 vm-host001 kernel: message repeated 9 times: [[T92772] nfs: server ms-env-a-svc-a-eu-de-2-prod-private-01-01-10-180-236-58.prod.svc-a.plat-a.eu-de-2.cloud.pppdemands.com not responding, still trying]
+2025-08-14T07:15:55.240906+00:00 vm-host001 kernel: [T12269] bpfilter: Loaded bpfilter_umh pid 12270
 ```
 
 Analysis:
@@ -246,7 +246,7 @@ Analysis:
 
 ```
 
-tcpdump -i eth0 host 10.180.236.58 and port 2049 -w nfs_capture.pcap
+tcpdump -i eth0 host 10.0.0.3 and port 2049 -w nfs_capture.pcap
 
 ```
 
@@ -257,9 +257,9 @@ sadf -g sa20250814 -s 06:15:00 -e 08:30:00 -- -n NFS > /tmp/cc02v019206_nfs_call
 # CPU utilization high, %iowait remains low  远程 NFS 阻塞不会增加 %iowait
 # Remote storage looks like being the curprit 
 
-(vadb02p2c) cc02v019206:/var/log/sa #
+(vadb02p2c) vm-host001:/var/log/sa #
 #  sar -u -f sa20250814 -s 06:15:00 -e 08:30:00
-Linux 6.4.0-150600.23.53-default (cc02v019206)  08/14/25        _x86_64_        (120 CPU)
+Linux 6.4.0-150600.23.53-default (vm-host001)  08/14/25        _x86_64_        (120 CPU)
 
 06:15:03        CPU     %user     %nice   %system   %iowait    %steal     %idle
 06:16:03        all      1.00      0.00      0.18      0.00      0.00     98.82

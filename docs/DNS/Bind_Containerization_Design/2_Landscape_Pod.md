@@ -115,7 +115,7 @@ sequenceDiagram
 
 
 Security:
-        - Follow SGS Container application guideline https://wiki.one.int.sap/wiki/spaces/itsec/pages/2004546670/How+to+develop+a+secure+Container+Application+-+Best+Practice
+        - Follow SGS Container application guideline https://wiki.one.int.pppdemands.com/wiki/spaces/itsec/pages/2004546670/How+to+develop+a+secure+Container+Application+-+Best+Practice
 
 Scalability:
 - HPA
@@ -147,7 +147,7 @@ sub scp_key_to_server {
         $fh->autoflush;
         print $fh $keydata;
         # FIXME: accept-new is available only on newer SSH clients
-        run_with_timeout($TIMEOUT, \&run_local, "scp -q -o StrictHostKeyChecking=no -i $dnsapiuser_key_file $fname $dnsapiuser\@$server:");
+        run_with_timeout($TIMEOUT, \&run_local, "scp -q -o StrictHostKeyChecking=no -i $dnpppiuser_key_file $fname $dnpppiuser\@$server:");
         if ($@) {
                 warn "w: copying key $key to server $server: $@";
                 return undef;
@@ -170,7 +170,7 @@ sub _create {
 #  rpm -qf /usr/sbin/ddns-confgen  # THis prove the importance of bind-utils from DHS HP server
 bind-utils-9.11.22-3.65.1.x86_64
 
-(dnshm01-sit|dnshm-sit) vsa11829647:~ #
+(dnshm01-lab|dnshm-lab) vsa-host001:~ #
 #   ls -l /usr/sbin/tsig-keygen
 lrwxrwxrwx 1 root root 12 Nov  7 23:28 /usr/sbin/tsig-keygen -> ddns-confgen
 
@@ -245,30 +245,30 @@ view "global" {
                 "slaves-global"; // downstream
         };
 
-        server 100.70.226.118 { keys "slave-0-global"; };
+        server 10.0.0.1 { keys "slave-0-global"; };
 
         // Downstream LS need notification and AXFR
         notify explicit;
 
-        server 100.70.226.131 { keys "slave-0-global"; };
-        server 100.70.226.148 { keys "slave-0-global"; };
-        server 100.70.226.92 { keys "slave-0-global"; };
+        server 10.0.0.2 { keys "slave-0-global"; };
+        server 10.0.0.3 { keys "slave-0-global"; };
+        server 10.0.0.4 { keys "slave-0-global"; };
         also-notify {
-                100.70.226.131;
-                100.70.226.148;
-                100.70.226.92;
+                10.0.0.2;
+                10.0.0.3;
+                10.0.0.4;
         };
         ...
 
         catalog-zones {
                 zone "global.catalog"
                 zone-directory "slave"
-                default-masters { 100.70.226.118; };
+                default-masters { 10.0.0.1; };
         };
 
         zone "global.catalog" {
                 type slave;
-                masters { 100.70.226.118; };
+                masters { 10.0.0.1; };
                 file "slave/global.catalog";
         };
 };
@@ -281,14 +281,14 @@ view "global" {
 #### Hands-On practice
 
 ```
-25-Dec-2025 04:42:47.864 transfer of 'dnshm-sit-cis-testing1.local/IN' from 100.70.226.41#53: Transfer completed: 1 messages, 10 records, 487 bytes, 0.001 secs (487000 bytes/sec) (serial 7)
+25-Dec-2025 04:42:47.864 transfer of 'dnshm-lab-env-a-testing1.local/IN' from 10.0.0.5#53: Transfer completed: 1 messages, 10 records, 487 bytes, 0.001 secs (487000 bytes/sec) (serial 7)
 25-Dec-2025 04:42:47.964 zone testzone/IN: Transfer started.
-25-Dec-2025 04:42:47.964 zone dnshm-sit-cis-testing.local/IN: Transfer started.
+25-Dec-2025 04:42:47.964 zone dnshm-lab-env-a-testing.local/IN: Transfer started.
 25-Dec-2025 04:42:47.964 zone test086.local/IN: zone transfer deferred due to quota
 25-Dec-2025 04:42:47.964 zone test082.local/IN: zone transfer deferred due to quota
 25-Dec-2025 04:42:47.964 zone test087.local/IN: zone transfer deferred due to quota
 25-Dec-2025 04:42:47.964 zone test084.local/IN: zone transfer deferred due to quota
-25-Dec-2025 04:42:47.964 transfer of 'dnshm-sit-cis-testing.local/IN' from 100.70.226.41#53: connected using 100.70.226.41#53 TSIG slave-0-global
+25-Dec-2025 04:42:47.964 transfer of 'dnshm-lab-env-a-testing.local/IN' from 10.0.0.5#53: connected using 10.0.0.5#53 TSIG slave-0-global
 
 TO-DO: evaluate performance improvements
 

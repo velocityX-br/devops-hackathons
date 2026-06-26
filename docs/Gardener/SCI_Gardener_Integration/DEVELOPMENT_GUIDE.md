@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-Persephone 是一个为 SAP Cloud Infrastructure 提供 Kubernetes 即服务（Kubernetes as a Service）的项目。它基于 Gardener 框架，通过自动化管理 OpenStack 凭证来实现 Kubernetes 集群的生命周期管理。
+Persephone 是一个为 PPP Cloud Infrastructure 提供 Kubernetes 即服务（Kubernetes as a Service）的项目。它基于 Gardener 框架，通过自动化管理 OpenStack 凭证来实现 Kubernetes 集群的生命周期管理。
 
 ### 核心功能
 
@@ -198,7 +198,7 @@ Webhook 服务，提供准入控制功能。
 #### 1. 克隆仓库
 
 ```bash
-git clone https://github.wdf.sap.corp/sap-cloud-infrastructure/persephone.git
+git clone https://github.wdf.pppdemands.com/ppp-cloud-infrastructure/persephone.git
 cd persephone
 ```
 
@@ -290,12 +290,12 @@ landscape: qa                               # 景观名称（用于资源命名�
 regions:                                    # 区域配置
   qa-de-1:
     enabled: true                           # 是否启用
-    identityEndpoint: https://identity-3.qa-de-1.cloud.sap/
+    identityEndpoint: https://identity-3.qa-de-1.cloud.pppdemands.com/
     applicationCredentialID: <ID>           # 应用凭证 ID
     applicationCredentialSecret: <Secret>   # 应用凭证密钥
   eu-nl-1:
     enabled: false
-    identityEndpoint: https://identity-3.eu-nl-1.cloud.sap/
+    identityEndpoint: https://identity-3.eu-nl-1.cloud.pppdemands.com/
     applicationCredentialID:
     applicationCredentialSecret:
 ```
@@ -306,7 +306,7 @@ regions:                                    # 区域配置
 
 ```bash
 # OpenStack 认证
-export OS_AUTH_URL="https://identity-3.qa-de-1.cloud.sap/"
+export OS_AUTH_URL="https://identity-3.qa-de-1.cloud.pppdemands.com/"
 export OS_PROJECT_DOMAIN_NAME="Default"
 export OS_PROJECT_NAME="my-project"
 export OS_USER_DOMAIN_NAME="Default"
@@ -377,25 +377,25 @@ export OS_APPLICATION_CREDENTIAL_SECRET="secret"
 #### Secret 标签
 ```yaml
 labels:
-  persephone.sci.cloud.sap/shoot-name: my-shot
-  persephone.sci.cloud.sap/shoot-namespace: garden-myproject
-  sci.cloud.sap/region: eu-de-1
-  sci.cloud.sap/domain-name: monsoon3
-  sci.cloud.sap/domain-id: abc123
-  sci.cloud.sap/project-name: my-project
-  sci.cloud.sap/project-id: xyz789
+  persephone.sci.cloud.pppdemands.com/shoot-name: my-shot
+  persephone.sci.cloud.pppdemands.com/shoot-namespace: garden-myproject
+  sci.cloud.pppdemands.com/region: eu-de-1
+  sci.cloud.pppdemands.com/domain-name: cloudtenant01
+  sci.cloud.pppdemands.com/domain-id: abc123
+  sci.cloud.pppdemands.com/project-name: my-project
+  sci.cloud.pppdemands.com/project-id: xyz789
 ```
 
 #### Secret 注解
 ```yaml
 annotations:
-  secret.persephone.sci.cloud.sap/expires-at: "2025-02-14T12:00:00Z"
+  secret.persephone.sci.cloud.pppdemands.com/expires-at: "2025-02-14T12:00:00Z"
 ```
 
 #### Shoot 注解
 ```yaml
 annotations:
-  shoot.persephone.sci.cloud.sap/force-credentials-binding-update: "true"
+  shoot.persephone.sci.cloud.pppdemands.com/force-credentials-binding-update: "true"
 ```
 
 ## 开发指南
@@ -510,7 +510,7 @@ make run-typos
 所有源文件必须包含 SPDX License 头部：
 
 ```go
-// SPDX-FileCopyrightText: 2025 SAP SE or an SAP affiliate company
+// SPDX-FileCopyrightText: 2025 PPP SE or an PPP affiliate company
 // SPDX-License-Identifier: Apache-2.0
 
 package main
@@ -589,11 +589,11 @@ kubectl logs -n garden-local deployment/persephone-webhook
 CURRENT_SECRET=$(kubectl get shoot <shoot-name> -n <namespace> -o jsonpath='{.spec.credentialsBindingName}')
 
 # 2. 立即使当前 Secret 过期
-kubectl annotate secret $CURRENT_SECRET -n secrets secret.persephone.sci.cloud.sap/expires-at-
+kubectl annotate secret $CURRENT_SECRET -n secrets secret.persephone.sci.cloud.pppdemands.com/expires-at-
 
 # 3. 强制立即更新（绕过维护窗口）
 kubectl annotate shoot <shoot-name> -n <namespace> \
-  shoot.persephone.sci.cloud.sap/force-credentials-binding-update="true"
+  shoot.persephone.sci.cloud.pppdemands.com/force-credentials-binding-update="true"
 
 # 4. 等待 Shoot 切换，然后删除旧 Secret
 kubectl delete secret $CURRENT_SECRET -n secrets
@@ -604,12 +604,12 @@ kubectl delete secret $CURRENT_SECRET -n secrets
 ```bash
 # 查看所有 Secrets 及其过期时间
 kubectl get secrets -n secrets \
-  -o custom-columns=NAME:.metadata.name,EXPIRES:.metadata.annotations.secret\.persephone\.sci\.cloud\.sap/expires-at
+  -o custom-columns=NAME:.metadata.name,EXPIRES:.metadata.annotations.secret\.persephone\.sci\.cloud\.ppp/expires-at
 
 # 查看特定 Shoot 的凭证
 kubectl get secrets -n secrets \
-  -l persephone.sci.cloud.sap/shoot-name=<shoot-name> \
-  -o custom-columns=NAME:.metadata.name,EXPIRES:.metadata.annotations.secret\.persephone\.sci\.cloud\.sap/expires-at
+  -l persephone.sci.cloud.pppdemands.com/shoot-name=<shoot-name> \
+  -o custom-columns=NAME:.metadata.name,EXPIRES:.metadata.annotations.secret\.persephone\.sci\.cloud\.ppp/expires-at
 ```
 
 ## 部署
@@ -685,7 +685,7 @@ kubectl get shoot <shoot-name> -n <namespace> -o yaml | grep -A 10 maintenance
 
 # 强制更新
 kubectl annotate shoot <shoot-name> -n <namespace> \
-  shoot.persephone.sci.cloud.sap/force-credentials-binding-update="true"
+  shoot.persephone.sci.cloud.pppdemands.com/force-credentials-binding-update="true"
 ```
 
 #### 4. Webhook 失败
@@ -811,7 +811,7 @@ kubectl get mutatingwebhookconfiguration persephone-webhook -o yaml
 
 ### 项目联系
 
-- **项目主页**：https://github.wdf.sap.corp/sap-cloud-infrastructure/persephone
+- **项目主页**：https://github.wdf.pppdemands.com/ppp-cloud-infrastructure/persephone
 - **问题跟踪**：GitHub Issues
 - **文档**：docs/ 目录
 

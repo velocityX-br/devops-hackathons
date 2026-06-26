@@ -19,13 +19,13 @@ kubectl exec -it test-pod -c nginx --sh
 
 sshh={..user}'  
 ```
-i577081@W-PF3NF3XQ:~$ kubectl config current-context
-garden-bryan-demo--01sandbox-external
-i577081@W-PF3NF3XQ:~$ kubectl config get-contexts
+USER001@WS-HOST001:~$ kubectl config current-context
+garden-demo-user--01sandbox-external
+USER001@WS-HOST001:~$ kubectl config get-contexts
 CURRENT   NAME                                                  CLUSTER                                               AUTHINFO                       NAMESPACE
-*         garden-bryan-demo--01sandbox-external                 garden-bryan-demo--01sandbox-external                 garden-bryan-demo--01sandbox   default
-          garden-bryan-demo--01sandbox-internal                 garden-bryan-demo--01sandbox-internal                 garden-bryan-demo--01sandbox   default
-          garden-bryan-demo--01sandbox-service-account-issuer   garden-bryan-demo--01sandbox-service-account-issuer   garden-bryan-demo--01sandbox   default
+*         garden-demo-user--01sandbox-external                 garden-demo-user--01sandbox-external                 garden-demo-user--01sandbox   default
+          garden-demo-user--01sandbox-internal                 garden-demo-user--01sandbox-internal                 garden-demo-user--01sandbox   default
+          garden-demo-user--01sandbox-service-account-issuer   garden-demo-user--01sandbox-service-account-issuer   garden-demo-user--01sandbox   default
 ```
 
 
@@ -61,7 +61,7 @@ kubectl describe clusterrole view
 
 # Drain the node when one of nodes is unhealthy
 
-kubectl drain shoot--sn1--sit081-sitworker-vd9yy-z1-5f6bd-ct6bp --ignore-daemonsets --delete-emptydir-data
+kubectl drain shoot--lab--sit081-sitworker-vd9yy-z1-5f6bd-ct6bp --ignore-daemonsets --delete-emptydir-data
 
 
 # Label pods
@@ -75,7 +75,7 @@ kubectl get endpoints suppliers-sts-test -o json | jq '.subsets[0].addresses[] |
 kubectl autoscale sts web --cpu-percent=50 --min=3 --max=10 --dry-run -o yaml
 
 # Check your cluaster supported default storageclass. E.g gardener openstack provider supports cinder where kind local cluster supports standard storageclass
-i577081@W-PF3NF3XQ:~/YAML$ kubectl get storageclass
+USER001@WS-HOST001:~/YAML$ kubectl get storageclass
 NAME                PROVISIONER                RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
 default (default)   cinder.csi.openstack.org   Delete          WaitForFirstConsumer   true                   3d22h
 default-class       cinder.csi.openstack.org   Delete          WaitForFirstConsumer   true                   3d22h
@@ -88,12 +88,12 @@ kubectl patch deployment my-deployment -p '{"spec": {"replicas":3}}'     // mino
 kubectl edit // large scale updates
 
 # Worker nodes are overloaded.  `kubectl top pods --all-namespaces`
-i577081@W-PF3NF3XQ:~$ kubectl top nodes
+USER001@WS-HOST001:~$ kubectl top nodes
 NAME                                                     CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
-shoot--bryan-demo--01sandbox-sidevops01-z1-77847-wk2bw   75m          3%     1664Mi          59%
-shoot--bryan-demo--01sandbox-sidevops01-z1-77847-zxlcf   100m         5%     2713Mi          97%
-shoot--bryan-demo--01sandbox-sidevops02-z1-6fb67-27wdp   132m         6%     2384Mi          85%
-shoot--bryan-demo--01sandbox-sidevops02-z1-6fb67-9l8k4   100m         5%     3250Mi          116%
+shoot--demo-user--01sandbox-team-b01-z1-77847-wk2bw   75m          3%     1664Mi          59%
+shoot--demo-user--01sandbox-team-b01-z1-77847-zxlcf   100m         5%     2713Mi          97%
+shoot--demo-user--01sandbox-team-b02-z1-6fb67-27wdp   132m         6%     2384Mi          85%
+shoot--demo-user--01sandbox-team-b02-z1-6fb67-9l8k4   100m         5%     3250Mi          116%
 
 // JSON OUTPUT 
 kubectl get secret my-helm-repo-secret -n argocd -o jsonpath="{.data}"
@@ -102,7 +102,7 @@ kubectl get secret $SECRET_NAME -n $NAMESPACE -o json | jq -r '.data | to_entrie
 E.g 
 kubectl get secret cia-secret -n argocd -oyaml -o json |jq -r '.data | to_entries[] | "\(.key)=\(.value | @base64d)"'
 
-i577081@W-PF3NF3XQ ~ garden-sni--cis-core-external$ kubectl get ret cia-ret -n argocd -oyaml -o json |jq -r '.data | to_entries[] | "\(.key)=\(.value | @base64d)"'
+USER001@WS-HOST001 ~ garden-team-a--env-a-core-external$ kubectl get ret plat-ret -n argocd -oyaml -o json |jq -r '.data | to_entries[] | "\(.key)=\(.value | @base64d)"'
 
 
 

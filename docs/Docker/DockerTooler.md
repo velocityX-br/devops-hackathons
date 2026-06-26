@@ -10,11 +10,11 @@ FATA[0005] Error parsing manifest for image: choosing image instance: no image f
 skopeo inspect \                                                                                                                                                   ✔  took 8s   at 13:30:28 
   --override-os linux \
   --override-arch amd64 \
-  docker://cia-docker-live.int.repositories.cloud.sap/vault-secrets-operator/vault-secrets-operator:1.0.1
+  docker://plat-docker-live.int.repositories.cloud.pppdemands.com/vault-secrets-operator/vault-secrets-operator:1.0.1
 
 
 # Check all available tags
-skopeo list-tags docker://suse.int.repositories.cloud.sap/bci/golang
+skopeo list-tags docker://suse.int.repositories.cloud.pppdemands.com/bci/golang
 
 ```
 

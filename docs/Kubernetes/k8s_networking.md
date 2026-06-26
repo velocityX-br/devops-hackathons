@@ -25,16 +25,16 @@ Others:
 
 
 ```
-shoot--sni--turing-worker-default-z1-76bb9-4848c:/ # iptables -t nat -L -n -v --line-numbers |grep KUBE-SVC-UWGJCTU7452JZ2VX
-1       16  1312 KUBE-SVC-UWGJCTU7452JZ2VX  all  --  *      *       100.104.0.0/18       0.0.0.0/0            /* pod traffic for bind-test/bind-master-lb:dns-udp external destinations */
+shoot--team-a--turing-worker-default-z1-76bb9-4848c:/ # iptables -t nat -L -n -v --line-numbers |grep KUBE-SVC-UWGJCTU7452JZ2VX
+1       16  1312 KUBE-SVC-UWGJCTU7452JZ2VX  all  --  *      *       10.0.0.1/18       0.0.0.0/0            /* pod traffic for bind-test/bind-master-lb:dns-udp external destinations */
 3        0     0 KUBE-SVC-UWGJCTU7452JZ2VX  all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* route LOCAL traffic for bind-test/bind-master-lb:dns-udp external destinations */ ADDRTYPE match src-type LOCAL
-16       0     0 KUBE-SVC-UWGJCTU7452JZ2VX  udp  --  *      *       0.0.0.0/0            100.104.73.144       /* bind-test/bind-master-lb:dns-udp cluster IP */ udp dpt:53
+16       0     0 KUBE-SVC-UWGJCTU7452JZ2VX  udp  --  *      *       0.0.0.0/0            10.0.0.2       /* bind-test/bind-master-lb:dns-udp cluster IP */ udp dpt:53
 ```
 
 ```
 # 查看所有负载均衡SVC相关，在node上进行NAT转发的具体情况
 # kube-proxy 用 iptables 实现 NodePort 转发的规则
-nodeshell-i577081-maxwell-az-alpha-z1-86495-5hzgt:/etc/zypp/repos.d # iptables -t nat -L KUBE-NODEPORTS -n -v
+nodeshell-USER001-maxwell-az-alpha-z1-86495-5hzgt:/etc/zypp/repos.d # iptables -t nat -L KUBE-NODEPORTS -n -v
 Chain KUBE-NODEPORTS (1 references)
  pkts bytes target     prot opt in     out     source               destination
     0     0 KUBE-EXT-AOYUUZHYGU4T5D5M  tcp  --  *      *       0.0.0.0/0            127.0.0.0/8          /* istio-ingress/ingressgateway:status-port */ tcp dpt:30713 nfacct-name  localhost_nps_accepted_pkts
@@ -48,7 +48,7 @@ Chain KUBE-NODEPORTS (1 references)
 
 # 向下看链路
 
-nodeshell-i577081-maxwell-az-alpha-z1-86495-5hzgt:/etc/zypp/repos.d # iptables -t nat -L KUBE-EXT-AOYUUZHYGU4T5D5M -n -v
+nodeshell-USER001-maxwell-az-alpha-z1-86495-5hzgt:/etc/zypp/repos.d # iptables -t nat -L KUBE-EXT-AOYUUZHYGU4T5D5M -n -v
 Chain KUBE-EXT-AOYUUZHYGU4T5D5M (3 references)
  pkts bytes target     prot opt in     out     source               destination
   330 19800 KUBE-MARK-MASQ  all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* masquerade traffic for istio-ingress/ingressgateway:status-port external destinations */

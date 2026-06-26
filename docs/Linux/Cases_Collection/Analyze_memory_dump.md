@@ -15,7 +15,7 @@ put dump_<vmname>.tgz
 
 // Analyze dump
 ```
-crash vmlinux.debug vmlinux.gz vsa12481793.vmss
+crash vmlinux.debug vmlinux.gz vsa-host001.vmss
 
 crash > help
 crash > dmesg

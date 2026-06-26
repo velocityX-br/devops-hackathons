@@ -48,7 +48,7 @@ INFO internal/controller/podtracker_controller.go
 INFO internal/controller/podtracker_controller_test.go
 INFO Update dependencies
 INFO Running makek3d
-mkdir -p "/Users/I577081/Workdir/kubernetes/k8s-controll
+mkdir -p "/Users/USER001/Workdir/kubernetes/k8s-controll
 
 
 > make install  // to install the crd
@@ -69,7 +69,7 @@ make deploy	部署 controller 到集群
 20260115 Kick-Off Bind-Operator development
 
 ```
-❯ kubebuilder init --domain bind.sni.sap --repo github.tools.sap/i577081/bind-operator 
+❯ kubebuilder init --domain bind.team-a.pppdemands.com --repo github.tools.pppdemands.com/USER001/bind-operator 
 
 ❯ kubebuilder create api --group crd --version v1 --kind BindOperator
 INFO Create Resource [y/n]
@@ -85,9 +85,9 @@ INFO internal/controller/bindoperator_controller.go
 INFO internal/controller/bindoperator_controller_test.go
 INFO Update dependencies
 INFO Running make
-mkdir -p "/Users/I577081/Workdir/kubernetes/bind-operator/bin"
+mkdir -p "/Users/USER001/Workdir/kubernetes/bind-operator/bin"
 Downloading sigs.k8s.io/controller-tools/cmd/controller-gen@v0.19.0
-"/Users/I577081/Workdir/kubernetes/bind-operator/bin/controller-gen" object:headerFile="hack/boilerplate.go.txt" paths="./..."
+"/Users/USER001/Workdir/kubernetes/bind-operator/bin/controller-gen" object:headerFile="hack/boilerplate.go.txt" paths="./..."
 Next: implement your new API and generate the manifests (e.g. CRDs,CRs) with:
 $ make manifests
 

@@ -40,9 +40,9 @@ cat << EOF > tests/quick_test.yml
       hiddenmaster:
         fsmount:
           dnpppi:
-            device: 100.70.222.70:/share_6a40942a_f737_4152_a9ab_3eb35e8a8b66
+            device: 10.0.0.1:/share_6a40942a_f737_4152_a9ab_3eb35e8a8b66
           named:
-            device: 100.70.222.70:/share_6a40942a_f737_4152_a9ab_3eb35e8a8b66
+            device: 10.0.0.1:/share_6a40942a_f737_4152_a9ab_3eb35e8a8b66
     required_var2: "/tmp/dummy_path"
     setup_hm01: true
   tasks:

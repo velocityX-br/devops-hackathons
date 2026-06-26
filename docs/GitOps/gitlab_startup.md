@@ -8,7 +8,7 @@ stages:
   - sync
 
 repo-pull-push:
-  image: cia-docker-live.int.repositories.cloud.sap/ciea-pipeline-tools:4.0.9
+  image: plat-docker-live.int.repositories.cloud.pppdemands.com/ciea-pipeline-tools:4.0.9
   stage: sync
   script:
     # - env
@@ -33,7 +33,7 @@ repo-pull-push:
     # - git config --global user.name "${GITHUB_USER}"
     # - git config --global user.password "${GITHUB_TOKEN}"
     # - git clone --mirror $CI_GIT_URL pipeline-${REPO_NAME}
-    - git clone --mirror https://${GITHUB_USER}:${GITHUB_TOKEN}@github.tools.sap/${REPO_OWNER}/${REPO_NAME}.git pipeline-${REPO_NAME}
+    - git clone --mirror https://${GITHUB_USER}:${GITHUB_TOKEN}@github.tools.pppdemands.com/${REPO_OWNER}/${REPO_NAME}.git pipeline-${REPO_NAME}
     - cd pipeline-$REPO_NAME
     # - git remote add gitlab https://oauth2:${CI_JOB_TOKEN}@$CI_SERVER_HOST/$GITLAB_GROUP/$REPO_NAME.git
     - git remote add gitlab https://user:${SYNC_TOKEN}@$CI_SERVER_HOST/$GITLAB_GROUP/$REPO_NAME.git

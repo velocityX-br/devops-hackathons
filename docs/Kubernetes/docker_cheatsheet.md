@@ -49,12 +49,12 @@ Overlay2 存储缓存的作用主要有两个方面：
 
 docker image history `<imageid>` 查看某个镜像各层内容及对应大小
 ```
-i577081@vsa9425603:/tmp> sudo docker images --filter "dangling=true"
+USER001@vsa-host001:/tmp> sudo docker images --filter "dangling=true"
 REPOSITORY                                                                        TAG       IMAGE ID       CREATED       SIZE
 <none>                                                                            <none>    aa70b42ace47   7 hours ago   67MB
-gmpcisautomation.int.repositories.cloud.ppp/cis-automation-container/sles15_sp3   <none>    a2b7a98627a8   4 days ago    3.82GB
+plat-a-env-a-automation.int.repositories.cloud.pppdemands.com/env-a-automation-container/sles15_sp3   <none>    a2b7a98627a8   4 days ago    3.82GB
 
-i577081@vsa9425603:/tmp> sudo docker image history a2b7a98627a8
+USER001@vsa-host001:/tmp> sudo docker image history a2b7a98627a8
 IMAGE          CREATED      CREATED BY                                      SIZE      COMMENT
 a2b7a98627a8   4 days ago   CMD ["/sbin/init"]                              0B        buildkit.dockerfile.v0
 <missing>      4 days ago   STOPSIGNAL SIGRTMIN+3                           0B        buildkit.dockerfile.v0
@@ -80,34 +80,34 @@ Docker 镜像默认存储在 /var/lib/docker/中，可通过 DOCKER_OPTS 或者 
 docker exec -it <容器ID或容器名称> /bin/bash
 
 #### Config file
-/home/i577081/.docker/config.jsone
+/home/USER001/.docker/config.jsone
 
-docker tag sidevops.int.repositories.cloud.ppp/sidevops/perl-critic:latest sidevops.int.repositories.cloud.ppp/sidevops/perl-critic:bkp_latest
+docker tag team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic:latest team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic:bkp_latest
 
 #### build docker image
-docker build -t sidevops.int.repositories.cloud.ppp/sidevops/perl-critic:$tag .
+docker build -t team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic:$tag .
 
 #### quickly build an image locally.
 docker build -t bindprototype:1.0 .
 
 #### push to remove private githut repo
-docker push sidevops.int.repositories.cloud.ppp/sidevops/perl-critic
+docker push team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic
 
 #### remove container
 docker rm checklib_test 
 
 #### Run container 
-docker run -it --name checklib_test sidevops.int.repositories.cloud.ppp/sidevops/perl-critic:latest /bin/sh
+docker run -it --name checklib_test team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic:latest /bin/sh
 
 #### Check image history
-docker history sidevops.int.repositories.cloud.ppp/sidevops/perl-critic
+docker history team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic
 
 
 #### remove docker (dangling) volume
 docker volume rm $(docker volume ls -qf dangling=true)
 
 #### move image from one to the other.
-docker tag sidevops.int.repositories.cloud.ppp/sidevops/pycheck keppel.eu-de-1.cloud.ppp/si-cicd/pycheck-081:latest
+docker tag team-b.int.repositories.cloud.pppdemands.com/team-b/pycheck keppel.eu-de-1.cloud.pppdemands.com/si-cicd/pycheck-081:latest
 ```
 
 About docker authentication
@@ -116,8 +116,8 @@ After `docker login` docker_service_api/kepple service, a base64 encrypted crede
 
 ```
 k create secret docker-registry keppel-regcred-eu2 \ 
-   --docker-server=kepple.eu-de-2.cloud.ppp \
-   --docker-username=I577081@cis/sni-dev-k8s@cis \
+   --docker-server=kepple.eu-de-2.cloud.pppdemands.com \
+   --docker-username=USER001@cis/team-a-dev-k8s@cis \
    --docker-password=$ccpw \ 
    -n bind-test
 

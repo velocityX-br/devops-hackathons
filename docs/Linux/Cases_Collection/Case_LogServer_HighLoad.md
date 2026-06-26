@@ -19,13 +19,13 @@ TBD:
 
 RCA logs
 ```
-Sep 02 16:03:19 vsa9360639 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa9360639/SUDOSH/.gmp_cis_vulscan_eudp-gmp_cis_vulscan_eudp-script-1690647009-7rV2RAFLTBnjFZfj.bz2.Z2NGPF" failed: No space left on device (28)
-Sep 02 16:03:19 vsa9360639 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa9360639/SUDOSH/.gmp_cis_vulscan_eudp-gmp_cis_vulscan_eudp-script-1690647015-C5RUF3jiyijSA5hD.bz2.S79JJR" failed: No space left on device (28)
-Sep 02 16:03:19 vsa9360639 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa9360639/SUDOSH/.gmp_cis_vulscan_eudp-gmp_cis_vulscan_eudp-script-1690647030-jY6yuohmixFNeQnT.bz2.u0ZYD3" failed: No space left on device (28)
-Sep 02 16:03:19 vsa9360639 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa9360639/SUDOSH/.gmp_cis_vulscan_eudp-gmp_cis_vulscan_eudp-script-1690647035-I6AxGKkZLBTX0h29.bz2.x8Pmyf" failed: No space left on device (28)
-Sep 02 16:03:19 vsa9360639 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa9360639/SUDOSH/.gmp_cis_vulscan_eudp-gmp_cis_vulscan_eudp-script-1690647051-ZS94Ogs5SOqzCL3v.bz2.Z0PWsr" failed: No space left on device (28)
-Sep 02 16:03:19 vsa9360639 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa9360639/SUDOSH/.gmp_cis_vulscan_eudp-gmp_cis_vulscan_eudp-script-1690647056-Pala0U3golXvlbjJ.bz2.rsqDnD" failed: No space left on device (28)
-Sep 02 16:03:19 vsa9360639 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa9360639/SUDOSH/.gmp_cis_vulscan_eudp-gmp_cis_vulscan_eudp-script-1690647075-RavYlgrmZoP1jvqz.bz2.BakuiP" failed: No space left on device (28)
+Sep 02 16:03:19 vsa-host001 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa-host001/SUDOSH/.plat-a_cis_vulscan_eudp-plat-a_cis_vulscan_eudp-script-1690647009-7rV2RAFLTBnjFZfj.bz2.Z2NGPF" failed: No space left on device (28)
+Sep 02 16:03:19 vsa-host001 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa-host001/SUDOSH/.plat-a_cis_vulscan_eudp-plat-a_cis_vulscan_eudp-script-1690647015-C5RUF3jiyijSA5hD.bz2.S79JJR" failed: No space left on device (28)
+Sep 02 16:03:19 vsa-host001 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa-host001/SUDOSH/.plat-a_cis_vulscan_eudp-plat-a_cis_vulscan_eudp-script-1690647030-jY6yuohmixFNeQnT.bz2.u0ZYD3" failed: No space left on device (28)
+Sep 02 16:03:19 vsa-host001 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa-host001/SUDOSH/.plat-a_cis_vulscan_eudp-plat-a_cis_vulscan_eudp-script-1690647035-I6AxGKkZLBTX0h29.bz2.x8Pmyf" failed: No space left on device (28)
+Sep 02 16:03:19 vsa-host001 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa-host001/SUDOSH/.plat-a_cis_vulscan_eudp-plat-a_cis_vulscan_eudp-script-1690647051-ZS94Ogs5SOqzCL3v.bz2.Z0PWsr" failed: No space left on device (28)
+Sep 02 16:03:19 vsa-host001 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa-host001/SUDOSH/.plat-a_cis_vulscan_eudp-plat-a_cis_vulscan_eudp-script-1690647056-Pala0U3golXvlbjJ.bz2.rsqDnD" failed: No space left on device (28)
+Sep 02 16:03:19 vsa-host001 clearlogs.sh[11208]: rsync: mkstemp "/var/log/sudoshell/vsa-host001/SUDOSH/.plat-a_cis_vulscan_eudp-plat-a_cis_vulscan_eudp-script-1690647075-RavYlgrmZoP1jvqz.bz2.BakuiP" failed: No space left on device (28)
 ```
 ### Issue description:
 - CPU 8 Core, high load, lots of sleeping processes
@@ -54,11 +54,11 @@ ps aux | awk '$8 == "Z"' |awk '{print $2}' |xargs sudo kill -9
 ps -aux | awk '$8 == "D"' | grep Aug23 | awk '{print $2}'
 
 > ps -aux | awk '$8 == "D"' | grep Aug23
-root      1943  0.0  0.0  20856  3100 ?        D    Aug23   0:00 rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_23:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
-root      3024  0.0  0.0  20856  3220 ?        D    Aug23   0:00 rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_13:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
-root      5201  0.0  0.0  20856  3360 ?        D    Aug23   0:00 rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_10:00:02 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
-root      6282  0.0  0.0  20856  3192 ?        D    Aug23   0:00 rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_16:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
-root      7161  0.0  0.0  20856  3140 ?        D    Aug23   0:00 rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_20:00:02 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
+root      1943  0.0  0.0  20856  3100 ?        D    Aug23   0:00 rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_23:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+root      3024  0.0  0.0  20856  3220 ?        D    Aug23   0:00 rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_13:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+root      5201  0.0  0.0  20856  3360 ?        D    Aug23   0:00 rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_10:00:02 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+root      6282  0.0  0.0  20856  3192 ?        D    Aug23   0:00 rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_16:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+root      7161  0.0  0.0  20856  3140 ?        D    Aug23   0:00 rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_20:00:02 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
 ```
 
 
@@ -74,19 +74,19 @@ KiB Swap:  8388604 total,        0 used,  8388604 free.  4105972 cached Mem
 ### Logs
 ```
 # the sudo ones are child process. The right hunging parent proess needs to be cleaned
-(logsrv01-eude1-cis-test) i577081@vsa9360639:~>
+(logsrv01-eude1-env-a-test) USER001@vsa-host001:~>
 > ps -edfa | grep "sudo rsync" | awk '{print $2}' |xargs ps -o pid,state,cmd -p
   PID S CMD
- 1839 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_23:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
- 2928 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_13:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
- 3210 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-25_17:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
- 3570 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-24_07:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
- 3823 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-25_10:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
- 4918 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_02:00:02 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
- 5092 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_10:00:02 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
- 5094 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-26_04:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
- 5154 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-22_18:36:57 --remove-sent-files . /var/log/sudoshell/vsa10803519/SUDOSH
- 5670 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-26_08:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
- 5935 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-24_21:00:02 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
- 6000 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-24_18:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa9394928
+ 1839 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_23:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+ 2928 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_13:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+ 3210 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-25_17:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+ 3570 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-24_07:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+ 3823 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-25_10:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+ 4918 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_02:00:02 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+ 5092 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-23_10:00:02 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+ 5094 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-26_04:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+ 5154 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-22_18:36:57 --remove-sent-files . /var/log/sudoshell/vsa-host001/SUDOSH
+ 5670 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-26_08:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+ 5935 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-24_21:00:02 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
+ 6000 S sudo rsync --server -blogDtpRze.LsfxC --backup-dir BACKUP --suffix=_2023-08-24_18:00:01 --remove-sent-files . /var/log/auditlog/LDAP/vsa-host001
 ```

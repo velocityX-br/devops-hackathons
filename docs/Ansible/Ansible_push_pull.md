@@ -10,7 +10,7 @@ time ansible-pull -i /tmp/inventory_localhost -U file:///tmp/sni_poc_cispatching
 
 ```
 /usr/bin/ansible-pull \
-  -U https://user:token@github.tools.ppp/sni-ansible-playbooks/sni_cispatching_playbook.git \
+  -U https://user:token@github.tools.pppdemands.com/team-a-ansible-playbooks/team-a_dispatching_playbook.git \
   -d /tmp/ansible-pull-workdir \
   -i localhost \
   -C dev neopatching.yml
@@ -57,9 +57,9 @@ NEO Create VM
           ansible.builtin.set_fact:
             platocqa: "{{ platocqa | ansible.builtin.combine({\"pool.AnsibleAdditionalRoleParam\": platocqa['pool.AnsibleAdditionalRoleParam_json'] | default({}) }, {\"tags\": platocqa['tags_json'] | default('')}, recursive=True) }}"
 
-    - name: "Prepare GMP parameters"
+    - name: "Prepare PLAT-A parameters"
       ansible.builtin.include_role:
-        name: sni_gmp_attributes_role
+        name: sni_plat-a_attributes_role
         apply:
           tags: [prepare, full, minimal, basicvm]
       tags: [always, prepare, full, minimal, basicvm]

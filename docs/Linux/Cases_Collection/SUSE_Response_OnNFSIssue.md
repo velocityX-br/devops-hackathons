@@ -9,16 +9,16 @@ please find below the analysis from my colleague:
 I've checked the crash dump (triggered manually), starting at 05:06am,
 two NFS servers (out of 5 available) stopped responding:
 ------------------------------------------------------------------------
-[Mon Feb 16 05:06:59 CET 2026] nfs: server ms-cis-clmam-eu-de-2-vlab-private-01-01-10-180-240-25.vlab.clmam.gmp.eu-de-2.cloud.sap not responding, still trying
-[Mon Feb 16 05:07:52 CET 2026] nfs: server ms-cis-clmam-eu-de-2-vlab-private-01-01-10-180-240-14.vlab.clmam.gmp.eu-de-2.cloud.sap not responding, still trying
+[Mon Feb 16 05:06:59 CET 2026] nfs: server ms-env-a-svc-a-eu-de-2-vlab-private-01-01-10-180-240-25.vlab.svc-a.plat-a.eu-de-2.cloud.pppdemands.com not responding, still trying
+[Mon Feb 16 05:07:52 CET 2026] nfs: server ms-env-a-svc-a-eu-de-2-vlab-private-01-01-10-180-240-14.vlab.svc-a.plat-a.eu-de-2.cloud.pppdemands.com not responding, still trying
 ------------------------------------------------------------------------
 
-10.180.240.25 (exports /hdb/VAZ/data, /usr/sap/VAZ, /sapmnt, /backup_fs)
-10.180.240.14 (exports /hdb/VAZ/backup/log)
+10.0.0.1 (exports /hdb/VAZ/data, /usr/example/VAZ, /examplemnt, /backup_fs)
+10.0.0.2 (exports /hdb/VAZ/backup/log)
 
 At the time of the crash, as expected 99 processes were blocked in
 uninterruptible sleep waiting for NFS RPC responses. Among them ~30
-HanaWorker threads, ~20 PoolThread, sapstartsrv, sapdbctrl,
+HanaWorker threads, ~20 PoolThread, pppstartsrv, pppdbctrl,
 node_exporter...
 
 ------------------------------------------------------------------------
@@ -57,8 +57,8 @@ crash> foreach UN bt | grep "COMMAND:" | sort | uniq -c | sort -rn
       1 PID: 8633     TASK: ffff8ac48749c000  CPU: 11   COMMAND: "HTTPDispatch"
       1 PID: 84713    TASK: ffff8aca4ce20000  CPU: 20   COMMAND: "systemd"
       1 PID: 58697    TASK: ffff8b16876ac000  CPU: 10   COMMAND: "HanaWorker"
-      1 PID: 5704     TASK: ffff8ac449078000  CPU: 12   COMMAND: "sapstartsrv"
-      1 PID: 5693     TASK: ffff8ac463f48000  CPU: 20   COMMAND: "sapstartsrv"
+      1 PID: 5704     TASK: ffff8ac449078000  CPU: 12   COMMAND: "pppstartsrv"
+      1 PID: 5693     TASK: ffff8ac463f48000  CPU: 20   COMMAND: "pppstartsrv"
       1 PID: 53022    TASK: ffff8b03f0bb0000  CPU: 37   COMMAND: "HanaWorker"
       1 PID: 53021    TASK: ffff8b05da9b4000  CPU: 36   COMMAND: "HanaWorker"
       1 PID: 38636    TASK: ffff8ac8dcb50000  CPU: 3    COMMAND: "HanaWorker"
@@ -96,14 +96,14 @@ add he added:
 <-------------------------------------------------->
 Furthermore, the ARP status for the repective NFS server hosts:
 crash> net -a|grep FAILED
-ffff8b03cf1a3a00 10.180.240.14   ETHER      d2:39:ea:ad:8e:bd  eth0    FAILED
-ffff8b0baa1f8600 10.180.244.71   ETHER      fa:16:3e:29:3a:69  eth0    FAILED
-ffff8ac48ee13000 10.180.240.16   ETHER      00:00:00:00:00:00  eth0    FAILED
-ffff8ac44c16fa00 10.180.240.36   ETHER      fa:16:3e:22:fb:44  eth0    FAILED
-ffff8b03cddcbc00 10.180.242.209  ETHER      fa:16:3e:bc:09:f7  eth0    FAILED
+ffff8b03cf1a3a00 10.0.0.2   ETHER      02:00:00:00:00:01  eth0    FAILED
+ffff8b0baa1f8600 10.0.0.3   ETHER      02:00:00:00:00:01  eth0    FAILED
+ffff8ac48ee13000 10.0.0.4   ETHER      00:00:00:00:00:00  eth0    FAILED
+ffff8ac44c16fa00 10.0.0.5   ETHER      02:00:00:00:00:01  eth0    FAILED
+ffff8b03cddcbc00 10.0.0.6  ETHER      02:00:00:00:00:01  eth0    FAILED
 
-crash> net -a|grep 10.180.240.25
-ffff8ac481f98000 10.180.240.25   ETHER      d2:39:ea:ad:94:66  eth0    DELAY
+crash> net -a|grep 10.0.0.1
+ffff8ac481f98000 10.0.0.1   ETHER      02:00:00:00:00:01  eth0    DELAY
 
 This means that the OS sent ARP requests and received no replies. This
 indicates an issue on the L2 network infrastructure, perhaps the VMware
@@ -112,31 +112,31 @@ vNIC and the physical network.
 
 crash> net -a
 NEIGHBOUR        IP ADDRESS      HW TYPE    HW ADDRESS         DEVICE  STATE
-ffff8ac481f98000 10.180.240.25   ETHER      d2:39:ea:ad:94:66  eth0    DELAY
-ffff8ac486965400 100.64.159.233  ETHER      b8:ce:f6:be:18:34  eth2    STALE
-ffff8b03cf1a3a00 10.180.240.14   ETHER      d2:39:ea:ad:8e:bd  eth0    FAILED
-ffff8b03d2804400 10.180.241.75   ETHER      fa:16:3e:bf:65:15  eth0    INCOMPLETE
-ffff8b0ea1110400 100.64.159.192  ETHER      fa:16:3e:8d:33:3a  eth2    STALE
-ffff8ac481f27600 10.180.240.56   ETHER      d2:39:ea:af:45:ca  eth0    REACHABLE
-ffff8b163251ca00 10.180.240.26   ETHER      d2:39:ea:ad:8e:bd  eth0    STALE
-ffff8b0baa1f8600 10.180.244.71   ETHER      fa:16:3e:29:3a:69  eth0    FAILED
-ffff8b03cf1a1a00 10.180.240.1    ETHER      fa:16:3e:d7:99:8c  eth0    REACHABLE
-ffff8ac48ee13000 10.180.240.16   ETHER      00:00:00:00:00:00  eth0    FAILED
-ffff8b03ca5c3c00 100.64.159.200  ETHER      fa:16:3e:78:0c:aa  eth2    STALE
-ffff8b163251e200 10.180.240.43   ETHER      d2:39:ea:af:45:ca  eth0    STALE
-ffff8b03cc63e200 10.180.243.212  ETHER      fa:16:3e:30:26:e5  eth0    REACHABLE
-ffff8ac44c35a600 10.180.33.163   ETHER      d2:39:ea:35:dc:a1  eth1    REACHABLE
-ffff8ac44c16fa00 10.180.240.36   ETHER      fa:16:3e:22:fb:44  eth0    FAILED
-ffff8b03d281e200 10.180.32.148   ETHER      d2:39:ea:c5:32:4d  eth1    REACHABLE
-ffff8ac44c2cea00 100.64.159.210  ETHER      fa:16:3e:0b:52:a3  eth2    STALE
+ffff8ac481f98000 10.0.0.1   ETHER      02:00:00:00:00:01  eth0    DELAY
+ffff8ac486965400 10.0.0.7  ETHER      b8:ce:f6:be:18:34  eth2    STALE
+ffff8b03cf1a3a00 10.0.0.2   ETHER      02:00:00:00:00:01  eth0    FAILED
+ffff8b03d2804400 10.0.0.8   ETHER      02:00:00:00:00:01  eth0    INCOMPLETE
+ffff8b0ea1110400 10.0.0.9  ETHER      02:00:00:00:00:01  eth2    STALE
+ffff8ac481f27600 10.0.0.10   ETHER      02:00:00:00:00:01  eth0    REACHABLE
+ffff8b163251ca00 10.0.0.11   ETHER      02:00:00:00:00:01  eth0    STALE
+ffff8b0baa1f8600 10.0.0.3   ETHER      02:00:00:00:00:01  eth0    FAILED
+ffff8b03cf1a1a00 10.0.0.12    ETHER      02:00:00:00:00:01  eth0    REACHABLE
+ffff8ac48ee13000 10.0.0.4   ETHER      00:00:00:00:00:00  eth0    FAILED
+ffff8b03ca5c3c00 10.0.0.13  ETHER      02:00:00:00:00:01  eth2    STALE
+ffff8b163251e200 10.0.0.14   ETHER      02:00:00:00:00:01  eth0    STALE
+ffff8b03cc63e200 10.0.0.15  ETHER      02:00:00:00:00:01  eth0    REACHABLE
+ffff8ac44c35a600 10.0.0.16   ETHER      02:00:00:00:00:01  eth1    REACHABLE
+ffff8ac44c16fa00 10.0.0.5   ETHER      02:00:00:00:00:01  eth0    FAILED
+ffff8b03d281e200 10.0.0.17   ETHER      02:00:00:00:00:01  eth1    REACHABLE
+ffff8ac44c2cea00 10.0.0.18  ETHER      02:00:00:00:00:01  eth2    STALE
 ffff8ac488e09200 0.0.0.0         UNKNOWN    00 00 00 00 00 00  lo      NOARP
-ffff8b03cddcbc00 10.180.242.209  ETHER      fa:16:3e:bc:09:f7  eth0    FAILED
-ffff8b03ca5c0000 10.180.242.254  ETHER      fa:16:3e:15:d4:a6  eth0    STALE
-ffff8ac486965800 10.180.243.48   ETHER      fa:16:3e:5d:28:df  eth0    STALE
+ffff8b03cddcbc00 10.0.0.6  ETHER      02:00:00:00:00:01  eth0    FAILED
+ffff8b03ca5c0000 10.0.0.19  ETHER      02:00:00:00:00:01  eth0    STALE
+ffff8ac486965800 10.0.0.20   ETHER      02:00:00:00:00:01  eth0    STALE
 
 
-Other hosts on the same subnet were REACHABLE (10.180.240.56,
-10.180.240.1), the problem was specific to reaching .14 and .25.
+Other hosts on the same subnet were REACHABLE (10.0.0.10,
+10.0.0.12), the problem was specific to reaching .14 and .25.
 systems.
 
 Actually, a tcpdump would have been much more helpful here. Is there one

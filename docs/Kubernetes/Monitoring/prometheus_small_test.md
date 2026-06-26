@@ -11,7 +11,7 @@ global:
 scrape_configs:
   - job_name: "node_exporter_vm"
     static_configs:
-      - targets: ["10.180.33.141:9100"]
+      - targets: ["10.0.0.1:9100"]
         labels:
           app: "node_exporter"
           instance: "vm01"
@@ -39,7 +39,7 @@ spec:
     - name: regcred
   containers:
   - name: prometheus
-    image: keppel.eu-de-1.cloud.ppp/neo-cc-cis-testing/prometheus:latest
+    image: keppel.eu-de-1.cloud.pppdemands.com/neo-cc-env-a-testing/prometheus:latest
     args:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--storage.tsdb.path=/prometheus"

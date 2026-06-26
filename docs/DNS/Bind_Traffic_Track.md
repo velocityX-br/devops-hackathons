@@ -8,6 +8,6 @@ sed -i 's/querylog no;/querylog yes;/' /etc/named.conf && named-checkconf && sys
 
 export IPRANGE="127\.0\.0\.1|100\.84\.64\.|100\.84\.65\."
 
-100.84.64.0/23
+10.0.0.1/23
 
 ````

@@ -2,4 +2,4 @@
 
 
 
-https://github.wdf.sap.corp/SI-DevOps-Packaging/sidevops-dns-api/pull/149/files
+https://github.wdf.pppdemands.com/DEV-TEAM-Packaging/team-b-dns-api/pull/149/files

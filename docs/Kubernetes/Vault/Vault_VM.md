@@ -10,8 +10,8 @@ unzip vault_${VAULT_VERSION}_linux_amd64.zip
 mv vault /usr/local/bin
 
 export VAULT_TOKEN=xxxx
-export VAULT_NAMESPACE="gcs/pso_sidevops/playground"
-export VAULT_ADDR=https://vault.tools.ppp/
+export VAULT_NAMESPACE="gcs/pso_team-b/playground"
+export VAULT_ADDR=https://vault.tools.pppdemands.com/
 ```
 
 ```
@@ -48,22 +48,22 @@ vault auth list
 
   写入文件内容
 
-  vault kv put -namespace="gcs/pso_sidevops/k8s" -mount="sni" \
-    live/cis-test/dns \
+  vault kv put -namespace="gcs/pso_team-b/k8s" -mount="sni" \
+    live/env-a-test/dns \
     @dns-config.json
 
  B. 环境变量方式（推荐用于脚本）
 
   # 设置全局环境变量
   export VAULT_ADDR="https://vault.example.com"
-  export VAULT_NAMESPACE="gcs/pso_sidevops/k8s"
+  export VAULT_NAMESPACE="gcs/pso_team-b/k8s"
 
   # 之后不需要重复指定 namespace  This will overwrite old data!!! Don't run !!
-  vault kv put -mount="sni" live/cis-test/dns \
+  vault kv put -mount="sni" live/env-a-test/dns \
     api_key="xxx" \
     zone_id="123"
 
-vault kv get -format=json -mount="sni" -version=1 live/cis-test/dns | \
+vault kv get -format=json -mount="sni" -version=1 live/env-a-test/dns | \
     jq '.data.data' > /tmp/dns-data.json
 
 ```

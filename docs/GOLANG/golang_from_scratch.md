@@ -298,7 +298,7 @@ fmt.Printf("解析成功，配置内容: %+v\n", config)  // %+v fnt.Printf支�
 
 ```golang
 
-[i577081@ACSPHL012888 Golang]$ go doc github.com/hashicorp/vault/api.DefaultConfig 
+[USER001@ws-host001 Golang]$ go doc github.com/hashicorp/vault/api.DefaultConfig 
 package api // import "github.com/hashicorp/vault/api"
 
 func DefaultConfig() *Config

@@ -4,12 +4,12 @@
 
 ```
 export VAULT_TOKEN=<your-vault-token>
-export VAULT_NAMESPACE="gcs/pso_sidevops/playground"
-export VAULT_ADDR=https://vault.tools.ppp/
+export VAULT_NAMESPACE="gcs/pso_team-b/playground"
+export VAULT_ADDR=https://vault.tools.pppdemands.com/
 ```
 
-- https://pages.github.tools.ppp/github/features-and-how-tos/features/actions/how-tos/security-hardening#using-github-app-tokens
-- https://github.tools.ppp/I502888/public_pocs/tree/main/vault-jwt-signing
+- https://pages.github.tools.pppdemands.com/github/features-and-how-tos/features/actions/how-tos/security-hardening#using-github-app-tokens
+- https://github.tools.pppdemands.com/USER002/public_pocs/tree/main/vault-jwt-signing
 
 
 
@@ -80,14 +80,14 @@ vault write auth/approle/role/<role_name> \
     # Step2: 创建 AppRole 并绑定 policy
         # vault policy read <policy_name>
         vault write auth/approle/role/myapp-role policies="myapp-policy"
-        vault write auth/approle/role/httpcli-role policies="http_cli_readonly_bryan"
+        vault write auth/approle/role/httpcli-role policies="http_cli_readonly_user"
 
-    i577081@W-PF3NF3XQ ~ $ vault write -f auth/approle/role/httpcli-role/secret-id
+    USER001@WS-HOST001 ~ $ vault write -f auth/approle/role/httpcli-role/secret-id
     WARN[0000]log.go:244 gosnowflake.(*defaultLogger).Warn DBUS_SESSION_BUS_ADDRESS envvar looks to be not set, this can lead to runaway dbus-daemon processes. To avoid this, set envvar DBUS_SESSION_BUS_ADDRESS=$XDG_RUNTIME_DIR/bus (if it exists) or DBUS_SESSION_BUS_ADDRESS=/dev/null.
     Key                   Value
     ---                   -----
-    ret_id             f362194a-9a97-8a50-d955-862861e9d2b9
-    ret_id_accessor    861d31db-b10b-7a85-4ca0-4c20570af10a
+    ret_id             00000000-0000-4000-8000-000000000001
+    ret_id_accessor    00000000-0000-4000-8000-000000000002
     secret_id_num_uses    0
     secret_id_ttl         0s
     #########
@@ -104,12 +104,12 @@ Note: vault auth list  # To check JWT
 #### Check JWT details (vault and gardener shoot connection)
 
 ```
-❯ vault read auth/jwt-maxwell-canary-sni/config
+❯ vault read auth/jwt-maxwell-canary-team-a/config
 
 Key                                     Value
 ---                                     -----
-bound_issuer                            https://api.maxwell.sni.internal.canary.k8s.ondemand.com
-default_role                            jwt-role-maxwell-canary-sni
+bound_issuer                            https://api.maxwell.team-a.internal.canary.k8s.ppdemands.com
+default_role                            jwt-role-maxwell-canary-team-a
 jwks_ca_pem                             n/a
 jwks_pairs                              []
 jwks_url                                n/a
@@ -133,7 +133,7 @@ unsupported_critical_cert_extensions    []
 ❯ vault read auth/jwt-maxwell/config
 Key                                     Value
 ---                                     -----
-bound_issuer                            https://discovery.ingress.garden.canary.k8s.ondemand.com/projects/sni/shoots/e4b05e3b-9ca0-45da-b1a3-5443b988e0ff/issuer
+bound_issuer                            https://discovery.ingress.garden.canary.k8s.ppdemands.com/projects/team-a/shoots/00000000-0000-4000-8000-000000000003/issuer
 default_role                            jwt-role-maxwell
 jwks_ca_pem                             n/a
 jwks_pairs                              []  

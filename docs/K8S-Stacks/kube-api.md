@@ -11,7 +11,7 @@ docker run --rm ghcr.io/kube-vip/kube-vip:v0.8.9 --help
 
 
 ```
-export VIP="100.70.224.11"  # 你想提供的虚拟 IP
+export VIP="10.0.0.1"  # 你想提供的虚拟 IP
 export INTERFACE="ens192"      # 物理或虚拟网卡名称
 
 kube-vip manifest daemonset \

@@ -20,21 +20,21 @@ DNS 特点：
 Commands
 ```
 conntrack -L 
-nodesh-i577081-sn1--sit-pocdev-tmp-worker-ls4lq-z1-85f4f-prr89:/ # conntrack -L -p udp --dport 53
+nodesh-USER001-lab--sit-pocdev-tmp-worker-ls4lq-z1-85f4f-prr89:/ # conntrack -L -p udp --dport 53
 
 1. 有代表的一行数据分析
-udp      17 1 src=10.180.82.116 dst=10.180.82.2 sport=56086 dport=53 packets=1 bytes=112 src=10.180.82.2 dst=10.180.82.116 sport=53 dport=56086 packets=1 bytes=196 mark=0 use=1
+udp      17 1 src=10.0.0.1 dst=10.0.0.2 sport=56086 dport=53 packets=1 bytes=112 src=10.0.0.2 dst=10.0.0.1 sport=53 dport=56086 packets=1 bytes=196 mark=0 use=1
 
-2. 定位这里的IP  10.180.82.116 是Node地址
-如何定位10.180.82.2 ？ 先定位是否是node VM中的IP， 若不是通过MAC前缀来定位 
-nodesh-i577081-sn1--sit-pocdev-tmp-worker-ls4lq-z1-85f4f-prr89:/ # ip neigh | grep 10.180.82.2 10.180.82.2 dev ens33 lladdr fa:16:3e:58:16:c9 REACHABLE
+2. 定位这里的IP  10.0.0.1 是Node地址
+如何定位10.0.0.1 ？ 先定位是否是node VM中的IP， 若不是通过MAC前缀来定位 
+nodesh-USER001-lab--sit-pocdev-tmp-worker-ls4lq-z1-85f4f-prr89:/ # ip neigh | grep 10.0.0.2 10.0.0.2 dev ens33 lladdr 02:00:00:00:00:01 REACHABLE
 
 fa:16:3e:xx:xx:xx 这个前缀非常有代表性 这是：OpenStack Neutron（虚拟机网卡）的典型 MAC 前缀
 
 3. 然后返现这是DHCP IP？？
-29ad76a7-a972-446...		shoot--sn1--sit-pocdev-tmp	
-10.180.82.2
-shoot--sn1--sit-pocdev-tmp
+29ad76a7-a972-446...		shoot--lab--sit-pocdev-tmp	
+10.0.0.2
+shoot--lab--sit-pocdev-tmp
 network:dhcp
 dhcpe36550aa-b95e...	ACTIVE
 在 OpenStack 里，DHCP agent 通常同时提供 DNS 功能
@@ -44,21 +44,21 @@ Node 在问 DHCP/DNS（dnsmasq）
 
 ```
 解读下一条基于LB member开放端口检索出的数据
-udp      17 10 src=10.180.78.104 dst=10.180.82.116 sport=25693 dport=32202 packets=1 bytes=28 [UNREPLIED] src=100.64.0.21 dst=240.243.13.39 sport=53 dport=22537 packets=0 bytes=0 mark=0 use=1
+udp      17 10 src=10.0.0.3 dst=10.0.0.1 sport=25693 dport=32202 packets=1 bytes=28 [UNREPLIED] src=10.0.0.4 dst=240.243.13.39 sport=53 dport=22537 packets=0 bytes=0 mark=0 use=1
 
 # 这是一个LB
-I577081 @ eu-de-2 > cis > sni-dev-k8s > openstack port list --device-owner network:f5selfip |grep 78.104
-| 9944a4d3-27b3-45c2-9dd3-797f3b02c037 | local-eu-de-2-lb012a-04.cc.eu-de-2.cloud.sap-7f0c4958-2b9a-4601-8434-3918e0c1d718      | fa:16:3e:69:dc:bd | ip_address='10.180.78.104', subnet_id='7f0c4958-2b9a-4601-8434-3918e0c1d718' | ACTIVE |
+USER001 @ eu-de-2 > env-a > team-a-dev-k8s > openstack port list --device-owner network:f5selfip |grep 78.104
+| 00000000-0000-4000-8000-000000000001 | local-eu-de-2-lb012a-04.cc.eu-de-2.cloud.pppdemands.com-00000000-0000-4000-8000-000000000002      | 02:00:00:00:00:01 | ip_address='10.0.0.3', subnet_id='00000000-0000-4000-8000-000000000002' | ACTIVE |
 
 
 
-I577081 @ eu-de-2 > cis > sni-dev-k8s > openstack port list --device-owner network:f5selfip | grep 7f0c4958-2b9a-4601-8434-3918e0c1d718
-| 1c6ea9c3-aca6-4903-b352-aa484f9114e8 | local-eu-de-2-lb013b-02.cc.eu-de-2.cloud.sap-7f0c4958-2b9a-4601-8434-3918e0c1d718      | fa:16:3e:8a:ff:cc | ip_address='10.180.78.50', subnet_id='7f0c4958-2b9a-4601-8434-3918e0c1d718'  | ACTIVE |
-| 37070666-d4f4-435b-a305-139635e3199d | local-eu-de-2-lb012a-03.cc.eu-de-2.cloud.sap-7f0c4958-2b9a-4601-8434-3918e0c1d718      | fa:16:3e:20:87:30 | ip_address='10.180.78.38', subnet_id='7f0c4958-2b9a-4601-8434-3918e0c1d718'  | ACTIVE |
-| 9944a4d3-27b3-45c2-9dd3-797f3b02c037 | local-eu-de-2-lb012a-04.cc.eu-de-2.cloud.sap-7f0c4958-2b9a-4601-8434-3918e0c1d718      | fa:16:3e:69:dc:bd | ip_address='10.180.78.104', subnet_id='7f0c4958-2b9a-4601-8434-3918e0c1d718' | ACTIVE |
-| b5b70167-4bfb-4ea2-9eae-796b41351daf | local-eu-de-2-lb012b-04.cc.eu-de-2.cloud.sap-7f0c4958-2b9a-4601-8434-3918e0c1d718      | fa:16:3e:a0:13:48 | ip_address='10.180.78.248', subnet_id='7f0c4958-2b9a-4601-8434-3918e0c1d718' | ACTIVE |
-| d98b4476-0dc3-4192-9faa-e596c2cf2752 | local-eu-de-2-lb013a-02.cc.eu-de-2.cloud.sap-7f0c4958-2b9a-4601-8434-3918e0c1d718      | fa:16:3e:f8:58:24 | ip_address='10.180.78.109', subnet_id='7f0c4958-2b9a-4601-8434-3918e0c1d718' | ACTIVE |
-| ee89c8dc-8cbe-4e7a-99cf-8cbd4532fdad | local-eu-de-2-lb012b-03.cc.eu-de-2.cloud.sap-7f0c4958-2b9a-4601-8434-3918e0c1d718      | fa:16:3e:23:ea:ea | ip_address='10.180.78.163', subnet_id='7f0c4958-2b9a-4601-8434-3918e0c1d718' | ACTIVE |
+USER001 @ eu-de-2 > env-a > team-a-dev-k8s > openstack port list --device-owner network:f5selfip | grep 00000000-0000-4000-8000-000000000002
+| 00000000-0000-4000-8000-000000000003 | local-eu-de-2-lb013b-02.cc.eu-de-2.cloud.pppdemands.com-00000000-0000-4000-8000-000000000002      | 02:00:00:00:00:01 | ip_address='10.0.0.5', subnet_id='00000000-0000-4000-8000-000000000002'  | ACTIVE |
+| 00000000-0000-4000-8000-000000000004 | local-eu-de-2-lb012a-03.cc.eu-de-2.cloud.pppdemands.com-00000000-0000-4000-8000-000000000002      | 02:00:00:00:00:01 | ip_address='10.0.0.6', subnet_id='00000000-0000-4000-8000-000000000002'  | ACTIVE |
+| 00000000-0000-4000-8000-000000000001 | local-eu-de-2-lb012a-04.cc.eu-de-2.cloud.pppdemands.com-00000000-0000-4000-8000-000000000002      | 02:00:00:00:00:01 | ip_address='10.0.0.3', subnet_id='00000000-0000-4000-8000-000000000002' | ACTIVE |
+| 00000000-0000-4000-8000-000000000005 | local-eu-de-2-lb012b-04.cc.eu-de-2.cloud.pppdemands.com-00000000-0000-4000-8000-000000000002      | 02:00:00:00:00:01 | ip_address='10.0.0.7', subnet_id='00000000-0000-4000-8000-000000000002' | ACTIVE |
+| 00000000-0000-4000-8000-000000000006 | local-eu-de-2-lb013a-02.cc.eu-de-2.cloud.pppdemands.com-00000000-0000-4000-8000-000000000002      | 02:00:00:00:00:01 | ip_address='10.0.0.8', subnet_id='00000000-0000-4000-8000-000000000002' | ACTIVE |
+| 00000000-0000-4000-8000-000000000007 | local-eu-de-2-lb012b-03.cc.eu-de-2.cloud.pppdemands.com-00000000-0000-4000-8000-000000000002      | 02:00:00:00:00:01 | ip_address='10.0.0.9', subnet_id='00000000-0000-4000-8000-000000000002' | ACTIVE |
 
 结论 在openstack/SCI GUI 定位不了某个Loadbalancer对应的F5设备的port selfip。 在node上去捕捉对应lb member 开放的端口可以看到
 
@@ -73,8 +73,8 @@ OpenStack (Octavia)
 
 
 结论： 每个LB在不指定AZ的情况下会有两个F5 port IP （self ip） 
-- local-eu-de-2-lb012a-04.cc.eu-de-2.cloud.sap-<UUID>
-- local-eu-de-2-lb012b-04.cc.eu-de-2.cloud.sap-<UUID>
+- local-eu-de-2-lb012a-04.cc.eu-de-2.cloud.pppdemands.com-<UUID>
+- local-eu-de-2-lb012b-04.cc.eu-de-2.cloud.pppdemands.com-<UUID>
 
 对应 LB 的所有Pool中 会根据AZ/F5 设备Port IP上来决定指向node的端口，同一个zone/F5下的端口一样。比如有三个Pool，两个F5 device IP，则会有两种node的端口，例如 32202和30248 （30000-33000 FIXME？）
 - 端口53 和 端口9119， 端口53  
@@ -99,22 +99,22 @@ A: iptables 里的 **mark（包标记）**是一个非常“底层但威力很�
 
 Key to the success!~~!!!!
 ```
-NODE_IP="10.180.82.116"
+NODE_IP="10.0.0.1"
 NODEPORT=32202
-LB_IP="100.114.88.133"  ip route get LB_IP (LB Ingress IP)
+LB_IP="10.0.0.10"  ip route get LB_IP (LB Ingress IP)
 IFACE="ens33"
 
 # 1) raw: DNS 请求去 pod 网段不走 conntrack
 iptables -t raw -A PREROUTING \
-  -p udp -d 100.64.0.0/12 --dport 53 \
+  -p udp -d 10.0.0.11/12 --dport 53 \
   -j NOTRACK -m comment --comment S4_DNSVIEW_CC
 # 2) mangle: DNS 响应打 mark=1，后续走 table 100
 iptables -t mangle -A PREROUTING \
-  -p udp -s 100.64.0.0/12 --sport 53 ! -d 100.64.0.0/12 \
+  -p udp -s 10.0.0.11/12 --sport 53 ! -d 10.0.0.11/12 \
   -j MARK --set-mark 1 -m comment --comment S4_DNSVIEW_CC
 # 3) nat: DNS 响应做 SNAT 到 NodeIP:NodePort
 iptables -t nat -A POSTROUTING \
-  -p udp -s 100.64.0.0/12 --sport 53 ! -d 100.64.0.0/12 \
+  -p udp -s 10.0.0.11/12 --sport 53 ! -d 10.0.0.11/12 \
   -j SNAT --to-source ${NODE_IP}:${NODEPORT} \
   -m comment --comment S4_DNSVIEW_CC
 # 4) 策略路由：mark=1 的包查表100
@@ -145,9 +145,9 @@ You must enable dsr from LB ?? Difference between cilium and calico ??
       overlay:
         enabled: false
       tunnel: geneve
-    pods: 100.64.0.0/12
-    nodes: 10.180.82.0/24
-    services: 100.104.0.0/13
+    pods: 10.0.0.11/12
+    nodes: 10.0.0.12/24
+    services: 10.0.0.13/13
     ipFamilies:
       - IPv4
 ```

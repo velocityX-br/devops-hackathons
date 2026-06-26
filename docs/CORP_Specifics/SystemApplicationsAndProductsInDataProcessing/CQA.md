@@ -1,19 +1,19 @@
 
 
 ```
-https://example.com/redacted/wiki/spaces/CIEA/pages/2290281135/Query+API+for+Inventory+Search
+https://wiki.one.int.pppdemands.com/wiki/spaces/CIEA/pages/2290281135/Query+API+for+Inventory+Search
 
-curl -X POST -u a:b -d 'obj_organization=GCS%20SIDevOps&dns_zones=testing.gmp.eu-de-2.cloud.sap' 'https://gmp.cia.net.sap/cgi-bin/rest/rest.pl/SelfService/Update%20DNS%20Zones/execute'
+curl -X POST -u a:b -d 'obj_organization=GCS%20SIDevOps&dns_zones=testing.plat-a.eu-de-2.cloud.pppdemands.com' 'https://plat-a.cia.net.pppdemands.com/cgi-bin/rest/rest.pl/SelfService/Update%20DNS%20Zones/execute'
 
 curl -X POST -u a:b \
-'https://gmp.cia.net.sap/cgi-bin/rest/rest.pl/SelfService/query/13FCDA365B6311F18D27F5479F57F669'
+'https://plat-a.cia.net.pppdemands.com/cgi-bin/rest/rest.pl/SelfService/query/CORRELATION-ID-PLACEHOLDER'
 
 
-curl -X POST -u iaa1:Ideaaa## \
-'https://gmp.cia.net.sap/cgi-bin/rest/rest.pl/cqa/v1/query/attributes/?query=DnsZones.with(name%20in%20(%22ryd1.od.sap.biz%22%2C%22sha3.od.sap.biz%22))&attributes=name&attributes=ips&attributes=aliases_count&attributes=ips_count?type=json'
+curl -X POST -u iaa1:foo## \
+'https://plat-a.cia.net.pppdemands.com/cgi-bin/rest/rest.pl/cqa/v1/query/attributes/?query=DnsZones.with(name%20in%20(%22ryd1.od.pppdemands.com%22%2C%22sha3.od.pppdemands.com%22))&attributes=name&attributes=ips&attributes=aliases_count&attributes=ips_count?type=json'
 
 
-curl https://tic.cia.net.sap/cgi-bin/rest/rest.pl/cqa/v1/query/status?requestId=3B81E90E6CA411EDB9C59CE2C471D6E7 -u <user>
+curl https://tic.cia.net.pppdemands.com/cgi-bin/rest/rest.pl/cqa/v1/query/status?requestId=CORRELATION-ID-PLACEHOLDER -u <user>
 
 ```
 
@@ -21,26 +21,26 @@ DNS Specifics
 
 ```
 DnsNameservers.with(name in ("dns-api Hidden Primary"))
-DnsZones.with(name in ("ryd1.od.sap.biz","sha3.od.sap.biz","spa3.od.sap.biz"))
+DnsZones.with(name in ("ryd1.od.pppdemands.com","sha3.od.pppdemands.com","spa3.od.pppdemands.com"))
 
-dns-api dig global @0 axfr sha3.od.sap.biz |grep -E "IN[[:space:]]+A" |less
+dns-api dig global @0 axfr sha3.od.pppdemands.com |grep -E "IN[[:space:]]+A" |less
 
 ❯ curl -s -u aaa1:Ideaaa## \
-  'https://gmp.cia.net.sap/cgi-bin/rest/rest.pl/cqa/v1/query/attributes/?query=DnsZones.with(name%20in%20(%22ryd1.od.sap.biz%22%2C%22sha3.od.sap.biz%22%2C%22spa3.od.sap.biz%22))&attributes=name&attributes=aliases_count&attributes=ips_count' | jq .
+  'https://plat-a.cia.net.pppdemands.com/cgi-bin/rest/rest.pl/cqa/v1/query/attributes/?query=DnsZones.with(name%20in%20(%22ryd1.od.pppdemands.com%22%2C%22sha3.od.pppdemands.com%22%2C%22spa3.od.pppdemands.com%22))&attributes=name&attributes=aliases_count&attributes=ips_count' | jq .
 {
   "DnsZone": {
-    "spa3.od.sap.biz": {
+    "spa3.od.pppdemands.com": {
       "aliases_count": 58,
-      "name": "spa3.od.sap.biz",
+      "name": "spa3.od.pppdemands.com",
       "ips_count": 2630
     },
-    "ryd1.od.sap.biz": {
+    "ryd1.od.pppdemands.com": {
       "aliases_count": 47,
-      "name": "ryd1.od.sap.biz",
+      "name": "ryd1.od.pppdemands.com",
       "ips_count": 2827
     },
-    "sha3.od.sap.biz": {
-      "name": "sha3.od.sap.biz",
+    "sha3.od.pppdemands.com": {
+      "name": "sha3.od.pppdemands.com",
       "ips_count": 2187,
       "aliases_count": 59
     }
@@ -56,7 +56,7 @@ dns-api dig global @0 axfr sha3.od.sap.biz |grep -E "IN[[:space:]]+A" |less
 
 所有 CQA inventory 类型都定义在这个文件:
 
-📄 **[cgi-bin/lib/GMP/CQA/TypeEngine/Inventory.pm#L16-L112](https://github.tools.sap/cia-web-services/gmp-app/blob/main/cgi-bin/lib/GMP/CQA/TypeEngine/Inventory.pm#L16-L112)**
+📄 **[cgi-bin/lib/PLAT-A/CQA/TypeEngine/Inventory.pm#L16-L112](https://github.tools.pppdemands.com/plat-web-services/plat-app/blob/main/cgi-bin/lib/PLAT-A/CQA/TypeEngine/Inventory.pm#L16-L112)**
 
 格式 `Singular(s)` 表示既支持单数又支持复数,例如:
 - `VirtualMachine(s)` → `VirtualMachine` 或 `VirtualMachines`
@@ -65,9 +65,9 @@ dns-api dig global @0 axfr sha3.od.sap.biz |grep -E "IN[[:space:]]+A" |less
 
 ### 方法 2:在 CQA UI 自查
 
-打开 GMP 的 CQA 查询页面:
+打开 PLAT-A 的 CQA 查询页面:
 
-🔗 https://gmp.cia.net.sap/cgi-bin/objects.pl/CQA/
+🔗 https://plat-a.cia.net.pppdemands.com/cgi-bin/objects.pl/CQA/
 
 直接输入 `Help` 或者错误的类型名(像你之前那样),错误信息和补全提示会列出可用的 type。
 
@@ -81,7 +81,7 @@ dns-api dig global @0 axfr sha3.od.sap.biz |grep -E "IN[[:space:]]+A" |less
 | **Load Balancing** | `LoadBalancer`, `LoadBalancerCluster`, `LoadBalancerPool`, `LoadBalancerVirtualServer`, `LoadBalancerHealthCheck`, `LoadBalancerDataGroup`, `CloudLB`, `CloudLBListener`, `CloudLBServiceGroup`, `CloudLBHealthCheck` |
 | **Cloud** | `CloudProvider`, `CloudFrameManager`, `CloudFrameFrame`, `CloudFrameNode`, `NatRule`, `NatGateway`, `SecurityGroup`, `SecurityRule`, `CloudEncryptionKey` |
 | **K8s** | `K8SCluster`, `K8SNode`, `K8SWorkerGroup`, `K8SApplication`, `GardenerProject` |
-| **Business** | `Customer`, `Tenant`, `Project`, `Landscape`, `System`, `SapInstance`, `Database`, `BusinessSystemType`, `UsageArea` |
+| **Business** | `Customer`, `Tenant`, `Project`, `Landscape`, `System`, `PppInstance`, `Database`, `BusinessSystemType`, `UsageArea` |
 | **Certificate** | `Certificate`, `CertificateContainer`, `CertificateLocation` |
 | **DR/Backup** | `DrScenario`, `DrScenarioRelation`, `Backup`, `BackupServer` |
 | **Image/Provisioning** | `Image`, `ImageVersion`, `ImageCustomization`, `ChefServer`, `AnsibleServer` |

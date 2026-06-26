@@ -1,6 +1,6 @@
 
 Symptoms:
-- VM failed by soft rebooting by the GMP (GuestOS VM Orchestrator)
+- VM failed by soft rebooting by the PLAT-A (GuestOS VM Orchestrator)
 
 ```
 2025-05-10T21:28:46.241472+00:00 vsajg91001 joschyd.pl[3962135]: 2025-05-10 21:28:46: [check-chronyd-service] killed

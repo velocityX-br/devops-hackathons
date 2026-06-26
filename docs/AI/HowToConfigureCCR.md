@@ -8,7 +8,7 @@ less ~/.claude-code-router/config.json
 export ANTHROPIC_AUTH_TOKEN=sxxaa0c6xxxca4e18b9776eadce32dc756f45fbfebd485ae7bc3f3
 export ANTHROPIC_BASE_URL=https://anyrouter.top
 
-export ANTHROPIC_AUTH_TOKEN=01d5770286f6422ca3bcba42415c66d6.u7cIZBA4c0Vvup24
+export ANTHROPIC_AUTH_TOKEN=PROJECT-ID-PLACEHOLDER.u7cIZBA4c0Vvup24
 export ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic
 
 ccr restart
@@ -63,7 +63,7 @@ ModelScope configuration
     {
       "name": "modelscope",
       "api_base_url": "https://api-reference.modelscope.cn/api/v1/chat/completions",
-      "api_key": "ms-f3fae7e1-ffb9-4d72-933f-3e25195eb814",
+      "api_key": "ms-00000000-0000-4000-8000-000000000001",
       "models": [
         "Qwen/Qwen3-Coder-480B-A35B-Instruct",
         "Qwen/Qwen3-235B-A22B-Instruct-2507"

@@ -16,7 +16,7 @@ printf "%s\n" *20251114* 2>/dev/null | cut -d- -f1 | sort -u
 appoint delimiter as "-" and -f1 meaning the first field
 
 
-(logsrv01-eude2-spc) vsa8559134:/tmp/bz2_tmp #
+(logsrv01-eude2-spc) vsa-host001:/tmp/bz2_tmp #
 # printf "%s\n" *20251114*
 c5240952-20251114-163526-RVobNl
 c5240952-20251114-163526-RVobNl.tar
@@ -48,7 +48,7 @@ fuser -v /ctxmnt
  
 # 6. 最后手段（NFS 卡死时）： <20251116> 测试有效
 umount -f -l /ctxmnt   # -f + -l 组合有时更有效
-[root@ACSPHL012888 ~]# umount -f /ctxmnt --force
+[root@ws-host001 ~]# umount -f /ctxmnt --force
 umount.nfs: /ctxmnt: device is busy
 
 ```
@@ -79,9 +79,9 @@ sssd-2.9.3-150600.3.18.3.29856.1.TEST.1243385.x86_64
 
 ```
 
-#### add lines `+:CLMAM_CC_OSAccess_prod:ALL` on topc of `+:CLMAM_CC_OSAccess_CAM_prod:ALL` when it doesn't exist. 
+#### add lines `+:SVC-A_CC_OSAccess_prod:ALL` on topc of `+:SVC-A_CC_OSAccess_CAM_prod:ALL` when it doesn't exist. 
 ```
-grep -q '^+:CLMAM_CC_OSAccess_prod:ALL' /etc/security/access.conf || sed -i.bak '/\+:CLMAM_CC_OSAccess_CAM_prod:ALL/i +:CLMAM_CC_OSAccess_prod:ALL' /etc/security/access.conf;
+grep -q '^+:SVC-A_CC_OSAccess_prod:ALL' /etc/security/access.conf || sed -i.bak '/\+:SVC-A_CC_OSAccess_CAM_prod:ALL/i +:SVC-A_CC_OSAccess_prod:ALL' /etc/security/access.conf;
 cat /etc/security/access.conf
 ```
 
@@ -90,9 +90,9 @@ cat /etc/security/access.conf
 grep '^/var/log/hana' /etc/logrotate.d/syslog &&  sed -i.bak '/\/var\/log\/hana/d' syslog
 ```
 
-Test first before execute with `sed -i 's/CLMAM_CC_OSAccess_prod/CLMAM_CC_OSAccess_CAM_prod/g' *prod*cam*`
+Test first before execute with `sed -i 's/SVC-A_CC_OSAccess_prod/SVC-A_CC_OSAccess_CAM_prod/g' *prod*cam*`
 ```
-sed -n 's/CLMAM_CC_OSAccess_prod/CLMAM_CC_OSAccess_CAM_prod/gp' *prod*cam*
+sed -n 's/SVC-A_CC_OSAccess_prod/SVC-A_CC_OSAccess_CAM_prod/gp' *prod*cam*
 ```
 
 
@@ -113,7 +113,7 @@ zcat ttyout | grep vgs
 
 Bash execution best practice:
 ```
-wget http://repo:50000/repo/CC+1/i577081/SP6_RT_Checker_TLO.sh --output-document=/tmp/SP6_RT_Checker_TLO.sh && && bash /tmp/SP6_RT_Checker_TLO.sh && rm /tmp/SP6_RT_Checker_TLO.sh
+wget http://repo:50000/repo/CC+1/USER001/SP6_RT_Checker_TLO.sh --output-document=/tmp/SP6_RT_Checker_TLO.sh && && bash /tmp/SP6_RT_Checker_TLO.sh && rm /tmp/SP6_RT_Checker_TLO.sh
 ```
 
 Same tip for grep

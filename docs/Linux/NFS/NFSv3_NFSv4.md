@@ -2,10 +2,10 @@
 NFSv3
 
 Finished Tasks:
-- Port conflict issue with Lsyncd - https://jira.tools.ppp/browse/SIDEVOPS-11558 
+- Port conflict issue with Lsyncd - https://jira.tools.pppdemands.com/browse/PROJ-B-11558 
 
 ```
-ms-cis-clmam-eu-de-2-vlab-private-01-01-10-180-240-233.vlab.clmam.gmp.eu-de-2.cloud.ppp:/share_5ed69e0e_6ee1_4cbe_8abb_73e6fe229ebe /hdb/VLY/log nfs        rw,proto=tcp,nolock,nfsvers=3,nodev,nosuid,noexec 0 0
+ms-env-a-svc-a-eu-de-2-vlab-private-01-01-10-180-240-233.vlab.svc-a.plat-a.eu-de-2.cloud.pppdemands.com:/share_5ed69e0e_6ee1_4cbe_8abb_73e6fe229ebe /hdb/VLY/log nfs        rw,proto=tcp,nolock,nfsvers=3,nodev,nosuid,noexec 0 0
 ```
 nolock 是解决 NFSv3 客户端防火墙问题的最简单方法；
 ⚠️ 但代价是：文件锁不再跨主机生效！  --> 这解释Hana数据库无法实现HA的关键之一
@@ -26,7 +26,7 @@ This is because of a separate common cause:  The concept of "root_squash".  By d
 
 
 ppp hana compitability on NFSv4.0 or 4.1 
-https://me.ppp.com/notes/3055554/E
+https://me.pppdemands.com/notes/3055554/E
 
 Solution (don't work due to root_squashing in NFS server side):
 https://www.suse.com/support/kb/doc/?id=000017244
@@ -66,4 +66,4 @@ lockd、statd：处理文件锁（端口也动态）
 
 ### Solution of idmapping/root_squash 
 
-https://documentation.global.cloud.ppp/docs/customer/storage/file-storage/fs-howto/filestore-start-nfsv4/ 
+https://documentation.global.cloud.pppdemands.com/docs/customer/storage/file-storage/fs-howto/filestore-start-nfsv4/ 

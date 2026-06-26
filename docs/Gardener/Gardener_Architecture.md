@@ -35,8 +35,8 @@ API automation ?.
 
 K8S Control Plane 的latency 可能会对 K8S Data Plane的影响
 
-cc02v011705	Used for VLAB CVS (CI) -CAM 2.0
-cc02v011706	Used for VLAB CVS (CS) -CAM 2.0
-cc02v011704	Used for VLAB CVS (DB) -CAM 2.0
+vm-host001	Used for VLAB CVS (CI) -CAM 2.0
+vm-host001	Used for VLAB CVS (CS) -CAM 2.0
+vm-host001	Used for VLAB CVS (DB) -CAM 2.0
 
 Control plane Stability: 查看api-server stability 尤其是使用了openstack-designate 

@@ -5,7 +5,7 @@
 Sample of `dns-api.target`
 
 ```
-(dnshm01-sit|dnshm-sit) vsa11829647:~ #
+(dnshm01-lab|dnshm-lab) vsa-host001:~ #
 #    cat /usr/lib/systemd/system/dns-api.target
 [Unit]
 Description=dns-api meta target for the hiddenmaster
@@ -20,7 +20,7 @@ Wants=named.service dns-api-check-slaves.path dns-api-check-slaves.timer
 ```
 ```mermaid
 sequenceDiagram
-    participant VIP as VIP (192.168.1.100)
+    participant VIP as VIP (10.0.0.1)
     participant Keepalived
     participant dns-api.target
     participant named.service

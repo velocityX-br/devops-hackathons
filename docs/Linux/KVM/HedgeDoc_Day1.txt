@@ -110,20 +110,20 @@ virsh list
 zypper install nmap
 ip -br a
 ...
-sle301v15-lan    UP             192.168.13.1/24
-sle301v15-san1   UP             192.168.14.1/24
-sle301v15-san2   UP             192.168.15.1/24
+sle301v15-lan    UP             10.0.0.1/24
+sle301v15-san1   UP             10.0.0.2/24
+sle301v15-san2   UP             10.0.0.3/24
 
-nmap -sn 192.168.13.0/24
+nmap -sn 10.0.0.4/24
 Starting Nmap 7.94 ( https://nmap.org ) at 2025-12-15 13:51 UTC
-Nmap scan report for 192.168.13.21
+Nmap scan report for 10.0.0.5
 Host is up (0.00061s latency).
 MAC Address: 52:54:00:07:E8:E8 (QEMU virtual NIC)
-Nmap scan report for 192.168.13.1
+Nmap scan report for 10.0.0.1
 Host is up.
 Nmap done: 256 IP addresses (2 hosts up) scanned in 2.05 seconds
 
-ssh -l tux 192.168.13.21
+ssh -l tux 10.0.0.5
 <enter password>
 <profit>
 ```

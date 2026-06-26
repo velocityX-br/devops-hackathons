@@ -21,7 +21,7 @@ spec:
             policy: soft-anti-affinity
 
 # Validation 
-openstack server show vsa13850403/<worker nodes> -c OS-EXT-SRV-ATTR:host
+openstack server show vsa-host001/<worker nodes> -c OS-EXT-SRV-ATTR:host
 
 策略定义：soft-anti-affinity 是OpenStack服务器组（server group）的一种调度策略，表示尽量将实例分散到不同物理主机，但在资源不足时允许部分实例共存于同一主机 
 
@@ -55,12 +55,12 @@ looks like:
 
     infrastructureConfig:
       apiVersion: openstack.provider.extensions.gardener.cloud/v1alpha1
-      floatingPoolName: FloatingIP-external-monsoon3-02
+      floatingPoolName: FloatingIP-external-cloudtenant01-02
       kind: InfrastructureConfig
       networks:
         router:
-          id: 7e14322a-eed3-4d5f-bff6-ed614f076089
-        workers: 172.18.0.0/16
+          id: 00000000-0000-4000-8000-000000000001
+        workers: 10.0.0.1/16
         shareNetwork:
           enabled: true
 ```
@@ -69,7 +69,7 @@ Question:
 Worker notes AZ should be matching to `Manila AZ ? Compute AZ (zone-1) = Manila AZ (Zone-1)`
 https://github.com/kubernetes/cloud-provider-openstack/blob/master/docs/manila-csi-plugin/using-manila-csi-plugin.md
 
-https://github.tools.ppp/sdo-toolsandutilities/gardener-addons
+https://github.tools.pppdemands.com/sdo-toolsandutilities/gardener-addons
 
 ### Shoot Cluster Enable DNS provider - Openstack designate
 
@@ -85,11 +85,11 @@ metadata:
 spec:
   [...]
   dns:
-    domain: prod-1.cia.net.ppp
+    domain: prod-1.cia.net.pppdemands.com
     providers:
       - domains:
           include:
-            - cia.net.ppp
+            - cia.net.pppdemands.com
         primary: true
         secretName: designate-secret-cia-net-ppp
         type: openstack-designate
@@ -102,7 +102,7 @@ spec:
         providers:
           - domains:
               include:
-                - cia.net.ppp
+                - cia.net.pppdemands.com
             secretName: shoot-dns-service-designate-secret-cia-net-ppp
             type: openstack-designate
         syncProvidersFromShootSpecDNS: true
@@ -123,13 +123,13 @@ spec:
       externalTrafficPolicy: Cluster
   cloudProfileName: converged-cloud-neo
   dns:
-    domain: sit.sidevops.c.eu-de-1.cloud.ppp
+    domain: sit.team-b.c.eu-de-1.cloud.pppdemands.com
     providers:
       - domains:
           include:
-            - sidevops.c.eu-de-1.cloud.ppp
+            - team-b.c.eu-de-1.cloud.pppdemands.com
         primary: true
-        secretName: designate-secret-c8s-sni-int-ppp
+        secretName: designate-secret-c8s-team-a-int-ppp
         type: openstack-designate
   extensions:
     - type: shoot-dns-service
@@ -139,10 +139,10 @@ spec:
         syncProvidersFromShootSpecDNS: false
         providers:
           - type: openstack-designate
-            secretName: shoot-dns-service-designate-secret-c8s-sni-int-ppp
+            secretName: shoot-dns-service-designate-secret-c8s-team-a-int-ppp
             domains:
               include:
-                - sidevops.c.eu-de-1.cloud.ppp
+                - team-b.c.eu-de-1.cloud.pppdemands.com
 
 # Create a CNAME then a DNS record via SVC/Ingress Annotation 
 apiVersion: dns.gardener.cloud/v1alpha1
@@ -155,9 +155,9 @@ metadata:
   name: dns-argo
   namespace: default
 spec:
-  dnsName: argocd.sit.sidevops.c.eu-de-1.cloud.ppp
+  dnsName: argocd.sit.team-b.c.eu-de-1.cloud.pppdemands.com
   targets:
-  - ingress.sit.sidevops.c.eu-de-1.cloud.ppp
+  - ingress.sit.team-b.c.eu-de-1.cloud.pppdemands.com
   ttl: 600
 
 # Like below, quick sample from CIEA.
@@ -166,16 +166,16 @@ kind: Service
 metadata:
   annotations:
     dns.gardener.cloud/class: garden
-    dns.gardener.cloud/dnsnames: '*.ingress.prod-1.cia.net.ppp,ingress.prod-1.cia.net.ppp'
+    dns.gardener.cloud/dnsnames: '*.ingress.prod-1.cia.net.pppdemands.com,ingress.prod-1.cia.net.pppdemands.com'
     dns.gardener.cloud/ttl: "600"
     [...]
 
 ```
 
 ### Shoot Cluster Enable Custom Certificate
-https://pages.github.tools.ppp/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#configure-a-custom-certificate-issuer
+https://pages.github.tools.pppdemands.com/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#configure-a-custom-certificate-issuer
 
-Known limitation: Wildcard requests are not supported as of now by vendor, according to [pppNETCAG2+ACME+Guide](https://wiki.one.int.ppp/wiki/display/PKI/pppNETCAG2+ACME+Guide)
+Known limitation: Wildcard requests are not supported as of now by vendor, according to [pppNETCAG2+ACME+Guide](https://wiki.one.int.pppdemands.com/wiki/display/PKI/pppNETCAG2+ACME+Guide)
 ```jsx title="Configure a custom certificate"
 spec:
   ...
@@ -186,26 +186,26 @@ spec:
       providerConfig:
         apiVersion: service.cert.extensions.gardener.cloud/v1alpha1
         issuers:
-          - email: bryan.chen01@ppp.com@ppp.com
+          - email: user@example.com
             name: pppca
-            server: "https://acme.pki.net.ppp/pgwy/acme/directory"
+            server: "https://acme.pki.net.pppdemands.com/pgwy/acme/directory"
             precheckNameservers:
-              - ns3.eu-nl-1.cloud.ppp.
-              - ns1.eu-nl-1.cloud.ppp.
-              - ns2.eu-nl-1.cloud.ppp.
+              - ns3.eu-nl-1.cloud.pppdemands.com.
+              - ns1.eu-nl-1.cloud.pppdemands.com.
+              - ns2.eu-nl-1.cloud.pppdemands.com.
 
   extensions:
     - type: shoot-cert-service
       providerConfig:
         apiVersion: service.cert.extensions.gardener.cloud/v1alpha1
         issuers:
-          - email: DL_57E0D57A7BCF84A346000014@global.corp.ppp
+          - email: dl-team@example.com
             name: pppca
             precheckNameservers:
-              - ns1.eu-de-1.cloud.ppp.
-              - ns2.eu-de-1.cloud.ppp.
-              - ns3.eu-de-1.cloud.ppp.
-            server: https://acme.pki.net.ppp/pgwy/acme/directory
+              - ns1.eu-de-1.cloud.pppdemands.com.
+              - ns2.eu-de-1.cloud.pppdemands.com.
+              - ns3.eu-de-1.cloud.pppdemands.com.
+            server: https://acme.pki.net.pppdemands.com/pgwy/acme/directory
 
 ```
 
@@ -222,6 +222,6 @@ https://github.com/gardener/gardener-extension-provider-openstack/blob/master/do
 :::danger [Known Limitations]
 :::
 1. Give a project access to the capacity of all clusters within a region.
-https://documentation.global.cloud.ppp/docs/customer/getting-started/create-a-project/resource-pooling/
+https://documentation.global.cloud.pppdemands.com/docs/customer/getting-started/create-a-project/resource-pooling/
 2. Openstack network availability zone must be specified in Terraform before deploying kubernetes resources
-3. Wildcard requests are not supported as of now by vendor, according to [pppNETCAG2+ACME+Guide](https://wiki.one.int.ppp/wiki/display/PKI/pppNETCAG2+ACME+Guide)
+3. Wildcard requests are not supported as of now by vendor, according to [pppNETCAG2+ACME+Guide](https://wiki.one.int.pppdemands.com/wiki/display/PKI/pppNETCAG2+ACME+Guide)

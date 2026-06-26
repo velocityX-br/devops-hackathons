@@ -1,8 +1,8 @@
-https://jira.tools.sap/browse/CIEA-20583
-https://github.tools.sap/cia-docker-images/sci-lbtools
-https://github.tools.sap/cia-docker-images/k8s-cust-node/
+https://jira.tools.pppdemands.com/browse/PROJ-A-20583
+https://github.tools.pppdemands.com/plat-docker-images/sci-lbtools
+https://github.tools.pppdemands.com/plat-docker-images/k8s-cust-node/
 https://my.f5.com/manage/s/article/K13433
-https://jira.tools.sap/browse/CIEA-16916
+https://jira.tools.pppdemands.com/browse/PROJ-A-16916
 
 
 
@@ -27,22 +27,22 @@ F5 收到     ──→  源IP端口匹配，conntrack 开心
 
 
 ```
-NODE_IP="10.180.82.116"
+NODE_IP="10.0.0.1"
 NODEPORT=32202
-LB_IP="10.180.78.31"
+LB_IP="10.0.0.2"
 IFACE="ens33"
 
 # 1) raw: DNS 请求去 pod 网段不走 conntrack
 iptables -t raw -A PREROUTING \
-  -p udp -d 100.64.0.0/12 --dport 53 \
+  -p udp -d 10.0.0.3/12 --dport 53 \
   -j NOTRACK -m comment --comment S4_DNSVIEW_CC
 # 2) mangle: DNS 响应打 mark=1，后续走 table 100
 iptables -t mangle -A PREROUTING \
-  -p udp -s 100.64.0.0/12 --sport 53 ! -d 100.64.0.0/12 \
+  -p udp -s 10.0.0.3/12 --sport 53 ! -d 10.0.0.3/12 \
   -j MARK --set-mark 1 -m comment --comment S4_DNSVIEW_CC
 # 3) nat: DNS 响应做 SNAT 到 NodeIP:NodePort
 iptables -t nat -A POSTROUTING \
-  -p udp -s 100.64.0.0/12 --sport 53 ! -d 100.64.0.0/12 \
+  -p udp -s 10.0.0.3/12 --sport 53 ! -d 10.0.0.3/12 \
   -j SNAT --to-source ${NODE_IP}:${NODEPORT} \
   -m comment --comment S4_DNSVIEW_CC
 # 4) 策略路由：mark=1 的包查表100
@@ -71,17 +71,17 @@ networking:
       overlay:
         enabled: true
       tunnel: geneve
-    pods: 100.64.0.0/12
-    nodes: 10.184.182.32/27
-    services: 100.104.0.0/13
+    pods: 10.0.0.3/12
+    nodes: 10.0.0.4/27
+    services: 10.0.0.5/13
     ipFamilies:
       - IPv4
 
 回滚
 
-sudo iptables -t raw -D PREROUTING -p udp -d 100.64.0.0/12 --dport 53 -j NOTRACK -m comment --comment S4_DNSVIEW_CC
-sudo iptables -t mangle -D PREROUTING -p udp -s 100.64.0.0/12 --sport 53 ! -d 100.64.0.0/12 -j MARK --set-mark 1 -m comment --comment S4_DNSVIEW_CC
-sudo iptables -t nat -D POSTROUTING -p udp -s 100.64.0.0/12 --sport 53 ! -d 100.64.0.0/12 -j SNAT --to-source ${NODE_IP}:${NODEPORT} -m comment --comment S4_DNSVIEW_CC
+sudo iptables -t raw -D PREROUTING -p udp -d 10.0.0.3/12 --dport 53 -j NOTRACK -m comment --comment S4_DNSVIEW_CC
+sudo iptables -t mangle -D PREROUTING -p udp -s 10.0.0.3/12 --sport 53 ! -d 10.0.0.3/12 -j MARK --set-mark 1 -m comment --comment S4_DNSVIEW_CC
+sudo iptables -t nat -D POSTROUTING -p udp -s 10.0.0.3/12 --sport 53 ! -d 10.0.0.3/12 -j SNAT --to-source ${NODE_IP}:${NODEPORT} -m comment --comment S4_DNSVIEW_CC
 sudo ip rule del fwmark 0x1 lookup 100
 sudo ip route flush table 100
 

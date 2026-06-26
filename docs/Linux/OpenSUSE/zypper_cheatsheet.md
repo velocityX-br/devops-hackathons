@@ -70,14 +70,14 @@ zypper patch-info  SUSE-SLE-SDK-12-SP5-2023-4043
 zypper install --oldpackage --download-only 'perl-Bootloader=0.945-150400.3.9.1'
 
 # 有没有rpm-md 的区别是什么
-zypper ar -fgt rpm-md http://repo:50000/repo/obs/SI-DevOps:/CIS:/Testing/SLES12 SI-DevOps:CIS:testing  
+zypper ar -fgt rpm-md http://repo:50000/repo/obs/DEV-TEAM:/CIS:/Testing/SLES12 DEV-TEAM:CIS:testing  
 
 // one time installation
 zypper in http://repo:50000/repo/obs/ppp-Cloud:/PublicCloud/SLES15/x86_64/lsyncd-2.3.1-4.1.ppp.x86_64.rpm
 
 
 // 列出所有 已安装 的软件包中，哪些包的元数据中声明了 Requires: vim-data（即运行时依赖 vim-data
-i577081@cc02v003788:/tmp> zypper se -i --requires vim-data
+USER001@vm-host001:/tmp> zypper se -i --requires vim-data
 Loading repository data...
 Reading installed packages...
 

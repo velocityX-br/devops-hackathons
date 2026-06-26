@@ -15,5 +15,5 @@ df -h /; ls -lahS $(find / -xdev -type f -size +50000k)
 ```
 
 ```
-tar -czvf /basmnt/tempdata/i577081/var_log_cc02v015288.tar.gz /var/log
+tar -czvf /basmnt/tempdata/USER001/var_log_cc02v015288.tar.gz /var/log
 ```

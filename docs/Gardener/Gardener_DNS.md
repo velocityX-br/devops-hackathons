@@ -10,10 +10,10 @@ Placeholder - Gardener DNS Extensions
 
 ```
 Enable custom Landscape DNS by enabling `node-local-dns`<br>
-POC ticket:https://jira.tools.ppp/browse/SIDEVOPS-14841
-Massive rollout ticket: https://jira.tools.ppp/browse/SIDEVOPS-15059
+POC ticket:https://jira.tools.pppdemands.com/browse/PROJ-B-14841
+Massive rollout ticket: https://jira.tools.pppdemands.com/browse/PROJ-B-15059
 https://convergedcloud.slack.com/archives/C9CEBQPGE/p1754053063924389 
-https://pages.github.tools.ppp/kubernetes/gardener/docs/landscapes/live/gardener/networking/custom-dns-config/
+https://pages.github.tools.pppdemands.com/kubernetes/gardener/docs/landscapes/live/gardener/networking/custom-dns-config/
 https://gardener.cloud/docs/gardener/networking/custom-dns-config/#node-local-dns
 
 Implementation of customizing coreDNS's resolution chain.
@@ -32,7 +32,7 @@ metadata:
   namespace: kube-system
 data:
   corefile.override: |
-    forward . 100.90.0.8 100.90.1.169 100.70.20.3 100.70.20.2
+    forward . 10.0.0.1 10.0.0.2 10.0.0.3 10.0.0.4
 
 kubectl -n kube-system rollout restart deploy coredns
 ```

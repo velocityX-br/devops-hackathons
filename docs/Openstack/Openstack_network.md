@@ -1,39 +1,39 @@
 
 #### Share an external Network to a project 
 
-https://operations.global.cloud.ppp/docs/support/playbook/neutron/add-external-network/
+https://operations.global.cloud.pppdemands.com/docs/support/playbook/neutron/add-external-network/
 
-Manage Scenario 1: Add SI_DevOps_private_sandbox as __shared network__ to specific project
+Manage Scenario 1: Add DEV_TEAM_private_sandbox as __shared network__ to specific project
 
 Catalog:
-- Project ID: c9d437fac3dc4e56bab36a9df26fefe8
-- SI_DevOps_private_sandbox Network ID: 4d14d9a8-ff1f-4cb3-9272-2151e9727fcd
+- Project ID: PROJECT-ID-PLACEHOLDER
+- DEV_TEAM_private_sandbox Network ID: 00000000-0000-4000-8000-000000000001
 
 ```
 openstack network rbac list
 # You can navigate rbac policy ID from above command
-| 54565f71-a824-49e1-9935-975e80a839f9 | network     | 4d14d9a8-ff1f-4cb3-9272-2151e9727fcd |
+| 00000000-0000-4000-8000-000000000002 | network     | 00000000-0000-4000-8000-000000000001 |
 
 ```
 
 
 ```
-I577081 @ eu-nl-1 > monsoon3 > SI_DevOps > openstack network rbac create --target-project c9d437fac3dc4e56bab36a9df26fefe8 --action access_as_shared --type network 4d14d9a8-ff1f-4cb3-9272-2151e9727fcd
+USER001 @ eu-nl-1 > cloudtenant01 > DEV_TEAM > openstack network rbac create --target-project PROJECT-ID-PLACEHOLDER --action access_as_shared --type network 00000000-0000-4000-8000-000000000001
 +-------------------+--------------------------------------+
 | Field             | Value                                |
 +-------------------+--------------------------------------+
 | action            | access_as_shared                     |
-| id                | b5296634-9077-4971-becc-5ddc1833c5f5 |   --> this is the rbac policy ID
-| object_id         | 4d14d9a8-ff1f-4cb3-9272-2151e9727fcd |
+| id                | 00000000-0000-4000-8000-000000000003 |   --> this is the rbac policy ID
+| object_id         | 00000000-0000-4000-8000-000000000001 |
 | object_type       | network                              |
-| project_id        | adde6fddf0f8457f9b796c337aaa5842     |
-| target_project_id | c9d437fac3dc4e56bab36a9df26fefe8     |
+| project_id        | PROJECT-ID-PLACEHOLDER     |
+| target_project_id | PROJECT-ID-PLACEHOLDER     |
 +-------------------+--------------------------------------+
 ```
 
 
 ```
-I577081 @ eu-nl-1 > monsoon3 > SI_DevOps > openstack network show 4d14d9a8-ff1f-4cb3-9272-2151e9727fcd
+USER001 @ eu-nl-1 > cloudtenant01 > DEV_TEAM > openstack network show 00000000-0000-4000-8000-000000000001
 +---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Field                     | Value                                                                                                                                                                           |
 +---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -43,15 +43,15 @@ I577081 @ eu-nl-1 > monsoon3 > SI_DevOps > openstack network show 4d14d9a8-ff1f-
 | created_at                | 2023-01-13T05:00:30Z                                                                                                                                                            |
 | description               |                                                                                                                                                                                 |
 | dns_domain                |                                                                                                                                                                                 |
-| id                        | 4d14d9a8-ff1f-4cb3-9272-2151e9727fcd                                                                                                                                            |
+| id                        | 00000000-0000-4000-8000-000000000001                                                                                                                                            |
 | ipv4_address_scope        | None                                                                                                                                                                            |
 | ipv6_address_scope        | None                                                                                                                                                                            |
 | is_default                | None                                                                                                                                                                            |
 | is_vlan_transparent       | None                                                                                                                                                                            |
 | mtu                       | 8950                                                                                                                                                                            |
-| name                      | SI_DevOps_private_sandbox                                                                                                                                                       |
+| name                      | DEV_TEAM_private_sandbox                                                                                                                                                       |
 | port_security_enabled     | False                                                                                                                                                                           |
-| project_id                | adde6fddf0f8457f9b796c337aaa5842                                                                                                                                                |
+| project_id                | PROJECT-ID-PLACEHOLDER                                                                                                                                                |
 | provider:network_type     | None                                                                                                                                                                            |
 | provider:physical_network | None                                                                                                                                                                            |
 | provider:segmentation_id  | None                                                                                                                                                                            |
@@ -64,13 +64,13 @@ I577081 @ eu-nl-1 > monsoon3 > SI_DevOps > openstack network show 4d14d9a8-ff1f-
 |                           | 'ap009', 'provider:segmentation_id': 2723}, {'provider:network_type': 'vlan', 'provider:physical_network': 'bb247', 'provider:segmentation_id': 2255}]                          |
 | shared                    | False                                                                                                                                                                           |
 | status                    | ACTIVE                                                                                                                                                                          |
-| subnets                   | fc35bff3-bc1c-4c63-a6a6-2738a52f056e                                                                                                                                            |
-| tags                      | monsoon3::aci::tenant::cc-openstack-eu-nl-1-1                                                                                                                                   |
+| subnets                   | 00000000-0000-4000-8000-000000000004                                                                                                                                            |
+| tags                      | cloudtenant01::aci::tenant::cc-openstack-eu-nl-1-1                                                                                                                                   |
 | updated_at                | 2023-04-19T02:16:34Z                                                                                                                                                            |
 +---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 # network rbac cleanup
-`openstack network rbac delete 54565f71-a824-49e1-9935-975e80a839f9`
+`openstack network rbac delete 00000000-0000-4000-8000-000000000002`
 ```
 
 
@@ -78,46 +78,46 @@ I577081 @ eu-nl-1 > monsoon3 > SI_DevOps > openstack network show 4d14d9a8-ff1f-
 
 Calculate: &lt;REGION_ASN&gt; * 65536 + 4
 The route-target value generated from 4-byte dotted representation of region's ASn by formula: (&lt;REGION_ASN&gt; * 65536 + 4):&lt;UNIQUE_ID&gt;. In this example 65130.4:2000 converted to 4268359684:2000
-https://netbox.global.cloud.ppp/ipam/asns/
+https://netbox.global.cloud.pppdemands.com/ipam/asns/
 
 
 #### RT&lt;-&gt;CIS Conn, import/export targets check
 
 ```
-I577081 @ eu-de-1 > cis > clmam-eu-de-1-tools > os bgpvpn show  fd159372-1911-4536-94a9-9d667a1490a5
+USER001 @ eu-de-1 > env-a > svc-a-eu-de-1-tools > os bgpvpn show  00000000-0000-4000-8000-000000000005
 +----------------------+------------------------------------------------------------------------------------------------------------------+
 | Field                | Value                                                                                                            |
 +----------------------+------------------------------------------------------------------------------------------------------------------+
 | export_targets       | 4267048964:2000                                                                                                  |
-| id                   | fd159372-1911-4536-94a9-9d667a1490a5                                                                             |
+| id                   | 00000000-0000-4000-8000-000000000005                                                                             |
 | import_targets       | 4267048964:2000                                                                                                  |
 | local_pref           | None                                                                                                             |
-| name                 | gmp-eu-de-1-cis-spc-tic                                                                                          |
+| name                 | plat-a-eu-de-1-env-a-spc-tic                                                                                          |
 | networks             |                                                                                                                  |
 | ports                |                                                                                                                  |
-| project_id           | 10c07a3be50043049f104e8cb4bb95c0                                                                                 |
+| project_id           | PROJECT-ID-PLACEHOLDER                                                                                 |
 | route_distinguishers |                                                                                                                  |
 | route_targets        |                                                                                                                  |
-| routers              | 24d1c7cc-0bec-492d-b0b2-3fae465be5df, 488c93e3-5c79-4533-9bd0-04c9af8f440b, 515bab05-d397-4350-b1f2-078dd3aa4738 |
+| routers              | 00000000-0000-4000-8000-000000000006, 00000000-0000-4000-8000-000000000007, 00000000-0000-4000-8000-000000000008 |
 | shared               | True                                                                                                             |
 | type                 | l3                                                                                                               |
 | vni                  | None                                                                                                             |
 +----------------------+------------------------------------------------------------------------------------------------------------------+
 
 Target values explanation/intruction: 
-https://operations.global.cloud.ppp/docs/operation/network/bgpvpn_troubleshooting/
+https://operations.global.cloud.pppdemands.com/docs/operation/network/bgpvpn_troubleshooting/
 
 
 ```
 
 
-#### CLMAM CIS BPGVPN Design 
+#### SVC-A ENV-A BPGVPN Design 
 
-From CIS BPGVPN gmp-eu-de-1-cis-spc-tic's Access Control. Add Policy "access as shared" to the following projects (as Target projects). 
+From CIS BPGVPN plat-a-eu-de-1-env-a-spc-tic's Access Control. Add Policy "access as shared" to the following projects (as Target projects). 
 Then the BGPVPN will present as the shared BGPVPN in those projects ??
 
-Project ID: bf8e3ed5c8b04050bc166e5921c815b0  EUDE1 Tools
-Project ID: d920405ed060493dacf0c221408e377b  EUDE1 Prod
+Project ID: PROJECT-ID-PLACEHOLDER  EUDE1 Tools
+Project ID: PROJECT-ID-PLACEHOLDER  EUDE1 Prod
 
 From OADEV, you must add new project ID as target project ID also.
 
@@ -126,7 +126,7 @@ From OADEV, you must add new project ID as target project ID also.
 ```
 openstack router set --external-gateway <external network ID> <Shoot-router-ID> 
 
-e.g. openstack router set --external-gateway ea58efde-05fd-449a-8e5c-4910ca27ef50 686dbec1-bddd-4d89-9edb-1380d2a47779 
+e.g. openstack router set --external-gateway 00000000-0000-4000-8000-000000000009 00000000-0000-4000-8000-00000000000a 
 ```
 
 ##### Share bgpvpn 

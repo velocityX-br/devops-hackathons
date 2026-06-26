@@ -5,7 +5,7 @@ check NIC ring buffer
 ethtool -g eth0
 ```
 
-(vaai24nza) cc02v015061:~ # cat /proc/sys/net/core/netdev_max_backlog
+(vaai24nza) vm-host001:~ # cat /proc/sys/net/core/netdev_max_backlog
 1000
 
 当内核中断处理网络数据包的速度，快于协议栈处理的速度时，数据包会暂时存放在一个 backlog 队列中。这个参数就是 backlog 的最大容量。
@@ -33,7 +33,7 @@ rx_dropped 增高（即你之前看到的 rxdrop/s 增加）；
 
 
 
-(vaai24nza) cc02v015061:~ # sysctl net.core.rmem_max
+(vaai24nza) vm-host001:~ # sysctl net.core.rmem_max
 net.core.rmem_max = 212992
 当一个应用程序（或协议栈）来不及消费收到的数据包时，这些数据先会堆积在**接收缓冲区（receive buffer）**中。
 

@@ -1,34 +1,34 @@
 
 ```
-nodesh-i577081-maxwell-az-alpha-z1-86495-5hzgt:/ # iptables -t nat -L  |grep fluent-bit
-KUBE-MARK-MASQ  all  --  100.104.7.89         anywhere             /* monitoring/fluent-bit:input */
-DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:input */ tcp to:100.104.7.89:8080
-KUBE-MARK-MASQ  all  --  100.104.1.4          anywhere             /* monitoring/fluent-bit:http */
-DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:http */ tcp to:100.104.1.4:2020
-KUBE-MARK-MASQ  all  --  100.104.5.16         anywhere             /* monitoring/fluent-bit:http */
-DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:http */ tcp to:100.104.5.16:2020
-KUBE-MARK-MASQ  all  --  100.104.1.4          anywhere             /* monitoring/fluent-bit:input */
-DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:input */ tcp to:100.104.1.4:8080
-KUBE-MARK-MASQ  all  --  100.104.5.16         anywhere             /* monitoring/fluent-bit:input */
-DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:input */ tcp to:100.104.5.16:8080
-KUBE-MARK-MASQ  all  --  100.104.7.89         anywhere             /* monitoring/fluent-bit:http */
-DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:http */ tcp to:100.104.7.89:2020
-KUBE-MARK-MASQ  all  --  100.104.6.251        anywhere             /* monitoring/fluent-bit:http */
-DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:http */ tcp to:100.104.6.251:2020
-KUBE-MARK-MASQ  all  --  100.104.6.251        anywhere             /* monitoring/fluent-bit:input */
-DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:input */ tcp to:100.104.6.251:8080
-KUBE-SVC-JXAWHQJ4TWOO5OLQ  tcp  --  anywhere             100.104.104.112      /* monitoring/fluent-bit:http cluster IP */ tcp dpt:xinupageserver
-KUBE-SVC-W5XLKHDUNWN4HHWD  tcp  --  anywhere             100.104.104.112      /* monitoring/fluent-bit:input cluster IP */ tcp dpt:http-alt
-KUBE-MARK-MASQ  tcp  -- !100.104.0.0/18       100.104.104.112      /* monitoring/fluent-bit:http cluster IP */ tcp dpt:xinupageserver
-KUBE-SEP-6LTZJUSN2WI4L7UA  all  --  anywhere             anywhere             /* monitoring/fluent-bit:http -> 100.104.1.4:2020 */ statistic mode random probability 0.25000000000
-KUBE-SEP-CYOVMJPAPGHQXHXT  all  --  anywhere             anywhere             /* monitoring/fluent-bit:http -> 100.104.5.16:2020 */ statistic mode random probability 0.33333333349
-KUBE-SEP-PPI2HUMEK34PDU6F  all  --  anywhere             anywhere             /* monitoring/fluent-bit:http -> 100.104.6.251:2020 */ statistic mode random probability 0.50000000000
-KUBE-SEP-OGFQV6RG7YG5JWNJ  all  --  anywhere             anywhere             /* monitoring/fluent-bit:http -> 100.104.7.89:2020 */
-KUBE-MARK-MASQ  tcp  -- !100.104.0.0/18       100.104.104.112      /* monitoring/fluent-bit:input cluster IP */ tcp dpt:http-alt
-KUBE-SEP-LB7PE3AWDTR7P77N  all  --  anywhere             anywhere             /* monitoring/fluent-bit:input -> 100.104.1.4:8080 */ statistic mode random probability 0.25000000000
-KUBE-SEP-NKQKB2SCB457HUCG  all  --  anywhere             anywhere             /* monitoring/fluent-bit:input -> 100.104.5.16:8080 */ statistic mode random probability 0.33333333349
-KUBE-SEP-TEYHZSWI6ZPKIQVS  all  --  anywhere             anywhere             /* monitoring/fluent-bit:input -> 100.104.6.251:8080 */ statistic mode random probability 0.50000000000
-KUBE-SEP-5XDESUV3QJGCZYI5  all  --  anywhere             anywhere             /* monitoring/fluent-bit:input -> 100.104.7.89:8080 */
+nodesh-USER001-maxwell-az-alpha-z1-86495-5hzgt:/ # iptables -t nat -L  |grep fluent-bit
+KUBE-MARK-MASQ  all  --  10.0.0.1         anywhere             /* monitoring/fluent-bit:input */
+DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:input */ tcp to:10.0.0.1:8080
+KUBE-MARK-MASQ  all  --  10.0.0.2          anywhere             /* monitoring/fluent-bit:http */
+DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:http */ tcp to:10.0.0.2:2020
+KUBE-MARK-MASQ  all  --  10.0.0.3         anywhere             /* monitoring/fluent-bit:http */
+DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:http */ tcp to:10.0.0.3:2020
+KUBE-MARK-MASQ  all  --  10.0.0.2          anywhere             /* monitoring/fluent-bit:input */
+DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:input */ tcp to:10.0.0.2:8080
+KUBE-MARK-MASQ  all  --  10.0.0.3         anywhere             /* monitoring/fluent-bit:input */
+DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:input */ tcp to:10.0.0.3:8080
+KUBE-MARK-MASQ  all  --  10.0.0.1         anywhere             /* monitoring/fluent-bit:http */
+DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:http */ tcp to:10.0.0.1:2020
+KUBE-MARK-MASQ  all  --  10.0.0.4        anywhere             /* monitoring/fluent-bit:http */
+DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:http */ tcp to:10.0.0.4:2020
+KUBE-MARK-MASQ  all  --  10.0.0.4        anywhere             /* monitoring/fluent-bit:input */
+DNAT       tcp  --  anywhere             anywhere             /* monitoring/fluent-bit:input */ tcp to:10.0.0.4:8080
+KUBE-SVC-JXAWHQJ4TWOO5OLQ  tcp  --  anywhere             10.0.0.5      /* monitoring/fluent-bit:http cluster IP */ tcp dpt:xinupageserver
+KUBE-SVC-W5XLKHDUNWN4HHWD  tcp  --  anywhere             10.0.0.5      /* monitoring/fluent-bit:input cluster IP */ tcp dpt:http-alt
+KUBE-MARK-MASQ  tcp  -- !10.0.0.6/18       10.0.0.5      /* monitoring/fluent-bit:http cluster IP */ tcp dpt:xinupageserver
+KUBE-SEP-6LTZJUSN2WI4L7UA  all  --  anywhere             anywhere             /* monitoring/fluent-bit:http -> 10.0.0.2:2020 */ statistic mode random probability 0.25000000000
+KUBE-SEP-CYOVMJPAPGHQXHXT  all  --  anywhere             anywhere             /* monitoring/fluent-bit:http -> 10.0.0.3:2020 */ statistic mode random probability 0.33333333349
+KUBE-SEP-PPI2HUMEK34PDU6F  all  --  anywhere             anywhere             /* monitoring/fluent-bit:http -> 10.0.0.4:2020 */ statistic mode random probability 0.50000000000
+KUBE-SEP-OGFQV6RG7YG5JWNJ  all  --  anywhere             anywhere             /* monitoring/fluent-bit:http -> 10.0.0.1:2020 */
+KUBE-MARK-MASQ  tcp  -- !10.0.0.6/18       10.0.0.5      /* monitoring/fluent-bit:input cluster IP */ tcp dpt:http-alt
+KUBE-SEP-LB7PE3AWDTR7P77N  all  --  anywhere             anywhere             /* monitoring/fluent-bit:input -> 10.0.0.2:8080 */ statistic mode random probability 0.25000000000
+KUBE-SEP-NKQKB2SCB457HUCG  all  --  anywhere             anywhere             /* monitoring/fluent-bit:input -> 10.0.0.3:8080 */ statistic mode random probability 0.33333333349
+KUBE-SEP-TEYHZSWI6ZPKIQVS  all  --  anywhere             anywhere             /* monitoring/fluent-bit:input -> 10.0.0.4:8080 */ statistic mode random probability 0.50000000000
+KUBE-SEP-5XDESUV3QJGCZYI5  all  --  anywhere             anywhere             /* monitoring/fluent-bit:input -> 10.0.0.1:8080 */
 ```
 
 
@@ -46,14 +46,14 @@ KUBE-SEP-5XDESUV3QJGCZYI5  all  --  anywhere             anywhere             /*
 ## 🧩 ① Service 入口（KUBE-SERVICES → KUBE-SVC）
 
 ```bash
-KUBE-SVC-JXAWHQJ4TWOO5OLQ  tcp  --  anywhere  100.104.104.112  /* monitoring/fluent-bit:http cluster IP */ tcp dpt:2020
-KUBE-SVC-W5XLKHDUNWN4HHWD  tcp  --  anywhere  100.104.104.112  /* monitoring/fluent-bit:input cluster IP */ tcp dpt:8080
+KUBE-SVC-JXAWHQJ4TWOO5OLQ  tcp  --  anywhere  10.0.0.5  /* monitoring/fluent-bit:http cluster IP */ tcp dpt:2020
+KUBE-SVC-W5XLKHDUNWN4HHWD  tcp  --  anywhere  10.0.0.5  /* monitoring/fluent-bit:input cluster IP */ tcp dpt:8080
 ```
 
 👉 注释：
 
 ```text
-匹配访问 fluent-bit ClusterIP (100.104.104.112) 的流量
+匹配访问 fluent-bit ClusterIP (10.0.0.5) 的流量
 根据端口（2020 / 8080）进入不同的 Service 链
 ```
 
@@ -62,14 +62,14 @@ KUBE-SVC-W5XLKHDUNWN4HHWD  tcp  --  anywhere  100.104.104.112  /* monitoring/flu
 ## 🧩 ② 判断是否需要 SNAT（第一次 MARK）
 
 ```bash
-KUBE-MARK-MASQ  tcp  -- !100.104.0.0/18  100.104.104.112  /* monitoring/fluent-bit:http */
-KUBE-MARK-MASQ  tcp  -- !100.104.0.0/18  100.104.104.112  /* monitoring/fluent-bit:input */
+KUBE-MARK-MASQ  tcp  -- !10.0.0.6/18  10.0.0.5  /* monitoring/fluent-bit:http */
+KUBE-MARK-MASQ  tcp  -- !10.0.0.6/18  10.0.0.5  /* monitoring/fluent-bit:input */
 ```
 
 👉 注释：
 
 ```text
-如果源 IP 不属于 Pod CIDR（100.104.0.0/18），则打上 SNAT 标记（0x4000）
+如果源 IP 不属于 Pod CIDR（10.0.0.6/18），则打上 SNAT 标记（0x4000）
 这里只是“标记”，不会立即执行 SNAT
 ```
 
@@ -78,15 +78,15 @@ KUBE-MARK-MASQ  tcp  -- !100.104.0.0/18  100.104.104.112  /* monitoring/fluent-b
 ## 🧩 ③ 负载均衡（KUBE-SVC → KUBE-SEP）
 
 ```bash
-KUBE-SEP-6LTZJUSN2WI4L7UA  ... probability 0.25  /* → 100.104.1.4:2020 */
-KUBE-SEP-CYOVMJPAPGHQXHXT  ... probability 0.33  /* → 100.104.5.16:2020 */
-KUBE-SEP-PPI2HUMEK34PDU6F  ... probability 0.5   /* → 100.104.6.251:2020 */
-KUBE-SEP-OGFQV6RG7YG5JWNJ  ...                   /* → 100.104.7.89:2020 */
+KUBE-SEP-6LTZJUSN2WI4L7UA  ... probability 0.25  /* → 10.0.0.2:2020 */
+KUBE-SEP-CYOVMJPAPGHQXHXT  ... probability 0.33  /* → 10.0.0.3:2020 */
+KUBE-SEP-PPI2HUMEK34PDU6F  ... probability 0.5   /* → 10.0.0.4:2020 */
+KUBE-SEP-OGFQV6RG7YG5JWNJ  ...                   /* → 10.0.0.1:2020 */
 
-KUBE-SEP-LB7PE3AWDTR7P77N  ... probability 0.25  /* → 100.104.1.4:8080 */
-KUBE-SEP-NKQKB2SCB457HUCG  ... probability 0.33  /* → 100.104.5.16:8080 */
-KUBE-SEP-TEYHZSWI6ZPKIQVS  ... probability 0.5   /* → 100.104.6.251:8080 */
-KUBE-SEP-5XDESUV3QJGCZYI5  ...                   /* → 100.104.7.89:8080 */
+KUBE-SEP-LB7PE3AWDTR7P77N  ... probability 0.25  /* → 10.0.0.2:8080 */
+KUBE-SEP-NKQKB2SCB457HUCG  ... probability 0.33  /* → 10.0.0.3:8080 */
+KUBE-SEP-TEYHZSWI6ZPKIQVS  ... probability 0.5   /* → 10.0.0.4:8080 */
+KUBE-SEP-5XDESUV3QJGCZYI5  ...                   /* → 10.0.0.1:8080 */
 ```
 
 👉 注释：
@@ -103,10 +103,10 @@ KUBE-SEP-5XDESUV3QJGCZYI5  ...                   /* → 100.104.7.89:8080 */
 （你看到的“展开版”）
 
 ```bash
-KUBE-MARK-MASQ  all  --  100.104.1.4   anywhere  /* fluent-bit */
-KUBE-MARK-MASQ  all  --  100.104.5.16  anywhere
-KUBE-MARK-MASQ  all  --  100.104.6.251 anywhere
-KUBE-MARK-MASQ  all  --  100.104.7.89  anywhere
+KUBE-MARK-MASQ  all  --  10.0.0.2   anywhere  /* fluent-bit */
+KUBE-MARK-MASQ  all  --  10.0.0.3  anywhere
+KUBE-MARK-MASQ  all  --  10.0.0.4 anywhere
+KUBE-MARK-MASQ  all  --  10.0.0.1  anywhere
 ```
 
 👉 注释：
@@ -122,15 +122,15 @@ KUBE-MARK-MASQ  all  --  100.104.7.89  anywhere
 ## 🧩 ⑤ DNAT（真正转发到 Pod）
 
 ```bash
-DNAT  tcp  --  anywhere  anywhere  /* → 100.104.1.4:2020 */
-DNAT  tcp  --  anywhere  anywhere  /* → 100.104.5.16:2020 */
-DNAT  tcp  --  anywhere  anywhere  /* → 100.104.6.251:2020 */
-DNAT  tcp  --  anywhere  anywhere  /* → 100.104.7.89:2020 */
+DNAT  tcp  --  anywhere  anywhere  /* → 10.0.0.2:2020 */
+DNAT  tcp  --  anywhere  anywhere  /* → 10.0.0.3:2020 */
+DNAT  tcp  --  anywhere  anywhere  /* → 10.0.0.4:2020 */
+DNAT  tcp  --  anywhere  anywhere  /* → 10.0.0.1:2020 */
 
-DNAT  tcp  --  anywhere  anywhere  /* → 100.104.1.4:8080 */
-DNAT  tcp  --  anywhere  anywhere  /* → 100.104.5.16:8080 */
-DNAT  tcp  --  anywhere  anywhere  /* → 100.104.6.251:8080 */
-DNAT  tcp  --  anywhere  anywhere  /* → 100.104.7.89:8080 */
+DNAT  tcp  --  anywhere  anywhere  /* → 10.0.0.2:8080 */
+DNAT  tcp  --  anywhere  anywhere  /* → 10.0.0.3:8080 */
+DNAT  tcp  --  anywhere  anywhere  /* → 10.0.0.4:8080 */
+DNAT  tcp  --  anywhere  anywhere  /* → 10.0.0.1:8080 */
 ```
 
 👉 注释：

@@ -5,8 +5,8 @@ Symptom: Pod in CrashLoopBackOff which got restarted hundreds of time
 Containers:
   named:
     Container ID:  containerd://238103b803026f53f4b4d0b10b408c562733c93966b179528367b1a5d54c4ad5
-    Image:         keppel.eu-de-1.cloud.ppp/devenv/bind-081:dev
-    Image ID:      keppel.eu-de-1.cloud.ppp/devenv/bind-081@sha256:d5f2fecd2c2c9d45c1906556dda17f77e2e30fea6ffb82b466822655cb7ba971
+    Image:         keppel.eu-de-1.cloud.pppdemands.com/devenv/bind-081:dev
+    Image ID:      keppel.eu-de-1.cloud.pppdemands.com/devenv/bind-081@sha256:d5f2fecd2c2c9d45c1906556dda17f77e2e30fea6ffb82b466822655cb7ba971
     Ports:         53/UDP, 53/TCP, 953/TCP
     Host Ports:    0/UDP, 0/TCP, 0/TCP
     Command:
@@ -24,7 +24,7 @@ Containers:
     Readiness:      exec [/bin/sh -c rndc status | grep 'server is up and running'] delay=0s timeout=1s period=10s #success=1 #failure=10
     Startup:        tcp-socket :53 delay=5s timeout=1s period=5s #success=1 #failure=3
     Environment:
-      KUBERNETES_SERVICE_HOST:  api.turing.sni.internal.canary.k8s.ondemand.com
+      KUBERNETES_SERVICE_HOST:  api.turing.team-a.internal.canary.k8s.ppdemands.com
     Mounts:
       /etc/named.conf from named-conf (rw,path="named.conf")
       /scripts from script (rw)

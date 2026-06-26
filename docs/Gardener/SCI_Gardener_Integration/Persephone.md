@@ -1,7 +1,7 @@
 
 
 ```
-Persephone 是 SAP Cloud Infrastructure 提供的 Kubernetes 即服务平台（KaaS），基于 Gardener 构建，用于自动化管理
+Persephone 是 PPP Cloud Infrastructure 提供的 Kubernetes 即服务平台（KaaS），基于 Gardener 构建，用于自动化管理
 OpenStack 云基础设施上的 Kubernetes 集群。
 
  ┌─────────────────────────────────────────────────────────────────┐

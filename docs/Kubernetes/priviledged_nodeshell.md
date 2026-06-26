@@ -3,7 +3,7 @@
 
 
 ```
-root@shoot--sni--maxwell-worker-default-z1-7f7f7-9hqfp:/var/tmp# find / -name "*.sock" 2>/dev/null | grep -E "(cri|containerd|crio|docker)"
+root@shoot--team-a--maxwell-worker-default-z1-7f7f7-9hqfp:/var/tmp# find / -name "*.sock" 2>/dev/null | grep -E "(cri|containerd|crio|docker)"
 /run/containerd/containerd.sock
 
 export CONTAINER_RUNTIME_ENDPOINT=/run/containerd/containerd.sock
@@ -16,7 +16,7 @@ wget -O- https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION
 
 ./crictl inspect 703e424684ea0 |less
 
-root@shoot--sni--maxwell-worker-default-z1-7f7f7-9hqfp:/var/tmp#  nsenter -t 177071 -m -u -i -n -p
-vali-sidevops-vali-0:/# ls
+root@shoot--team-a--maxwell-worker-default-z1-7f7f7-9hqfp:/var/tmp#  nsenter -t 177071 -m -u -i -n -p
+vali-team-b-vali-0:/# ls
 
 ```

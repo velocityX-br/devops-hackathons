@@ -17,10 +17,10 @@ helm upgrade --install ingress-nginx ingress-nginx \
 
 Endpoint IP equals to ingress-nginx-controller svc EXTERNAL-IP.
 ```
-i577081@W-PF3NF3XQ ~/k8s/to_be_delivered/web-app-scratch/workloads garden-sn1--sit-081-test-external$ k get svc -n ingress-nginx
+USER001@WS-HOST001 ~/k8s/to_be_delivered/web-app-scratch/workloads garden-lab--sit-081-test-external$ k get svc -n ingress-nginx
 NAME                                               TYPE           CLUSTER-IP        EXTERNAL-IP    PORT(S)                      AGE
-nginx-ingress-ingress-nginx-controller             LoadBalancer   100.104.110.49    10.47.19.231   80:31154/TCP,443:31293/TCP   17h
-nginx-ingress-ingress-nginx-controller-admission   ClusterIP      100.104.108.168   <none>         443/TCP                      17h
+nginx-ingress-ingress-nginx-controller             LoadBalancer   10.0.0.1    10.0.0.2   80:31154/TCP,443:31293/TCP   17h
+nginx-ingress-ingress-nginx-controller-admission   ClusterIP      10.0.0.3   <none>         443/TCP                      17h
 ```
 
 :::tip
@@ -36,13 +36,13 @@ spec:
       providerConfig:
         apiVersion: service.cert.extensions.gardener.cloud/v1alpha1
         issuers:
-          - email: bryan.chen01@ppp.com
+          - email: user@example.com
             name: pppca
-            server: https://acme.pki.net.ppp/pgwy/acme/directory
+            server: https://acme.pki.net.pppdemands.com/pgwy/acme/directory
             precheckNameservers:
-              - ns1.eu-de-1.cloud.ppp
-              - ns2.eu-de-1.cloud.ppp
-              - ns3.eu-de-1.cloud.ppp
+              - ns1.eu-de-1.cloud.pppdemands.com
+              - ns2.eu-de-1.cloud.pppdemands.com
+              - ns3.eu-de-1.cloud.pppdemands.com
 ```
 
 
@@ -64,11 +64,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - "web081.in.sidevops.c.eu-de-1.cloud.ppp"
+        - "web081.in.team-b.c.eu-de-1.cloud.pppdemands.com"
       # Certificate and private key reside in this secret.
       secretName: testsecret-tls  
   rules:
-    - host: "web081.in.sidevops.c.eu-de-1.cloud.ppp"
+    - host: "web081.in.team-b.c.eu-de-1.cloud.pppdemands.com"
       http:
         paths:
           - path: /
@@ -91,10 +91,10 @@ metadata:
   name: nginx-dnsentry
   namespace: web-app
 spec:
-  dnsName: web081.in.sidevops.c.eu-de-1.cloud.ppp
+  dnsName: web081.in.team-b.c.eu-de-1.cloud.pppdemands.com
   ttl: 600
   targets:
-  - 10.47.19.231
+  - 10.0.0.2
 ```
 
 svc
@@ -153,7 +153,7 @@ data:
       }
 
       location /bucket {
-        proxy_pass https://objectstore-3.eu-nl-1.cloud.ppp:443/v1/AUTH_adde6fddf0f8457f9b796c337aaa5842/081-container/;
+        proxy_pass https://objectstore-3.eu-nl-1.cloud.pppdemands.com:443/v1/AUTH_adde6fddf0f8457f9b796c337aaa5842/081-container/;
         proxy_ssl_verify off;  # 如果不需要验证SSL证书
         rewrite ^/bucket/(.*)$ /$1 break;
         proxy_cache_valid 1h;

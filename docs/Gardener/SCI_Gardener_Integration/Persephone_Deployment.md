@@ -69,7 +69,7 @@ graph TB
 ## CI 阶段详细解析
 
 ### 架构位置
-**执行仓库**: Persephone 主仓库 (`sap-cloud-infrastructure/persephone`)
+**执行仓库**: Persephone 主仓库 (`ppp-cloud-infrastructure/persephone`)
 
 ### CI 流程图
 
@@ -112,12 +112,12 @@ LABEL org.opencontainers.image.version=${BININFO_VERSION}
 - ✅ 非特权用户运行（USER 4200:4200）
 
 #### 2. 镜像推送
-**目标仓库**: `keppel.eu-de-1.cloud.sap/persephone/gardener-customer-webhook:<COMMIT-SHA>`
+**目标仓库**: `keppel.eu-de-1.cloud.pppdemands.com/persephone/gardener-customer-webhook:<COMMIT-SHA>`
 
 **标签策略**:
 ```bash
 # 示例
-keppel.eu-de-1.cloud.sap/persephone/gardener-customer-webhook:49233aae5417d562a7675104f8237a00dc24d252
+keppel.eu-de-1.cloud.pppdemands.com/persephone/gardener-customer-webhook:49233aae5417d562a7675104f8237a00dc24d252
 ```
 
 #### 3. Repository Dispatch 触发
@@ -129,7 +129,7 @@ keppel.eu-de-1.cloud.sap/persephone/gardener-customer-webhook:49233aae5417d562a7
     gh api \
       --method POST \
       -H "Accept: application/vnd.github.v3+json" \
-      /repos/sap-cloud-infrastructure/persephone-deployment/dispatches \
+      /repos/ppp-cloud-infrastructure/persephone-deployment/dispatches \
       -f event_type=deployment-params \
       -f client_payload[sha]="${{ github.sha }}" \
       -f client_payload[ref]="${{ github.ref }}"
@@ -210,7 +210,7 @@ on:
 # Step 2: 更新 config.yaml
 - name: Update image version
   run: |
-    yq e '.data.image = "keppel.eu-de-1.cloud.sap/persephone/gardener-customer-webhook:${{ env.IMAGE_SHA }}"' \
+    yq e '.data.image = "keppel.eu-de-1.cloud.pppdemands.com/persephone/gardener-customer-webhook:${{ env.IMAGE_SHA }}"' \
       -i argocd/manifests/qa/config.yaml
     yq e '.data.version = "${{ env.IMAGE_SHA }}"' -i argocd/manifests/qa/config.yaml
     yq e '.data.deployed-at = "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"' -i argocd/manifests/qa/config.yaml
@@ -219,11 +219,11 @@ on:
 - name: Update remote resource references
   run: |
     # 更新远程资源引用到具体 SHA
-    yq e '.resources[1] = "https://example.com/internal-github/redacted/sap-cloud-infrastructure/persephone/config/environments/qa?ref=${{ env.IMAGE_SHA }}"' \
+    yq e '.resources[1] = "https://github.wdf.pppdemands.com/ppp-cloud-infrastructure/persephone/config/environments/qa?ref=${{ env.IMAGE_SHA }}"' \
       -i argocd/manifests/qa/kustomization.yaml
 
     # 添加镜像覆盖
-    yq e '.images[0].name = "keppel.eu-de-1.cloud.sap/ccloud/persephone/persephone"' \
+    yq e '.images[0].name = "keppel.eu-de-1.cloud.pppdemands.com/ccloud/persephone/persephone"' \
       -i argocd/manifests/qa/kustomization.yaml
     yq e '.images[0].newTag = "${{ env.IMAGE_SHA }}"' \
       -i argocd/manifests/qa/kustomization.yaml
@@ -244,7 +244,7 @@ kind: ConfigMap
 metadata:
   name: persephone-info
 data:
-  image: keppel.eu-de-1.cloud.sap/persephone/gardener-customer-webhook:49233aae5417d562a7675104f8237a00dc24d252
+  image: keppel.eu-de-1.cloud.pppdemands.com/persephone/gardener-customer-webhook:49233aae5417d562a7675104f8237a00dc24d252
   version: 49233aae5417d562a7675104f8237a00dc24d252
   deployed-at: "2026-02-17T10:30:00Z"
   source-ref: refs/heads/main
@@ -267,7 +267,7 @@ yq e '.data.environment = "canary"' -i argocd/manifests/canary/config.yaml
 yq e '.data.cluster = "prt-c-eu-de-1"' -i argocd/manifests/canary/config.yaml
 
 # 更新远程资源引用
-yq e '.resources[1] = "https://example.com/internal-github/redacted/sap-cloud-infrastructure/persephone/config/environments/canary?ref=${{ env.IMAGE_SHA }}"' \
+yq e '.resources[1] = "https://github.wdf.pppdemands.com/ppp-cloud-infrastructure/persephone/config/environments/canary?ref=${{ env.IMAGE_SHA }}"' \
   -i argocd/manifests/canary/kustomization.yaml
 ```
 
@@ -293,7 +293,7 @@ spec:
     spec:
       project: "persephone"
       source:
-        repoURL: https://example.com/internal-github/redacted/sap-cloud-infrastructure/persephone-deployment
+        repoURL: https://github.wdf.pppdemands.com/ppp-cloud-infrastructure/persephone-deployment
         path: 'argocd/manifests/{{environment}}'
         targetRevision: main
       destination:
@@ -336,10 +336,10 @@ resources:
   - config.yaml  # 本地元数据
 
   # 远程资源引用（关键设计）
-  - https://example.com/internal-github/redacted/sap-cloud-infrastructure/persephone/config/environments/qa?ref=<SHA>
+  - https://github.wdf.pppdemands.com/ppp-cloud-infrastructure/persephone/config/environments/qa?ref=<SHA>
 
 images:
-  - name: keppel.eu-de-1.cloud.sap/ccloud/persephone/persephone
+  - name: keppel.eu-de-1.cloud.pppdemands.com/ccloud/persephone/persephone
     newTag: <commit-sha>  # 覆盖镜像标签
 ```
 
@@ -465,7 +465,7 @@ stringData:
         "caData": "..."
       }
     }
-  server: "https://api.prt-q-eu-de-1.prt-q.external.mgmt-eu-de-1.soil-garden.eu-de-1.cloud.sap"
+  server: "https://api.prt-q-eu-de-1.prt-q.external.mgmt-eu-de-1.soil-garden.eu-de-1.cloud.pppdemands.com"
 ```
 
 ---
@@ -589,6 +589,6 @@ graph TB
 - `clusters/prt-q-eu-de-1.yaml` - QA 集群凭证
 
 ### 相关资源
-- **ArgoCD UI**: https://containers.dev.gitops.shoot.live.k8s-hana.ondemand.com/applications
-- **Persephone 主仓库**: https://example.com/internal-github/redacted/sap-cloud-infrastructure/persephone
-- **镜像仓库**: keppel.eu-de-1.cloud.sap/ccloud/persephone/persephone
+- **ArgoCD UI**: https://containers.dev.gitops.shoot.live.k8s-hana.ppdemands.com/applications
+- **Persephone 主仓库**: https://github.wdf.pppdemands.com/ppp-cloud-infrastructure/persephone
+- **镜像仓库**: keppel.eu-de-1.cloud.pppdemands.com/ccloud/persephone/persephone

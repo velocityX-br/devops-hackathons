@@ -65,7 +65,7 @@ import PostEngagement from '@site/src/components/PostEngagement';
 
 ## 常见问题
 
-**问：** 在 SAP Cloud Infrastructure/OpenStack 中更换网卡时，虚拟机的 PCI 设备会怎样？
+**问：** 在 PPP Cloud Infrastructure/OpenStack 中更换网卡时，虚拟机的 PCI 设备会怎样？
 
 **答：**
 
@@ -108,7 +108,7 @@ Capabilities: [100 v1] Device Serial Number fa-16-3e-ff-ff-42-07-6d
 **答：** 修改 OpenStack 里的 MAC 地址不会改变 PCI 设备本身；热插拔基本不可行。请详细查看 `readlink /sys/class/net/eth0/device`：
 
 ```
-(vadbvaz) cc02v014382:/etc/udev/rules.d #
+(vadbvaz) vm-host001:/etc/udev/rules.d #
 # readlink /sys/class/net/eth0/device
 ../../../0000:13:00.0
 ```

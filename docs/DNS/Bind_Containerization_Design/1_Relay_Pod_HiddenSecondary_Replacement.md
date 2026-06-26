@@ -31,13 +31,13 @@ Question:
 2. Service Discovery in SOA Notify Relay Pod
     - Existing Zone/View management (Placing in vault), what about New ? 
     - New Zone/View from HiddenPrimary ( Transataction Signature Key (E.g slave-0-global) + bind ACL )
-    - `[DNS-API PS]` `[Write Perl on the view/zone synchorinization from hiddenprimary ]` While GMP creates new view/zone, DNS-API still have to real-time write into "SOA notify relay Pod" by any chance"
+    - `[DNS-API PS]` `[Write Perl on the view/zone synchorinization from hiddenprimary ]` While PLAT-A creates new view/zone, DNS-API still have to real-time write into "SOA notify relay Pod" by any chance"
         - Limitation: 
             - `dns-api ps add <LB-FIP>` is presumbly required during initial setup or a __broken state of Loadbalancer__ (E.g misconfigured/removed)" (Follow same __persistent__  LB implementation as LDAP Consumber LB) 
             - How to fix a broken state of HiddenSecondary? Is `dns-api ps add` idempotent ? Zone data discrepancy fix ? 
 3. Do we need to define a virtual role in K8S ? (Probably Label??)    
 4. [Perl] `/usr/bin/dns-api-check-slaves` will check the primary slave number. How will `SOA relay Pod` behave ? (Bryan20260114) I assume this is relay func only. Refer AppendixA to the solution to hiddensecondary
-5. [GMP] How to add a new view from GMP after `dns-api view add xx` ? 
+5. [PLAT-A] How to add a new view from PLAT-A after `dns-api view add xx` ? 
 6. `/var/lib/dns-api/state.wip` Do we need transation design in Kubernetes and why ???
 7. How to replace SSH-based solution to what is being done over `dns-api add ps xx` ?
 
@@ -45,7 +45,7 @@ ASK-FOR:
 Participating the DR testing. 
 
 Reference:
-https://example.com/redacted/wiki/spaces/GCSDevOpforCIS/pages/5585747923/DNS+Servers
+https://wiki.one.int.pppdemands.com/wiki/spaces/GCSDevOpforCIS/pages/5585747923/DNS+Servers
 
 
 #### 重要的bind 配置
@@ -55,13 +55,13 @@ https://example.com/redacted/wiki/spaces/GCSDevOpforCIS/pages/5585747923/DNS+Ser
 
 view "global" {
         match-clients {
-                "gmp-global";
+                "plat-a-global";
                 "slaves-global";
         };
-        server 100.70.226.41/32 {
+        server 10.0.0.1/32 {
                 keys "slave-0-global";
         };
-        server 100.70.226.31/32 {
+        server 10.0.0.2/32 {
                 keys "slave-0-global";
         };
         zone "global.catalog" {
@@ -77,11 +77,11 @@ view "global" {
                 "slaves-global";
         };
         allow-update {
-                "gmp-global";
+                "plat-a-global";
         };
         also-notify {
-                100.70.226.41;
-                100.70.226.31;
+                10.0.0.1;
+                10.0.0.2;
         };
         notify yes;
 };
@@ -99,32 +99,32 @@ view "global" {
                 "slaves-global";
                 "any";
         };
-        server 100.70.226.118/32 {
+        server 10.0.0.3/32 {
                 keys "slave-0-global";
         };
-        server 10.47.19.12/32 {
+        server 10.0.0.4/32 {
                 keys "slave-0-global";
         };
-        server 10.47.19.39/32 {
+        server 10.0.0.5/32 {
                 keys "slave-0-global";
         };
-        server 10.47.19.70/32 {
+        server 10.0.0.6/32 {
                 keys "slave-0-global";
         };
-        server 100.70.226.131/32 {
+        server 10.0.0.7/32 {
                 keys "slave-0-global";
         };
-        server 100.70.226.148/32 {
+        server 10.0.0.8/32 {
                 keys "slave-0-global";
         };
-        server 100.70.226.92/32 {
+        server 10.0.0.9/32 {
                 keys "slave-0-global";
         };
         zone "global.catalog" {
                 type slave;
                 file "slave/global.catalog";
                 masters {
-                        100.70.226.118;
+                        10.0.0.3;
                 };
         };
         zone "." in {
@@ -147,10 +147,10 @@ view "global" {
                 type forward;
                 forward only;
                 forwarders {
-                        10.189.182.142;
-                        10.189.182.147;
-                        10.232.14.7;
-                        10.232.14.8;
+                        10.0.0.10;
+                        10.0.0.11;
+                        10.0.0.12;
+                        10.0.0.13;
                 };
         };
         allow-recursion {
@@ -158,7 +158,7 @@ view "global" {
         };
         catalog-zones {
                 zone "global.catalog" default-masters {
-                        100.70.226.118;
+                        10.0.0.3;
                 } zone-directory "slave";
         };
         recursion no;
@@ -166,12 +166,12 @@ view "global" {
                 "slaves-global";
         };
         also-notify {
-                10.47.19.12;
-                10.47.19.39;
-                10.47.19.70;
-                100.70.226.131;
-                100.70.226.148;
-                100.70.226.92;
+                10.0.0.4;
+                10.0.0.5;
+                10.0.0.6;
+                10.0.0.7;
+                10.0.0.8;
+                10.0.0.9;
         };
         masterfile-format text;
         notify yes;
@@ -182,8 +182,8 @@ zone "global.catalog" {
         type slave;
         file "slave/global.catalog";
         masters {
-                100.70.226.31 key "slave-0-global";
-                100.70.226.41 key "slave-0-global";
+                10.0.0.2 key "slave-0-global";
+                10.0.0.1 key "slave-0-global";
         };
         allow-query {
                 127.0.0.1/32;
@@ -269,12 +269,12 @@ dns-api ps add <SERVER>
 ```json
                       'test2' => {
                                    'key' => {
-                                              'gmp' => 'gmp-0-test2',
+                                              'plat-a' => 'plat-a-0-test2',
                                               'slave' => 'slave-0-test2'
                                             },
                                    'keypool' => {
-                                                  'gmp' => {
-                                                             'gmp-0-test2' => 'key "gmp-0-test2" {
+                                                  'plat-a' => {
+                                                             'plat-a-0-test2' => 'key "plat-a-0-test2" {
         algorithm hmac-sha256;
         secret "YkpNGHiltwii/t1wWWiDZEBo3hWs63PTxXjoLli1Rs8=";
 };
@@ -324,19 +324,19 @@ view "test2" {
                 "slaves-test2"; // downstream
         };
 
-        // Upstream HM: vsa6285369.wdf.sap.corp
-        server 10.68.48.97 { keys "slave-0-test2"; };
+        // Upstream HM: vsa-host001.wdf.ppdemands.com
+        server 10.0.0.14 { keys "slave-0-test2"; };
 
         // Downstream LS need notification and AXFR
         notify yes;
 
-        server 100.70.226.131 { keys "slave-0-test2"; };    //  100.70.226.31 key "slave-0-global";   ← 这里的 key 仅用于 IXFR/AXFR！
-        server 100.70.226.148 { keys "slave-0-test2"; };
-        server 100.70.226.92 { keys "slave-0-test2"; };
+        server 10.0.0.7 { keys "slave-0-test2"; };    //  10.0.0.2 key "slave-0-global";   ← 这里的 key 仅用于 IXFR/AXFR！
+        server 10.0.0.8 { keys "slave-0-test2"; };
+        server 10.0.0.9 { keys "slave-0-test2"; };
         also-notify {
-                100.70.226.131;
-                100.70.226.148;
-                100.70.226.92;
+                10.0.0.7;
+                10.0.0.8;
+                10.0.0.9;
         };
 
         allow-transfer {
@@ -349,12 +349,12 @@ view "test2" {
         catalog-zones {
                 zone "test2.catalog"
                         zone-directory "slave"
-                        default-masters { 10.68.48.97; };
+                        default-masters { 10.0.0.14; };
         };
 
         zone "test2.catalog" {
                 type slave;
-                masters { 10.68.48.97; };
+                masters { 10.0.0.14; };
                 file "slave/test2.catalog";
         };
 
@@ -364,23 +364,23 @@ view "test2" {
         match-clients {
                 "slaves-test2";
         };
-        server 10.68.48.97/32 {
+        server 10.0.0.14/32 {
                 keys "slave-0-test2";
         };
-        server 100.70.226.131/32 {
+        server 10.0.0.7/32 {
                 keys "slave-0-test2";
         };
-        server 100.70.226.148/32 {
+        server 10.0.0.8/32 {
                 keys "slave-0-test2";
         };
-        server 100.70.226.92/32 {
+        server 10.0.0.9/32 {
                 keys "slave-0-test2";
         };
         zone "test2.catalog" {
                 type slave;
                 file "slave/test2.catalog";
                 masters {
-                        10.68.48.97;
+                        10.0.0.14;
                 };
         };
         allow-recursion {
@@ -388,7 +388,7 @@ view "test2" {
         };
         catalog-zones {
                 zone "test2.catalog" default-masters {
-                        10.68.48.97;
+                        10.0.0.14;
                 } zone-directory "slave";
         };
         recursion no;
@@ -396,9 +396,9 @@ view "test2" {
                 "slaves-test2";
         };
         also-notify {
-                100.70.226.131;
-                100.70.226.148;
-                100.70.226.92;
+                10.0.0.7;
+                10.0.0.8;
+                10.0.0.9;
         };
         masterfile-format text;
         notify yes;
@@ -475,7 +475,7 @@ sub scp_key_to_server {
 	$fh->autoflush;
 	print $fh $keydata;
 	# FIXME: accept-new is available only on newer SSH clients
-	run_with_timeout($TIMEOUT, \&run_local, "scp -q -o StrictHostKeyChecking=no $SOURCE_OPT -i $dnsapiuser_key_file $fname $dnsapiuser\@$server:");
+	run_with_timeout($TIMEOUT, \&run_local, "scp -q -o StrictHostKeyChecking=no $SOURCE_OPT -i $dnpppiuser_key_file $fname $dnpppiuser\@$server:");
 	if ($@) {
 		warn "w: copying key $key to server $server: $@";
 		return undef;

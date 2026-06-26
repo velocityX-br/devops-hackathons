@@ -4,7 +4,7 @@
 
 gh auth login
 # Assume there are two github instance 
-# and we try appointing export GH_HOST=github.wdf.ppp.corp
+# and we try appointing export GH_HOST=github.wdf.pppdemands.com
 gh repo list CloudChef
 
 # fastly clone repo under one github instance

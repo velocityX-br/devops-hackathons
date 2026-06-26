@@ -18,7 +18,7 @@ fi
 
 # --- 公共变量 ---
 readonly AUTH="$1"
-readonly BASE_URL="https://gmp.cia.net.sap/cgi-bin/rest/rest.pl/cqa/v1/query/attributes"
+readonly BASE_URL="https://plat-a.cia.net.pppdemands.com/cgi-bin/rest/rest.pl/cqa/v1/query/attributes"
 readonly NAMESERVER="dns-api Hidden Primary"
 readonly NAMESERVER_ENCODED="dns-api%20Hidden%20Primary"
 

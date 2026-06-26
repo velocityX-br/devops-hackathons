@@ -3,33 +3,33 @@
 - Default domain's Wildcard certificates is being supported from [request-a-wildcard-certificate](https://gardener.cloud/docs/extensions/others/gardener-extension-shoot-cert-service/request_default_domain_cert/#request-a-wildcard-certificate)
 
 
-- https://pages.github.tools.ppp/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#overview
-- [Configure a Custom Certificate Issuer](https://pages.github.tools.ppp/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#configure-a-custom-certificate-issuer)  - not in use so far
+- https://pages.github.tools.pppdemands.com/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#overview
+- [Configure a Custom Certificate Issuer](https://pages.github.tools.pppdemands.com/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#configure-a-custom-certificate-issuer)  - not in use so far
 - https://github.com/gardener/gardener-extension-shoot-cert-service
 - https://github.com/gardener/cert-management
 
 __ONLY TWO scenarios for Gardener Certificate Extensions__:
 - [manage-certificates-with-gardener-for-default-domain](https://gardener.cloud/docs/guides/networking/certificate-extension-default-domain/#manage-certificates-with-gardener-for-default-domain)
-- [manage-certificates-with-gardener-for-public-domain](https://pages.github.tools.ppp/kubernetes/gardener/docs/guides/networking/certificate-extension/#manage-certificates-with-gardener-for-public-domain) but you must follow the [prerequisite](https://pages.github.tools.ppp/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#prerequisites)
+- [manage-certificates-with-gardener-for-public-domain](https://pages.github.tools.pppdemands.com/kubernetes/gardener/docs/guides/networking/certificate-extension/#manage-certificates-with-gardener-for-public-domain) but you must follow the [prerequisite](https://pages.github.tools.pppdemands.com/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#prerequisites)
 
 __! Procedure of certificate management for public domain__:
 - Generate domain's certificate and key - testsecret-tls | certificate requested by `kind: certificate` ???
-- [using-a-custom-issuer-with-an-ingress](https://pages.github.tools.ppp/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#using-a-custom-issuer-with-an-ingress) or requesting-a-certificate-for-a-service-type-loadbalancer
+- [using-a-custom-issuer-with-an-ingress](https://pages.github.tools.pppdemands.com/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#using-a-custom-issuer-with-an-ingress) or requesting-a-certificate-for-a-service-type-loadbalancer
 
 
 __Gardener Certificates Extension Feature__:
-- [Supported annotations](https://pages.github.tools.ppp/kubernetes/gardener/docs/guides/networking/certificate-extension/#supported-attributes)
+- [Supported annotations](https://pages.github.tools.pppdemands.com/kubernetes/gardener/docs/guides/networking/certificate-extension/#supported-attributes)
 - 
 
 :::danger Known Cert Limitations
 :::
 - CN name comply with 64 character limits 
-- Wildcard requests are not supported as of now by the Vendor, according to [pppNETCAG2+ACME+Guide](https://wiki.one.int.ppp/wiki/display/PKI/pppNETCAG2+ACME+Guide). 
+- Wildcard requests are not supported as of now by the Vendor, according to [pppNETCAG2+ACME+Guide](https://wiki.one.int.pppdemands.com/wiki/display/PKI/pppNETCAG2+ACME+Guide). 
 
 
 
 YOU also need to know about ACME:
-a. The server needs to be able to reach the API endpoint on port 443. For Converge Cloud : acme.pki.net.ppp
+a. The server needs to be able to reach the API endpoint on port 443. For Converge Cloud : acme.pki.net.pppdemands.com
 
 __Question????__
 
@@ -54,11 +54,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - "web-081.in.sidevops.c.eu-de-1.cloud.ppp"
+        - "web-081.in.team-b.c.eu-de-1.cloud.pppdemands.com"
       # Certificate and private key reside in this secret.
       secretName: testsecret-tls
   rules:
-    - host: "web-081.in.sidevops.c.eu-de-1.cloud.ppp"
+    - host: "web-081.in.team-b.c.eu-de-1.cloud.pppdemands.com"
       http:
         paths:
           - path: /

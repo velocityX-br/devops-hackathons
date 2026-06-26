@@ -7,22 +7,22 @@ Concept:
 
 
 ```
-if you use the local postfix, the mails will be forwarded to our CIS MTA and will be processed further to the ppp internal mail gateway mail.ppp.corp.
+if you use the local postfix, the mails will be forwarded to our CIS MTA and will be processed further to the ppp internal mail gateway mail.pppdemands.com.
 
 But mind, only these recipient domains are forwarded:
-/.*@od.ppp.biz/ relay:mail.ppp.corp:587
-/.*@.*od.ppp.biz/ relay:mail.ppp.corp:587
-/.*@.*cloud.ppp/ relay:mail.ppp.corp:587
-/.*@global.corp.ppp/ relay:mail.ppp.corp:587
-/.*@.*ppp.com/ relay:mail.ppp.corp:587
+/.*@od.pppdemands.com/ relay:mail.pppdemands.com:587
+/.*@.*od.pppdemands.com/ relay:mail.pppdemands.com:587
+/.*@.*cloud.pppdemands.com/ relay:mail.pppdemands.com:587
+/.*@global.pppdemands.com/ relay:mail.pppdemands.com:587
+/.*@.*ppp.com/ relay:mail.pppdemands.com:587
 
 Everything else, especially external addresses, will not processed.
 
-smtpdem01.smtp.ppp-ag.de, you mentioned in the initial comment while raising this INC, is from this perspective treated as an external domain, hence it will NOT be relayed and is discarded by our MTA.
+smtpdem01.smtp.pppdemands.de, you mentioned in the initial comment while raising this INC, is from this perspective treated as an external domain, hence it will NOT be relayed and is discarded by our MTA.
 
-The attached screenshot (https://itsm.services.ppp/sys_attachment.do?view=true&sys_id=859a979c2f657a9c56b1692cbfa4e3d5) is all about external for what we are not responsible. These addresses are out of our scope.
+The attached screenshot (https://itsm.services.pppdemands.com/sys_attachment.do?view=true&sys_id=PROJECT-ID-PLACEHOLDER) is all about external for what we are not responsible. These addresses are out of our scope.
 
-For external recipients, pls use another mail gateway and NOT the local MTA. I´d refer to https://internet.ppp.corp/services/smtp/description/#relays --> Zone 5 (outside of ppp's networks).
+For external recipients, pls use another mail gateway and NOT the local MTA. I´d refer to https://internet.pppdemands.com/services/smtp/description/#relays --> Zone 5 (outside of ppp's networks).
 ```
 
 What is local MTA ? 

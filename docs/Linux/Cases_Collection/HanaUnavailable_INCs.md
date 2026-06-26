@@ -5,14 +5,14 @@ INC13150725, INC13192790, INC13229197
 
 Client Errors:
 ```text
-[US4] [hana_a3q_factoryus4] [PROBLEM]: HANA DB Availability
-Database not accessible: Data receive failed (socket timeout). : 100.81.53.245:51108 -> hana-a3q-factoryus4-vtdfvhfu.us4.scp.net.ppp:30013 ConnectionID:0 SessionID:0
+[US4] [hana_a3q_factory-reg-4] [PROBLEM]: HANA DB Availability
+Database not accessible: Data receive failed (socket timeout). : 10.0.0.1:51108 -> hana-a3q-factory-reg-4-vtdfvhfu.us4.scp.net.pppdemands.com:30013 ConnectionID:0 SessionID:0
 
-[US4] [hana_a41_factoryus4] [PROBLEM]: HANA DB Availability
-Database not accessible: Data receive failed (socket timeout). : 100.81.53.245:42608 -> hana-a41-factoryus4-iiljm63n.us4.scp.net.ppp:30013 ConnectionID:0 SessionID:0
+[US4] [hana_a41_factory-reg-4] [PROBLEM]: HANA DB Availability
+Database not accessible: Data receive failed (socket timeout). : 10.0.0.1:42608 -> hana-a41-factory-reg-4-iiljm63n.us4.scp.net.pppdemands.com:30013 ConnectionID:0 SessionID:0
 
-[US4] [hana_a0j_factoryus4] [PROBLEM]: HANA DB Availability
-Database not accessible: Data receive failed (socket timeout). : 100.81.55.178:60046 -> hana-a0j-factoryus4-a78helb0.us4.scp.net.ppp:30013 ConnectionID:0 SessionID:0
+[US4] [hana_a0j_factory-reg-4] [PROBLEM]: HANA DB Availability
+Database not accessible: Data receive failed (socket timeout). : 10.0.0.2:60046 -> hana-a0j-factory-reg-4-a78helb0.us4.scp.net.pppdemands.com:30013 ConnectionID:0 SessionID:0
 ```
 
 Findings from OS: 
@@ -29,8 +29,8 @@ blocked 表示当时处于 不可中断的 I/O 等待状态（D 状态） 的进
 
 
 ```
-vsahanaa4102factoryus401:~ # sar -q -s 03:08 -e 03:17 -f /var/log/sa/sa20250607
-Linux 5.14.21-150500.55.100-default (vsahanaa4102factoryus401)  06/07/25        _x86_64_        (48 CPU)
+vsahanaa4102factory-reg-401:~ # sar -q -s 03:08 -e 03:17 -f /var/log/sa/sa20250607
+Linux 5.14.21-150500.55.100-default (vsahanaa4102factory-reg-401)  06/07/25        _x86_64_        (48 CPU)
 
 03:08:00      runq-sz  plist-sz   ldavg-1   ldavg-5  ldavg-15   blocked
 03:09:00            0      1879      1.51      0.60      0.33         3
@@ -45,8 +45,8 @@ Linux 5.14.21-150500.55.100-default (vsahanaa4102factoryus401)  06/07/25        
 Average:            0      1877      1.86      1.50      0.84         1
 
 
-vsahanaa4102factoryus401:/tmp # sar -u -s 03:08 -e 03:20 -f /var/log/sa/sa20250607
-Linux 5.14.21-150500.55.100-default (vsahanaa4102factoryus401)  06/07/25        _x86_64_        (48 CPU)
+vsahanaa4102factory-reg-401:/tmp # sar -u -s 03:08 -e 03:20 -f /var/log/sa/sa20250607
+Linux 5.14.21-150500.55.100-default (vsahanaa4102factory-reg-401)  06/07/25        _x86_64_        (48 CPU)
 
 03:08:00        CPU     %user     %nice   %system   %iowait    %steal     %idle
 03:09:00        all      0.57      0.00      0.26      2.85      0.00     96.32
@@ -95,7 +95,7 @@ Next steps:  updates will be in next CP today at 9 UTC
  
 2) After the storage findings, we will know where the potential problem is -- accordingly we can also decide if additional packet capture is needed around 3 UTC next occurrence Tomm. 
  
-3) Get confirmation from CISCO CMS that ACI fabric is clean on the endpoint -- so far good (Source IP: 100.81.53.245 & Source IP : 100.81.55.178 in the same project router, Destination IP 100.81.5.8) and (Source IP : 100.81.11.171, Destination IP 100.81.5.83)
+3) Get confirmation from CISCO CMS that ACI fabric is clean on the endpoint -- so far good (Source IP: 10.0.0.1 & Source IP : 10.0.0.2 in the same project router, Destination IP 10.0.0.3) and (Source IP : 10.0.0.4, Destination IP 10.0.0.5)
 
 
 2.
@@ -141,9 +141,9 @@ CPU 使用率不高 但是iowait% 高说明什么
 网络检查 
 
 ```
-(vadbha009mw) vsa13137597:~ #
+(vadbha009mw) vsa-host001:~ #
 # sar -n EDEV -s 05:00 -e 05:10
-Linux 5.14.21-150500.55.68-default (vsa13137597)        06/12/25        _x86_64_        (16 CPU)
+Linux 5.14.21-150500.55.68-default (vsa-host001)        06/12/25        _x86_64_        (16 CPU)
 
 05:00:00        IFACE   rxerr/s   txerr/s    coll/s  rxdrop/s  txdrop/s  txcarr/s  rxfram/s  rxfifo/s  txfifo/s
 05:01:00           lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00      0.00

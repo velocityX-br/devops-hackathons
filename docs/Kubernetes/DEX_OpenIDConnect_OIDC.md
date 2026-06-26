@@ -96,12 +96,12 @@ chart-mirror:
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
-              app.kubernetes.io/name: sidevops-dex
+              app.kubernetes.io/name: team-b-dex
 ```
 
 3. `Config.yml`
 ```
-issuer: https://dex.k8s.sni.int.sap
+issuer: https://dex.k8s.team-a.int.pppdemands.com
 oauth2:
   skipApprovalScreen: true
 storage:
@@ -114,38 +114,38 @@ staticClients:
     secret: argocd
     name: ArgoCDGitOps
     redirectURIs:
-    - https://argocd.gitops.sni.shoot.live.k8s-hana.ondemand.com/auth/callback
+    - https://argocd.gitops.team-a.shoot.live.k8s-hana.ppdemands.com/auth/callback
   - id: ArgoCDcoreeu2
     secret: argocd
     name: ArgoCDcoreeu2
     redirectURIs:
-    - https://argocd.cis-coreeu2.k8s.sni.int.sap/auth/callback
+    - https://argocd.env-a-coreeu2.k8s.team-a.int.pppdemands.com/auth/callback
   - id: argocdgsv
     secret: argocd
     name: argocdgsv
     redirectURIs:
-    - https://example.com/auth/callback
+    - https://argocd.gitops-validation.c8s.team-a.int.pppdemands.com/auth/callback
   - id: grafana
     secret: grafana
     name: grafana
     redirectURIs:
-    - https://grafana.gitops.k8s.sni.int.sap/login/generic_oauth
+    - https://grafana.gitops.k8s.team-a.int.pppdemands.com/login/generic_oauth
   - id: kiali_gitops
     secret: kiali_gitops
     name: kiali_gitops
     redirectURIs:
-    - https://kiali.gitops.k8s.sni.int.sap/kiali
-    - https://kiali.gitops.k8s.sni.int.sap/kiali/api/authenticate
+    - https://kiali.gitops.k8s.team-a.int.pppdemands.com/kiali
+    - https://kiali.gitops.k8s.team-a.int.pppdemands.com/kiali/api/authenticate
 connectors:
   # GitHub Configuration
   - type: github
     id: github
     name: GitHub
     config:
-      hostName: github.tools.sap
+      hostName: github.tools.pppdemands.com
       clientID: 10d243b3a534663b2754
       clientSecret: 29af41acfe0befbb77775b7411df282c4f557652
-      redirectURI: https://dex.k8s.sni.int.sap/callback
+      redirectURI: https://dex.k8s.team-a.int.pppdemands.com/callback
       loadAllGroups: true
       orgs:
       - name: SIDEVOPS
@@ -157,14 +157,14 @@ connectors:
     id: ldap
     name: LDAP
     config:
-      host: ldap-supplier.cis-spc-tic-private-fip.gmp.eu-de-2.cloud.sap:636
+      host: ldap-supplier.env-a-spc-tic-private-fip.plat-a.eu-de-2.cloud.pppdemands.com:636
       insecureSkipVerify: true
-      bindDN: cn=slave,ou=users,ou=SYS,dc=cis-spc-tic,dc=gmp,dc=eu-de-2,dc=cloud,dc=sap
+      bindDN: cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example
       bindPW: slavesync
       usernamePrompt: Username
-      rootCA: /etc/dex/ca/sap-root-ca.pem
+      rootCA: /etc/dex/ca/ppp-root-ca.pem
       userSearch:
-        baseDN: dc=cis-spc-tic,dc=gmp,dc=eu-de-2,dc=cloud,dc=sap
+        baseDN: dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example
         filter: "(objectClass=person)"
         username: uid
         nameAttr: displayName
@@ -172,16 +172,16 @@ connectors:
         idAttr: DN
         emailAttr: mail
       groupSearch:
-        baseDN: dc=cis-spc-tic,dc=gmp,dc=eu-de-2,dc=cloud,dc=sap
+        baseDN: dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example
         filter: "(objectClass=posixGroup)"
         nameAttr: cn
         userMatchers:
         - groupAttr: memberUid
           userAttr: uid
 ```
-Features: - LDAPS (LDAP over TLS) on port 636 - SAP Cloud Platform LDAP integration (cis-spc-tic domain) - Certificate-based authentication (SAP Root CA) - `POSIX` group membership mapping - Service account binding with read-only access - Custom `username` prompt for better `UX`
+Features: - LDAPS (LDAP over TLS) on port 636 - PPP Cloud Platform LDAP integration (env-a-spc-tic domain) - Certificate-based authentication (PPP Root CA) - `POSIX` group membership mapping - Service account binding with read-only access - Custom `username` prompt for better `UX`
 
-Important Notes: - CA Certificate: `/etc/dex/ca/sap-root-ca.pem` (mounted from `dex-cabundle` secret) - User attributes: Uses `displayName` for full name, `cn` for preferred username - Group matching: `POSIX groups` via `memberUidattribute` matching user’s `uid`
+Important Notes: - CA Certificate: `/etc/dex/ca/ppp-root-ca.pem` (mounted from `dex-cabundle` secret) - User attributes: Uses `displayName` for full name, `cn` for preferred username - Group matching: `POSIX groups` via `memberUidattribute` matching user’s `uid`
 
 4. Manage `Config.yml` over `VSS - Vault Static Secrets`
 
@@ -191,7 +191,7 @@ RAW:
     - vault:
         connectionRef: prod
         authMethod: jwt-gitops
-        namespace: gcs/pso_sidevops/k8s
+        namespace: gcs/pso_team-b/k8s
         jwt_role: jwt-role-gitops-dex
         method: jwt
         globalMount: sni
@@ -216,7 +216,7 @@ metadata:
 spec:
   type: kv-v2
   mount: sni
-  namespace: gcs/pso_sidevops/k8s
+  namespace: gcs/pso_team-b/k8s
   path: canary/gitops-validation/dex/dex-config
   destination:
     name: dex
@@ -235,12 +235,12 @@ configs:
   cm:
     oidc.config: |
       name: Dex
-      issuer: https://example.com
+      issuer: https://dex.c8s.team-a.int.pppdemands.com
       clientID: ArgoCDMaxwell
       clientSecret: <same-secret-as-dex>
       rootCA: |
         -----BEGIN CERTIFICATE-----
-        <SAP Global Root CA>
+        <PPP Global Root CA>
         -----END CERTIFICATE-----
       requestedScopes:
         - openid

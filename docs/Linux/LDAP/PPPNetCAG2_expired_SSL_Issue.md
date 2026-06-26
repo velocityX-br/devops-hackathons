@@ -7,8 +7,8 @@ FIX: emergency change number:  CHG2745942
 
 ```
 TLSCACertificateFile /etc/openldap/CA.crt
-TLSCertificateFile /etc/openldap/ldapmaster.cis-factory.gmp.ap-cn-1.cloud.ppp.crt
-TLSCertificateKeyFile /etc/openldap/ldapmaster.cis-factory.gmp.ap-cn-1.cloud.ppp.key
+TLSCertificateFile /etc/openldap/ldapmaster.env-a-factory.plat-a.ap-cn-1.cloud.pppdemands.com.crt
+TLSCertificateKeyFile /etc/openldap/ldapmaster.env-a-factory.plat-a.ap-cn-1.cloud.pppdemands.com.key
 TLSCipherSuite HIGH
 TLSProtocolMin 3.3
 ```
@@ -36,8 +36,8 @@ Other worknodes:
 What are the root or intermediate certificate usually installed on server ? And how could we monitor ? 
 
 Wiki reference:
-https://wiki.one.int.ppp/wiki/display/PKI/ppp+Global+PKI   
-https://wiki.one.int.ppp/wiki/display/PKI/ppp+PKI's+Trust+Chain
+https://wiki.one.int.pppdemands.com/wiki/display/PKI/ppp+Global+PKI   
+https://wiki.one.int.pppdemands.com/wiki/display/PKI/ppp+PKI's+Trust+Chain
 
 
 

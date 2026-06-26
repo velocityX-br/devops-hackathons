@@ -5,8 +5,8 @@
 Ref
 ```
 # ref: https://build.opensuse.org/projects/openSUSE:Slowroll:Base/packages/bind-image/files/Dockerfile?expand=1
-# ref: https://github.tools.ppp/sni-docker-images/sidevops-389ds/blob/main/Dockerfile
-# ref: https://github.tools.ppp/cia-docker-images/cis-dns/blob/main/changelog.txt
+# ref: https://github.tools.pppdemands.com/team-a-docker-images/team-b-389ds/blob/main/Dockerfile
+# ref: https://github.tools.pppdemands.com/plat-docker-images/env-a-dns/blob/main/changelog.txt
 ```
 
 ### Single zone transferin default view
@@ -23,7 +23,7 @@ $TTL 86400
         86400 )    ; minimum
     IN  NS  ns1.example.com.
 
-ns1 IN A 192.168.1.1
+ns1 IN A 10.0.0.1
 ```
 
 Check zone integrity
@@ -46,7 +46,7 @@ RNDC Reload - To load the zone to bind
 Validate
 ```
 sh-5.2#  dig @127.0.0.1 ns1.example.com +short
-192.168.1.1
+10.0.0.1
 ```
 
 Test nsupdate 
@@ -56,14 +56,14 @@ Test nsupdate
 include "/etc/rndc.key";  in /etc/named.conf
 
 /usr/bin/nsupdate -v -r 30 -l -k /etc/named.d/pppcp.key
-update add test1.<btpdc>.scp.net.ppp. 3600 IN A 11.0.0.1
-update add test2.<btpdc>.scp.net.ppp. 3600 IN A 11.0.0.2
-update add test3.<btpdc>.scp.net.ppp. 3600 IN A 11.0.0.3
-update add test4.<btpdc>.scp.net.ppp. 3600 IN A 11.0.0.4
-update add test5.<btpdc>.scp.net.ppp. 3600 IN A 11.0.0.5
-update add test-cname.<btpdc>.scp.net.ppp. 3600 IN CNAME test1.<btpdc>.scp.net.ppp.
-update add text.<btpdc>.scp.net.ppp. 3600 TXT "Some arbitrary text."
-update add text.<btpdc>.scp.net.ppp. 3600 TXT "Guess what, it seems to be working."
+update add test1.<btpdc>.scp.net.pppdemands.com. 3600 IN A 11.0.0.1
+update add test2.<btpdc>.scp.net.pppdemands.com. 3600 IN A 11.0.0.2
+update add test3.<btpdc>.scp.net.pppdemands.com. 3600 IN A 11.0.0.3
+update add test4.<btpdc>.scp.net.pppdemands.com. 3600 IN A 11.0.0.4
+update add test5.<btpdc>.scp.net.pppdemands.com. 3600 IN A 11.0.0.5
+update add test-cname.<btpdc>.scp.net.pppdemands.com. 3600 IN CNAME test1.<btpdc>.scp.net.pppdemands.com.
+update add text.<btpdc>.scp.net.pppdemands.com. 3600 TXT "Some arbitrary text."
+update add text.<btpdc>.scp.net.pppdemands.com. 3600 TXT "Guess what, it seems to be working."
 send
 
 sh-5.2# nsupdate -v -r 30 -l -k /etc/rndc.key
@@ -78,10 +78,10 @@ Docker container 开了端口映射后 `-p 53:53 `，在宿主/host VM 可以通
 `docker run -d --rm -v /srv/bind:/data --name bind -p 53:53/tcp -p 53:53/udp registry.opensuse.org/opensuse/bind`
 
 ```
-bash-4.4$ dig @172.17.0.2 test1.example.com +short
+bash-4.4$ dig @10.0.0.2 test1.example.com +short
 11.0.0.1
-bash-4.4$ dig @172.17.0.2 ns1.example.com +short
-192.168.1.1
+bash-4.4$ dig @10.0.0.2 ns1.example.com +short
+10.0.0.1
 ```
 
 
@@ -92,7 +92,7 @@ Option1:
 zone "example.com" {
     type slave;
     file "/var/lib/named/slave/example.com.zone";
-    masters { 172.17.0.2; };  //
+    masters { 10.0.0.2; };  //
     allow-query { any; };       // allow query to anyone
 };
 ```
@@ -100,13 +100,13 @@ Option2:
 ```
 rndc addzone $zone '{type slave; masters { $masterip; }; file \"slave/${zone}zone\"; };
 
-rndc addzone example.com '{type slave; masters { 172.17.0.2; }; file "slave/example.comzone"; };'
+rndc addzone example.com '{type slave; masters { 10.0.0.2; }; file "slave/example.comzone"; };'
 ```
 
 Option2 failed below, but why ????
 
 ```
-sh-5.2# rndc addzone example.com '{type slave; masters { 172.17.0.2; }; file "slave/example.comzone"; };'
+sh-5.2# rndc addzone example.com '{type slave; masters { 10.0.0.2; }; file "slave/example.comzone"; };'
 rndc: 'addzone' failed: permission denied
 Not allowing new zones in view '_default'
 ```
@@ -124,18 +124,18 @@ From slave it present the following logs.
 15-Apr-2025 14:56:08.862 managed-keys-zone: Key 20326 for zone . is now trusted (acceptance timer complete)
 15-Apr-2025 14:56:08.862 managed-keys-zone: Key 38696 for zone . is now trusted (acceptance timer complete)
 15-Apr-2025 14:56:08.862 zone example.com/IN: Transfer started.
-15-Apr-2025 14:56:08.863 0x7f8307d2f000: transfer of 'example.com/IN' from 172.17.0.2#53: connected using 172.17.0.2#53
+15-Apr-2025 14:56:08.863 0x7f8307d2f000: transfer of 'example.com/IN' from 10.0.0.2#53: connected using 10.0.0.2#53
 15-Apr-2025 14:56:08.864 zone example.com/IN: transferred serial 2024041502
-15-Apr-2025 14:56:08.864 0x7f8307d2f000: transfer of 'example.com/IN' from 172.17.0.2#53: Transfer status: success
-15-Apr-2025 14:56:08.864 0x7f8307d2f000: transfer of 'example.com/IN' from 172.17.0.2#53: Transfer completed: 1 messages, 5 records, 174 bytes, 0.001 secs (174000 bytes/sec) (serial 2024041502)
+15-Apr-2025 14:56:08.864 0x7f8307d2f000: transfer of 'example.com/IN' from 10.0.0.2#53: Transfer status: success
+15-Apr-2025 14:56:08.864 0x7f8307d2f000: transfer of 'example.com/IN' from 10.0.0.2#53: Transfer completed: 1 messages, 5 records, 174 bytes, 0.001 secs (174000 bytes/sec) (serial 2024041502)
 ```
 
 Test another zone transfer but not working - FIXME
 
 ```
-sh-5.2# dig +tcp @172.17.0.3 AXFR example.com
+sh-5.2# dig +tcp @10.0.0.3 AXFR example.com
 
-; <<>> DiG 9.20.7 <<>> +tcp @172.17.0.3 AXFR example.com
+; <<>> DiG 9.20.7 <<>> +tcp @10.0.0.3 AXFR example.com
 ; (1 server found)
 ;; global options: +cmd
 ; Transfer failed.
@@ -180,8 +180,8 @@ zone "example.com" IN {
     type master;
     file "/var/lib/named/dyn/example.com.zone";
     allow-update { key "rndc-key"; };  //
-    allow-transfer { 172.17.0.3; };  // slave node IP, here is dockercontainer IP inside bridge network. docker network ls
-    also-notify { 172.17.0.3; };
+    allow-transfer { 10.0.0.3; };  // slave node IP, here is dockercontainer IP inside bridge network. docker network ls
+    also-notify { 10.0.0.3; };
 };
 
 Bind slave server's named.conf
@@ -220,7 +220,7 @@ zone "0.0.127.in-addr.arpa" in {
 zone "example.com" {
     type slave;
     file "/var/lib/named/slave/example.com.zone";
-    masters { 172.17.0.2; };  //
+    masters { 10.0.0.2; };  //
     allow-query { any; };       // allow query to anyone
 };
 
@@ -238,7 +238,7 @@ example.com.            IN SOA  ns1.example.com. admin.example.com. (
                                 86400      ; minimum (1 day)
                                 )
                         NS      ns1.example.com.
-ns1.example.com.        A       192.168.1.1
+ns1.example.com.        A       10.0.0.1
 $TTL 3600       ; 1 hour
 test1.example.com.      A       11.0.0.1
 ```
@@ -296,6 +296,6 @@ options {
 2. 开启view功能后 dig @127.0.0.1 zone 失败
 
 ```
-16-Apr-2025 16:50:44.971 client @0x7f830d4cac00 172.17.0.2#60230: view any: received notify for zone 'int.example.com': NOTAUTH
+16-Apr-2025 16:50:44.971 client @0x7f830d4cac00 10.0.0.2#60230: view any: received notify for zone 'int.example.com': NOTAUTH
 ```
 Solution: try validating slave zone file location. 

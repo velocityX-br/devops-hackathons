@@ -60,7 +60,7 @@ The final resolution is to correct 85-cloud-init rules to match the new MAC addr
 Note: Please also double check PCI slot number's MAC address via `lscpi -vvv` to gurantee the consistency.
 
 ## FAQ
-Q:  While changing the NIC from Sap Cloud Infrastruture/OpenStack, what will happen to the PCI devices of the VM?
+Q:  While changing the NIC from Ppp Cloud Infrastruture/OpenStack, what will happen to the PCI devices of the VM?
 
 A:
 
@@ -101,7 +101,7 @@ Capabilities: [100 v1] Device Serial Number fa-16-3e-ff-ff-42-07-6d
 
 A: 修改 OpenStack 里的 MAC 地址，不会改变 PCI 设备本身。 热插拔基本不可行。 请详细查看 `readlink /sys/class/net/eth0/device`
 ```
-(vadbvaz) cc02v014382:/etc/udev/rules.d #
+(vadbvaz) vm-host001:/etc/udev/rules.d #
 # readlink /sys/class/net/eth0/device
 ../../../0000:13:00.0
 ```

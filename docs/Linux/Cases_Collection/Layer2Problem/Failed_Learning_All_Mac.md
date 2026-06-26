@@ -49,7 +49,7 @@ A: 修改 OpenStack 里的 MAC 地址，不会改变 PCI 设备本身。 热插�
 ```
 
 ```
-(vadbvaz) cc02v014382:/etc/udev/rules.d #
+(vadbvaz) vm-host001:/etc/udev/rules.d #
 # readlink /sys/class/net/eth0/device
 ../../../0000:13:00.0
 

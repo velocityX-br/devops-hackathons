@@ -2,7 +2,7 @@
 
 INC15677070 - Strange file ownership change after reboot
 
-__RCA__:  UID was changed by a GMP technical user resulting in subsequent effect. Files owner got changed while Process got restarted/OS rebooted  
+__RCA__:  UID was changed by a PLAT-A technical user resulting in subsequent effect. Files owner got changed while Process got restarted/OS rebooted  
 
 ```
 Atul Sharma (C5381597) at 2025-10-08 09:58:07 (GMT):
@@ -32,23 +32,23 @@ cc01v012157:~ # find / -user 100000031 -ls
 ```
 (vadb03p3c) cc01v012157:~ #
 # ldapsearch -LLL -o ldif-wrap=no \
->   -H ldaps://ldap-eude1-spc.cis-spc-tic.gmp.eu-de-1.cloud.ppp \
->   -b dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp \
->   -D cn=slave,ou=users,ou=SYS,dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp \
+>   -H ldaps://ldap-eude1-spc.env-a-spc-tic.plat-a.eu-de-1.cloud.pppdemands.com \
+>   -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example \
+>   -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example \
 >   -W \
 >   "(uid=p3cadm)" \
 >   modifiersName modifyTimestamp
 Enter LDAP Password:
-dn: uid=p3cadm,ou=users,cn=P3C,ou=CLMAM-EUDE1-PROD,dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp
-modifiersName: cn=prc,ou=users,ou=SYS,dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp
+dn: uid=p3cadm,ou=users,cn=P3C,ou=SVC-A-EUDE1-PROD,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example
+modifiersName: cn=prc,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example
 modifyTimestamp: 20250926065542Z
 ```
 
 ```
 (vadb03p3c) cc01v012157:~ #
-# ldapsearch -LLL -o ldif-wrap=no   -H ldaps://ldap-eude1-spc.cis-spc-tic.gmp.eu-de-1.cloud.ppp   -b dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp   -D cn=slave,ou=users,ou=SYS,dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp   -W   "(uid=p3cadm)"
+# ldapsearch -LLL -o ldif-wrap=no   -H ldaps://ldap-eude1-spc.env-a-spc-tic.plat-a.eu-de-1.cloud.pppdemands.com   -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -W   "(uid=p3cadm)"
 Enter LDAP Password:
-dn: uid=p3cadm,ou=users,cn=P3C,ou=CLMAM-EUDE1-PROD,dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp
+dn: uid=p3cadm,ou=users,cn=P3C,ou=SVC-A-EUDE1-PROD,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example
 gecos: ppp System Administrator
 shadowExpire: 99999
 loginShell: /bin/csh
@@ -62,21 +62,21 @@ objectClass: posixAccount
 objectClass: top
 objectClass: inetOrgPerson
 objectClass: shadowAccount
-homeDirectory: /usr/ppp/P3C/home
+homeDirectory: /usr/example/P3C/home
 uidNumber: 100000047
 
 (vadb03p3c) cc01v012157:~ #
-# ldapsearch -LLL -o ldif-wrap=no   -H ldaps://ldap-eude1-spc.cis-spc-tic.gmp.eu-de-1.cloud.ppp   -b dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp   -D cn=slave,ou=users,ou=SYS,dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp   -W   "(uid=p3cadm)" +
+# ldapsearch -LLL -o ldif-wrap=no   -H ldaps://ldap-eude1-spc.env-a-spc-tic.plat-a.eu-de-1.cloud.pppdemands.com   -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -W   "(uid=p3cadm)" +
 Enter LDAP Password:
-dn: uid=p3cadm,ou=users,cn=P3C,ou=CLMAM-EUDE1-PROD,dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp
+dn: uid=p3cadm,ou=users,cn=P3C,ou=SVC-A-EUDE1-PROD,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example
 structuralObjectClass: inetOrgPerson
-entryUUID: 51d5a318-0555-1040-8153-a1e0398f9920
-creatorsName: cn=prc,ou=users,ou=SYS,dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp
+entryUUID: 00000000-0000-4000-8000-000000000001
+creatorsName: cn=prc,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example
 createTimestamp: 20250804080358Z
 entryCSN: 20250926065542.273673Z#000000#001#000000
-modifiersName: cn=prc,ou=users,ou=SYS,dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp
+modifiersName: cn=prc,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example
 modifyTimestamp: 20250926065542Z
-entryDN: uid=p3cadm,ou=users,cn=P3C,ou=CLMAM-EUDE1-PROD,dc=cis-spc-tic,dc=gmp,dc=eu-de-1,dc=cloud,dc=ppp
+entryDN: uid=p3cadm,ou=users,cn=P3C,ou=SVC-A-EUDE1-PROD,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example
 subschemaSubentry: cn=Subschema
 hasSubordinates: FALSE
 ```

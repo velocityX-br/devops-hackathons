@@ -92,7 +92,7 @@ func InClusterConfig() (*Config, error)
   - 一个环境变量 `KUBERNETES_SERVICE_HOST` 和 `KUBERNETES_SERVICE_PORT`，指向 API Server 地址
 
   `InClusterConfig()` 会读取这些文件和环境变量，自动构建出包含：
-  - API Server 地址（如 `https://10.96.0.1:443`）
+  - API Server 地址（如 `https://10.0.0.1:443`）
   - TLS CA 证书（用于验证 API Server 身份）
   - Bearer Token（用于身份认证）
 

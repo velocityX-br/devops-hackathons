@@ -31,10 +31,10 @@ MaxHigh: 576
 
 3. change Grucrashkernel= 350 m
 
-(vadb02nza) cc02v019827:~ #
+(vadb02nza) vm-host001:~ #
 # grep -v "#" /etc/sysconfig/kdump | sort -r |grep -v '""'
 KDUMP_VERBOSE=7
-KDUMP_SAVEDIR="nfs://10.180.32.148/share_9095c713_caf9_4e8e_a6c3_c7fd6ac98cdc/kdump"
+KDUMP_SAVEDIR="nfs://10.0.0.1/share_9095c713_caf9_4e8e_a6c3_c7fd6ac98cdc/kdump"
 KDUMP_NET_TIMEOUT=10
 KDUMP_NETCONFIG="eth1:auto"
 KDUMP_KEEP_OLD_DUMPS=0
@@ -69,7 +69,7 @@ KDUMP_IMMEDIATE_REBOOT="true"
 KDUMP_TRANSFER=“"
 
 # /basmnt/tempdata
-KDUMP_SAVEDIR="nfs://10.180.32.148/share_9095c713_caf9_4e8e_a6c3_c7fd6ac98cdc/kdump"
+KDUMP_SAVEDIR="nfs://10.0.0.1/share_9095c713_caf9_4e8e_a6c3_c7fd6ac98cdc/kdump"
 KDUMP_KEEP_OLD_DUMPS=0
 KDUMP_FREE_DISK_SIZE=24
 

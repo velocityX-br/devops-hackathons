@@ -44,7 +44,7 @@ kubectl run tmp-shell --rm -i --tty --overrides='{"spec": {"hostNetwork": true}}
 ```
 
 ## check NIC name / ip addr
-kubectl debug node/shoot--sn1--sit-081-test-sitworker-j90ic-z1-69548-98j2w -it --image=busybox -- chroot /host
+kubectl debug node/shoot--lab--sit-081-test-sitworker-j90ic-z1-69548-98j2w -it --image=busybox -- chroot /host
 ```
 
 3. Debug priviledged container
@@ -54,9 +54,9 @@ kubectl run debug-node \
   --namespace=default \
   --rm \
   --privileged=true \
-  --image=cia-docker-live.int.repositories.cloud.ppp/sidevops-debugging:2.0.2 \
+  --image=plat-docker-live.int.repositories.cloud.pppdemands.com/team-b-debugging:2.0.2 \
   --stdin \
-  --env="PS1=\[\e[31m\]shoot--sn1--sit081-sitworker-f20z5-z1-74b9c-6q5sw\$ \[\e[0m\]" \
+  --env="PS1=\[\e[31m\]shoot--lab--sit081-sitworker-f20z5-z1-74b9c-6q5sw\$ \[\e[0m\]" \
   --tty \
   --attach \
   --overrides='
@@ -67,7 +67,7 @@ kubectl run debug-node \
     "hostNetwork": true,
     "hostPID": true,
     "nodeSelector": {
-      "kubernetes.io/hostname": "shoot--sn1--sit081-sitworker-f20z5-z1-74b9c-6q5sw"
+      "kubernetes.io/hostname": "shoot--lab--sit081-sitworker-f20z5-z1-74b9c-6q5sw"
     },
     "restartPolicy": "Never"
   }

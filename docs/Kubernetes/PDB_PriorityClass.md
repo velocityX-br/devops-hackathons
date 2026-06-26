@@ -15,7 +15,7 @@ Priority Class
 Priority 只在这两种情况下有意义：
 1. 调度时（谁先被调度）
 2. 抢占时（Preemption）
-DL_6167C66B64BF670280DD1D4A@example.com
+dl-team@example.com
 👉 升级不属于这两类。
 
 PDB Design

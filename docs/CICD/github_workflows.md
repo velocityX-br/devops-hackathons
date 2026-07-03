@@ -8,7 +8,7 @@ MISC：
 
 Re-requisites:
 1. Must install the SUGAR GitHub App in their organization
-    - https://github.com/marketplace/sugar-github-app | https://<internal-github>/organizations/lab-sit-org/settings/installations/15524
+    - https://github.com/marketplace/sugar-github-app | https://example.com/internal-github/organizations/lab-sit-org/settings/installations/15524
 2. Enable workflow from ppp Hyperspace
     - https://portal.hyperspace.tools.pppdemands.com/home
 
@@ -53,4 +53,4 @@ Reference:
 1. PR trigger workflow [events-that-trigger-workflows#pull_request](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#pull_request)
 2. Workflow built-in var [Using the GITHUB_TOKEN in a workflow](https://docs.github.com/en/actions/security-for-github-actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow)
 3. Offical Sugar Doc https://wiki.one.int.pppdemands.com/wiki/display/DevFw/SUGAR
-4. [sugar-service-solinas-hosted-runners](https://<internal-pages>/github/features-and-how-tos/features/actions/how-tos/runners/#sugar-service-solinas-hosted-runners)
+4. [sugar-service-solinas-hosted-runners](https://example.com/internal-pages/github/features-and-how-tos/features/actions/how-tos/runners/#sugar-service-solinas-hosted-runners)

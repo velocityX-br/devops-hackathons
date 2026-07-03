@@ -3,22 +3,22 @@
 - Default domain's Wildcard certificates is being supported from [request-a-wildcard-certificate](https://gardener.cloud/docs/extensions/others/gardener-extension-shoot-cert-service/request_default_domain_cert/#request-a-wildcard-certificate)
 
 
-- https://<internal-pages>/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#overview
-- [Configure a Custom Certificate Issuer](https://<internal-pages>/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#configure-a-custom-certificate-issuer)  - not in use so far
+- https://example.com/internal-pages/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#overview
+- [Configure a Custom Certificate Issuer](https://example.com/internal-pages/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#configure-a-custom-certificate-issuer)  - not in use so far
 - https://github.com/gardener/gardener-extension-shoot-cert-service
 - https://github.com/gardener/cert-management
 
 __ONLY TWO scenarios for Gardener Certificate Extensions__:
 - [manage-certificates-with-gardener-for-default-domain](https://gardener.cloud/docs/guides/networking/certificate-extension-default-domain/#manage-certificates-with-gardener-for-default-domain)
-- [manage-certificates-with-gardener-for-public-domain](https://<internal-pages>/kubernetes/gardener/docs/guides/networking/certificate-extension/#manage-certificates-with-gardener-for-public-domain) but you must follow the [prerequisite](https://<internal-pages>/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#prerequisites)
+- [manage-certificates-with-gardener-for-public-domain](https://example.com/internal-pages/kubernetes/gardener/docs/guides/networking/certificate-extension/#manage-certificates-with-gardener-for-public-domain) but you must follow the [prerequisite](https://example.com/internal-pages/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#prerequisites)
 
 __! Procedure of certificate management for public domain__:
 - Generate domain's certificate and key - testsecret-tls | certificate requested by `kind: certificate` ???
-- [using-a-custom-issuer-with-an-ingress](https://<internal-pages>/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#using-a-custom-issuer-with-an-ingress) or requesting-a-certificate-for-a-service-type-loadbalancer
+- [using-a-custom-issuer-with-an-ingress](https://example.com/internal-pages/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#using-a-custom-issuer-with-an-ingress) or requesting-a-certificate-for-a-service-type-loadbalancer
 
 
 __Gardener Certificates Extension Feature__:
-- [Supported annotations](https://<internal-pages>/kubernetes/gardener/docs/guides/networking/certificate-extension/#supported-attributes)
+- [Supported annotations](https://example.com/internal-pages/kubernetes/gardener/docs/guides/networking/certificate-extension/#supported-attributes)
 - 
 
 :::danger Known Cert Limitations

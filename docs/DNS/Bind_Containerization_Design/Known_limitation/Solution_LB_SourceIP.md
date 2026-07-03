@@ -1,6 +1,6 @@
 https://jira.tools.pppdemands.com/browse/PROJ-A-20583
-https://<internal-github>/plat-docker-images/sci-lbtools
-https://<internal-github>/plat-docker-images/k8s-cust-node/
+https://example.com/internal-github/plat-docker-images/sci-lbtools
+https://example.com/internal-github/plat-docker-images/k8s-cust-node/
 https://my.f5.com/manage/s/article/K13433
 https://jira.tools.pppdemands.com/browse/PROJ-A-16916
 

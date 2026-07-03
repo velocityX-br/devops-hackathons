@@ -16,7 +16,7 @@ alwaysApply: false
 | 企业邮箱 | `user@sap.com`, `svc@pppdemands.com` | `user@example.com` |
 | API/Client 密钥 | `AICORE_CLIENT_SECRET`, `clientSecret: abc...` | `<CLIENT_SECRET>` 或环境变量 |
 | DNS TSIG 密钥 | `secret "YkpN..."` | `secret "<TSIG_SECRET>"` |
-| 内部 URL | `github.tools.pppdemands.com/...` | 通用描述或 `<internal-repo>` |
+| 内部 URL | `github.tools.pppdemands.com/...` | `https://example.com/internal-github/...`（勿用 `https://<...>`，MDX 无法解析） |
 | 含用户 ID 的本地路径 | `/Users/I577081/...` | `/Users/<USER_ID>/...` |
 | PEM 私钥 | `-----BEGIN PRIVATE KEY-----` | 绝不写入，使用 KMS/Vault |
 

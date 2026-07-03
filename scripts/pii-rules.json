@@ -89,7 +89,7 @@
       "severity": "medium",
       "description": "指向企业内部 GitHub 实例的 URL",
       "pattern": "https?://github(?:\\.tools)?\\.pppdemands\\.com/[^\\s\"')\\]]+",
-      "hint": "移除链接或改为公开文档描述，勿暴露内部仓库路径"
+      "hint": "替换为 https://example.com/internal-github/...（勿用含 <> 的占位符，MDX 无法解析链接）"
     },
     {
       "id": "internal-pages-url",
@@ -97,7 +97,7 @@
       "severity": "medium",
       "description": "指向企业内部文档站点的 URL",
       "pattern": "https?://pages\\.github\\.tools\\.pppdemands\\.com/[^\\s\"')\\]]+",
-      "hint": "使用通用描述替代内部文档直链"
+      "hint": "替换为 https://example.com/internal-pages/...（勿用含 <> 的占位符，MDX 无法解析链接）"
     },
     {
       "id": "internal-registry",

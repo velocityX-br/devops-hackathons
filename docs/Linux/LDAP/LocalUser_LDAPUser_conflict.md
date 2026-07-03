@@ -17,7 +17,8 @@ Found file
 Device: fe05h/65029d    Inode: 131802      Links: 1
 Access: (0755/-rwxr-xr-x)  Uid: (  502/  wvtadm)   Gid: (   79/  pppsys)
 
-ldapsearch -ZZ -LLL -H ldap://ldap-eude2-spc.env-a-spc-tic.plat-a.eu-de-2.cloud.pppdemands.com -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -W "(&(uidNumber=502))"
+ldapsearch -ZZ -LLL -H ldap://ldap-eude2-spc.env-a-spc-tic.plat-a.eu-de-2.cloud.pppdemands.com -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -W \
+  "(&(uidNumber=502))"
 Enter LDAP Password:
 
 > ps -u wvtadm

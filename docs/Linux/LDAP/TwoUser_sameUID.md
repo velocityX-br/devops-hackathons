@@ -24,7 +24,8 @@ drwxrwx--- 3 test pppsys 18292736 May 21 12:15 data
 
 **Analysis**:
 
->  ldapsearch -ZZ -LLL -H ldap://ldap-eude2-spc.env-a-spc-tic.plat-a.eu-de-2.cloud.pppdemands.com -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -W "(uid=test)" creatorsName createTimestamp
+>  ldapsearch -ZZ -LLL -H ldap://ldap-eude2-spc.env-a-spc-tic.plat-a.eu-de-2.cloud.pppdemands.com -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -W \
+>  "(uid=test)" creatorsName createTimestamp
 Enter LDAP Password:
 dn: uid=test,ou=users,ou=SVC-A-EUDE2-VLAB,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=
  cloud,dc=example

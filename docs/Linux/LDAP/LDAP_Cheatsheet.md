@@ -121,6 +121,7 @@ dn: uid=USER004,ou=users,ou=ADS,dc=env-a-dev,dc=plat-a,dc=eu-de-1,dc=cloud,dc=ex
 
 ldapsearch -LLL -o ldif-wrap=no -H ldaps://ldap-eude1-spc.env-a-spc-tic.plat-a.eu-de-1.cloud.pppdemands.com -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example -W cn=pppadm
 
-ldapsearch -LLL -o ldif-wrap=no -H ldaps://ldap-eude1-spc.env-a-spc-tic.plat-a.eu-de-1.cloud.pppdemands.com -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example -W  "(objectClass=organizationalUnit)"
+ldapsearch -LLL -o ldif-wrap=no -H ldaps://ldap-eude1-spc.env-a-spc-tic.plat-a.eu-de-1.cloud.pppdemands.com -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example -W \
+  "(objectClass=organizationalUnit)"
 
 ```

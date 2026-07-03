@@ -65,7 +65,8 @@ Summary: `-D` 提供身份验证，绑定到服务器；`-b` 指定搜索范围�
 ### （Important）LDAP Search typical samples
 #### 1. Search a user
 ```
-ldapsearch -LLL -H ldaps://ldap.region-a.team-a.int.pppdemands.com -b dc=region-a,dc=sni,dc=int,dc=example -D cn=slave,ou=users,ou=SYS,dc=region-a,dc=sni,dc=int,dc=example -W "(uid=USER001)"
+ldapsearch -LLL -H ldaps://ldap.region-a.team-a.int.pppdemands.com -b dc=region-a,dc=sni,dc=int,dc=example -D cn=slave,ou=users,ou=SYS,dc=region-a,dc=sni,dc=int,dc=example -W \
+  "(uid=USER001)"
 Enter LDAP Password:
 dn: uid=USER001,ou=users,ou=ADS,dc=region-a,dc=sni,dc=int,dc=example
 objectClass: top
@@ -115,7 +116,8 @@ sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsIfNMUFUY1F+HW1SC9iYa2fUM
 
 #### 2. Search a group/CN
 ```
-ldapsearch -LLL -H ldaps://ldap-eude2-spc.env-a-spc-tic.plat-a.eu-de-2.cloud.pppdemands.com -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -W "(cn=pppsys)"
+ldapsearch -LLL -H ldaps://ldap-eude2-spc.env-a-spc-tic.plat-a.eu-de-2.cloud.pppdemands.com -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example -W \
+  "(cn=pppsys)"
 
 ## 每个环境各有一个cn=pppsys，下面是其中一个案例。
 dn: cn=pppsys,ou=groups,ou=SVC-A-EUDE2-TOOLS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example

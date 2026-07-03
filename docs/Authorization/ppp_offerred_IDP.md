@@ -20,3 +20,12 @@ https://wiki.one.int.pppdemands.com/wiki/spaces/S4HANAEPPM/pages/3775359511/IAS+
 
 PPP Cloud Identity Services: PPP Cloud Identity Services are a group of services, designed to enable identity and access management across systems. They aim to provide a seamless single sign-on experience for users in the cloud while ensuring that system and data access are secure.
 https://help.pppdemands.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication
+
+
+### PPP Tenant
+https://ajobbwdvt.accounts.ondemand.com/ui/protected/userData
+https://accounts.sap.com/ui/protected/profilemanagement
+
+
+MFA / TOTP
+https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/user-guide-multi-factor-authentication?version=Cloud

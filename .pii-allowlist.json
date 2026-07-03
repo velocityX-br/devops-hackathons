@@ -1,0 +1,5 @@
+{
+  "$schema": "./scripts/pii-allowlist.schema.json",
+  "description": "PII 扫描临时豁免列表。仅用于确认误报；真实敏感信息必须脱敏而非加入此列表。",
+  "entries": []
+}

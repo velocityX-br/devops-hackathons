@@ -56,7 +56,7 @@ dns-api dig global @0 axfr sha3.od.pppdemands.com |grep -E "IN[[:space:]]+A" |le
 
 所有 CQA inventory 类型都定义在这个文件:
 
-📄 **[cgi-bin/lib/PLAT-A/CQA/TypeEngine/Inventory.pm#L16-L112](https://github.tools.pppdemands.com/plat-web-services/plat-app/blob/main/cgi-bin/lib/PLAT-A/CQA/TypeEngine/Inventory.pm#L16-L112)**
+📄 **[cgi-bin/lib/PLAT-A/CQA/TypeEngine/Inventory.pm#L16-L112](https://<internal-github>/plat-web-services/plat-app/blob/main/cgi-bin/lib/PLAT-A/CQA/TypeEngine/Inventory.pm#L16-L112)**
 
 格式 `Singular(s)` 表示既支持单数又支持复数,例如:
 - `VirtualMachine(s)` → `VirtualMachine` 或 `VirtualMachines`

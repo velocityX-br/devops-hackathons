@@ -10,7 +10,7 @@ gardenctl target --garden ppp-landscape-lab --project team-a --shoot team-a-vali
 Dockerfile source codes
 ```
 # Stage 1: prepare banaries in alpine
-FROM dockerio.int.repositories.cloud.pppdemands.com/alpine/curl AS downloader
+FROM <internal-registry>/alpine/curl AS downloader
 
 ARG KUBECTL_VERSION=v1.30.1
 ARG VAULT_VERSION=1.15.5
@@ -37,7 +37,7 @@ RUN curl -L "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_a
     chmod +x /yq
 
 # Stage 2: Final image with busybox
-FROM suse.int.repositories.cloud.pppdemands.com/bci/bci-busybox:15.6.36.1
+FROM <internal-registry>/bci/bci-busybox:15.6.36.1
 
 # Parameters normally passed by the build process
 ARG VERSION=0.0.1
@@ -46,9 +46,9 @@ ARG CI_COMMIT_SHORT_SHA
 
 # Parameters according to https://github.com/opencontainers/image-spec/blob/main/annotations.md
 LABEL org.opencontainers.image.authors='SNI ppp Allan Yu'
-LABEL org.opencontainers.image.url='https://github.tools.pppdemands.com/team-a-docker-images/team-b-gardener-token-rotation'
+LABEL org.opencontainers.image.url='https://<internal-github>/team-a-docker-images/team-b-gardener-token-rotation'
 LABEL org.opencontainers.image.documentation='https://dev-docs.cia.net.pppdemands.com/docs/garm/team-a-docker-images/team-b-gardener-token-rotation'
-LABEL org.opencontainers.image.source='https://github.tools.pppdemands.com/team-a-docker-images/team-b-gardener-token-rotation.git'
+LABEL org.opencontainers.image.source='https://<internal-github>/team-a-docker-images/team-b-gardener-token-rotation.git'
 LABEL org.opencontainers.image.version=${VERSION}
 LABEL org.opencontainers.image.revision=${CI_COMMIT_SHORT_SHA}
 LABEL org.opencontainers.image.vendor='ppp SE'

@@ -54,7 +54,7 @@ kubectl run debug-node \
   --namespace=default \
   --rm \
   --privileged=true \
-  --image=plat-docker-live.int.repositories.cloud.pppdemands.com/team-b-debugging:2.0.2 \
+  --image=<internal-registry>/team-b-debugging:2.0.2 \
   --stdin \
   --env="PS1=\[\e[31m\]shoot--lab--sit081-sitworker-f20z5-z1-74b9c-6q5sw\$ \[\e[0m\]" \
   --tty \

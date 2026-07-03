@@ -1,0 +1,144 @@
+{
+  "$schema": "./pii-rules.schema.json",
+  "description": "企业 PII / 敏感信息检测规则，用于阻止公开发布到 GitHub Pages",
+  "scanPaths": [
+    "blog",
+    "docs",
+    "src",
+    "static",
+    "i18n"
+  ],
+  "scanExtensions": [".md", ".mdx", ".json", ".yml", ".yaml", ".js", ".ts", ".tsx", ".css"],
+  "ignorePaths": [
+    "node_modules",
+    "build",
+    ".docusaurus",
+    "i18n/**/code.json"
+  ],
+  "placeholderPatterns": [
+    "<[^>]+>",
+    "\\$\\{[^}]+\\}",
+    "\\$[A-Z_][A-Z0-9_]*",
+    "your[_-]?password",
+    "your[_-]?vault[_-]?token",
+    "example\\.com",
+    "dummy\\.com",
+    "placeholder",
+    "REDACTED",
+    "xxx+",
+    "\\*\\*\\*+",
+    "ms-00000000-0000-4000-8000-[0-9a-f]{12}",
+    "00000000-0000-4000-8000-[0-9a-f]{12}",
+    "<same-secret-as-[^>]+>",
+    "<[^>]*secret[^>]*>",
+    "<[^>]*token[^>]*>",
+    "<[^>]*password[^>]*>"
+  ],
+  "rules": [
+    {
+      "id": "sap-user-id",
+      "name": "SAP 用户 ID",
+      "severity": "high",
+      "description": "SAP 员工/系统用户 ID（如 I123456、C123456）",
+      "pattern": "\\b[ICD][0-9]{6,8}\\b",
+      "hint": "替换为 <USER_ID> 或虚构 ID（如 I000000）"
+    },
+    {
+      "id": "corporate-email",
+      "name": "企业邮箱",
+      "severity": "high",
+      "description": "SAP / 企业内部邮箱地址",
+      "pattern": "[a-zA-Z0-9._%+-]+@(?:sap\\.com|pppdemands\\.com|global\\.pppdemands\\.com|cia\\.net\\.pppdemands\\.com|od\\.pppdemands\\.com)",
+      "hint": "替换为 user@example.com 或 svc-account@example.com"
+    },
+    {
+      "id": "client-secret-value",
+      "name": "OAuth Client Secret",
+      "severity": "critical",
+      "description": "OIDC/OAuth clientSecret 明文值",
+      "pattern": "clientSecret:\\s*[0-9a-fA-F]{16,}",
+      "hint": "替换为 clientSecret: <CLIENT_SECRET> 或从 Vault 引用"
+    },
+    {
+      "id": "json-credential",
+      "name": "JSON 凭证字段",
+      "severity": "critical",
+      "description": "JSON 中的密钥/密码明文（AICORE_CLIENT_SECRET、password 等）",
+      "pattern": "\"(?:AICORE_CLIENT_(?:ID|SECRET)|client_secret|api_key|private_key|access_token|refresh_token|password|secret_id|secret-id)\"\\s*:\\s*\"[^\"\\s<][^\"]{7,}\"",
+      "hint": "使用占位符或环境变量引用，勿写入真实值"
+    },
+    {
+      "id": "dns-tsig-secret",
+      "name": "DNS TSIG Secret",
+      "severity": "critical",
+      "description": "BIND DNS TSIG 共享密钥",
+      "pattern": "secret\\s+\"[A-Za-z0-9+/]{20,}={0,2}\"",
+      "hint": "替换为 secret \"<TSIG_SECRET>\"; 并注明从 dnssec-keygen 生成"
+    },
+    {
+      "id": "home-path-user-id",
+      "name": "含用户 ID 的本地路径",
+      "severity": "high",
+      "description": "包含真实 SAP 用户 ID 的本地文件路径",
+      "pattern": "/(?:Users|home)/[ICD][0-9]{6,8}/",
+      "hint": "替换为 /Users/<USER_ID>/ 或 ~/project/"
+    },
+    {
+      "id": "internal-github-url",
+      "name": "企业内部 GitHub URL",
+      "severity": "medium",
+      "description": "指向企业内部 GitHub 实例的 URL",
+      "pattern": "https?://github(?:\\.tools)?\\.pppdemands\\.com/[^\\s\"')\\]]+",
+      "hint": "移除链接或改为公开文档描述，勿暴露内部仓库路径"
+    },
+    {
+      "id": "internal-pages-url",
+      "name": "企业内部 Pages URL",
+      "severity": "medium",
+      "description": "指向企业内部文档站点的 URL",
+      "pattern": "https?://pages\\.github\\.tools\\.pppdemands\\.com/[^\\s\"')\\]]+",
+      "hint": "使用通用描述替代内部文档直链"
+    },
+    {
+      "id": "internal-registry",
+      "name": "企业内部镜像仓库",
+      "severity": "medium",
+      "description": "企业内部 Docker/镜像仓库地址",
+      "pattern": "[a-zA-Z0-9.-]+\\.repositories\\.cloud\\.pppdemands\\.com/[^\\s\"')\\]]+",
+      "hint": "替换为 <internal-registry>/image:tag"
+    },
+    {
+      "id": "bearer-token",
+      "name": "Bearer Token",
+      "severity": "critical",
+      "description": "HTTP Authorization Bearer 令牌明文",
+      "pattern": "Bearer\\s+[A-Za-z0-9._-]{30,}",
+      "hint": "替换为 Bearer <TOKEN>"
+    },
+    {
+      "id": "aws-access-key",
+      "name": "AWS Access Key",
+      "severity": "critical",
+      "description": "AWS 访问密钥 ID",
+      "pattern": "AKIA[0-9A-Z]{16}",
+      "hint": "立即轮换密钥并使用占位符"
+    },
+    {
+      "id": "private-key-block",
+      "name": "PEM 私钥",
+      "severity": "critical",
+      "description": "PEM 格式私钥块",
+      "pattern": "-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----",
+      "hint": "绝不可提交私钥；使用密钥管理服务"
+    },
+    {
+      "id": "ldap-bind-password",
+      "name": "LDAP 绑定密码",
+      "severity": "high",
+      "description": "LDAP 命令中的明文密码参数",
+      "pattern": "-w\\s+['\"][^'\"\\s$][^'\"]{3,}['\"]",
+      "flags": "g",
+      "hint": "使用 -W（交互提示）或 $LDAP_PASSWORD 环境变量"
+    }
+  ]
+}

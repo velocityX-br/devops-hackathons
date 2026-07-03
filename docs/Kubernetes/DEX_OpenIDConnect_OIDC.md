@@ -144,7 +144,7 @@ connectors:
     config:
       hostName: github.tools.pppdemands.com
       clientID: 10d243b3a534663b2754
-      clientSecret: 29af41acfe0befbb77775b7411df282c4f557652
+      clientSecret: <CLIENT_SECRET>
       redirectURI: https://dex.k8s.team-a.int.pppdemands.com/callback
       loadAllGroups: true
       orgs:

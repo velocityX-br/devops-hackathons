@@ -5,7 +5,7 @@ npm
 npm install -g @musistudio/claude-code-router
 less ~/.claude-code-router/config.json
 
-export ANTHROPIC_AUTH_TOKEN=sxxaa0c6xxxca4e18b9776eadce32dc756f45fbfebd485ae7bc3f3
+export ANTHROPIC_AUTH_TOKEN=sxxaa0c6xxxca4aaa
 export ANTHROPIC_BASE_URL=https://anyrouter.top
 
 export ANTHROPIC_AUTH_TOKEN=PROJECT-ID-PLACEHOLDER.u7cIZBA4c0Vvup24
@@ -26,7 +26,7 @@ OpenRouter Configuration
     {
       "name": "openrouter",
       "api_base_url": "https://openrouter.ai/api/v1/chat/completions",
-      "api_key": "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",
+      "api_key": "<OPENROUTER_API_KEY>",
       "models": [
         "google/gemini-2.5-pro",
         "anthropic/claude-sonnet-4",
@@ -63,7 +63,7 @@ ModelScope configuration
     {
       "name": "modelscope",
       "api_base_url": "https://api-reference.modelscope.cn/api/v1/chat/completions",
-      "api_key": "ms-00000000-0000-4000-8000-000000000001",
+      "api_key": "<MODELSCOPE_API_KEY>",
       "models": [
         "Qwen/Qwen3-Coder-480B-A35B-Instruct",
         "Qwen/Qwen3-235B-A22B-Instruct-2507"

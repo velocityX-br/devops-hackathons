@@ -18,10 +18,10 @@ appoint delimiter as "-" and -f1 meaning the first field
 
 (logsrv01-eude2-spc) vsa-host001:/tmp/bz2_tmp #
 # printf "%s\n" *20251114*
-c5240952-20251114-163526-RVobNl
-c5240952-20251114-163526-RVobNl.tar
-c5319326-20251114-040219-LWWOZM
-c5319326-20251114-040219-LWWOZM.tar
+bundle-20251114-163526-XXXXXX
+bundle-20251114-163526-XXXXXX.tar
+bundle-20251114-040219-YYYYYY
+bundle-20251114-040219-YYYYYY.tar
 
 ```
 

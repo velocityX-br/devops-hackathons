@@ -20,7 +20,7 @@ cat <<EOF > /etc/bind/pppcp.key
 // TSIG pppcp key for BTP PSA Multidc secure dynamic update
 key "pppcp-key" {
     algorithm hmac-sha256;
-    secret "64x88jYklWnCuU/JOrIoz58Fy+sYrILJGBlObvB/16E="; // Use dnssec-keygen 
+    secret "<TSIG_SECRET>"; // Use dnssec-keygen 
 };
 EOF
 ```

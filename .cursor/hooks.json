@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/check-pii-after-edit.sh",
+        "matcher": "Write|StrReplace",
+        "failClosed": false
+      }
+    ]
+  }
+}

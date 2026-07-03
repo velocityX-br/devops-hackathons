@@ -1,0 +1,32 @@
+---
+description: 防止在公开文档/博客中写入企业 PII 与敏感凭证
+globs: "{blog,docs,src,static,i18n}/**/*.{md,mdx,json,yml,yaml}"
+alwaysApply: false
+---
+
+# 企业 PII 与敏感信息保护
+
+本仓库内容会部署到 **公开 GitHub Pages**，禁止写入真实企业敏感信息。
+
+## 禁止发布的内容
+
+| 类别 | 示例 | 应替换为 |
+|------|------|----------|
+| SAP 用户 ID | `I532341` | `<USER_ID>` 或 `I000000` |
+| 企业邮箱 | `user@sap.com`, `svc@pppdemands.com` | `user@example.com` |
+| API/Client 密钥 | `AICORE_CLIENT_SECRET`, `clientSecret: abc...` | `<CLIENT_SECRET>` 或环境变量 |
+| DNS TSIG 密钥 | `secret "YkpN..."` | `secret "<TSIG_SECRET>"` |
+| 内部 URL | `github.tools.pppdemands.com/...` | 通用描述或 `<internal-repo>` |
+| 含用户 ID 的本地路径 | `/Users/I577081/...` | `/Users/<USER_ID>/...` |
+| PEM 私钥 | `-----BEGIN PRIVATE KEY-----` | 绝不写入，使用 KMS/Vault |
+
+## 编写规范
+
+- 代码块中的凭证一律使用占位符：`$ENV_VAR`、`<TOKEN>`、`your_password_here`
+- 截图/日志先脱敏再引用
+- 内部系统名称可用泛化描述（如 "internal GitHub Enterprise"）
+- 提交前运行 `yarn check:pii` 确认通过
+
+## 修改 docs/blog 后
+
+若 Cursor 提示 PII 违规，必须脱敏后重新提交，**不要**将真实敏感信息加入 `.pii-allowlist.json`。

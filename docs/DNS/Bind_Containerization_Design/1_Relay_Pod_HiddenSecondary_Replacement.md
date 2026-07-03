@@ -276,14 +276,14 @@ dns-api ps add <SERVER>
                                                   'plat-a' => {
                                                              'plat-a-0-test2' => 'key "plat-a-0-test2" {
         algorithm hmac-sha256;
-        secret "YkpNGHiltwii/t1wWWiDZEBo3hWs63PTxXjoLli1Rs8=";
+        secret "<TSIG_SECRET>";
 };
 '
                                                            },
                                                   'slave' => {
                                                                'slave-0-test2' => 'key "slave-0-test2" {
         algorithm hmac-sha256;
-        secret "Jb4BI95UVy83p62+bm1XsX2zoa/YOO1Ek4d11QZZY3A=";
+        secret "<TSIG_SECRET>";
 };
 '
                                                              }
@@ -311,7 +311,7 @@ dns-api ps add <SERVER>
 //---- KEYS for for slaves in view test2
 key "slave-0-test2" {
         algorithm hmac-sha256;
-        secret "Jb4BI95UVy83p62+bm1XsX2zoa/YOO1Ek4d11QZZY3A=";
+        secret "<TSIG_SECRET>";
 };
 
 acl "slaves-test2" {

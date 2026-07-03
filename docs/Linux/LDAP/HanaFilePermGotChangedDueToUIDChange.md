@@ -5,7 +5,7 @@ INC15677070 - Strange file ownership change after reboot
 __RCA__:  UID was changed by a PLAT-A technical user resulting in subsequent effect. Files owner got changed while Process got restarted/OS rebooted  
 
 ```
-Atul Sharma (C5381597) at 2025-10-08 09:58:07 (GMT):
+Engineer (<USER_ID>) at 2025-10-08 09:58:07 (GMT):
 
 Hi Colleagues,
 
@@ -46,7 +46,8 @@ modifyTimestamp: 20250926065542Z
 
 ```
 (vadb03p3c) cc01v012157:~ #
-# ldapsearch -LLL -o ldif-wrap=no   -H ldaps://ldap-eude1-spc.env-a-spc-tic.plat-a.eu-de-1.cloud.pppdemands.com   -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -W   "(uid=p3cadm)"
+# ldapsearch -LLL -o ldif-wrap=no   -H ldaps://ldap-eude1-spc.env-a-spc-tic.plat-a.eu-de-1.cloud.pppdemands.com   -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -W \
+#   "(uid=p3cadm)"
 Enter LDAP Password:
 dn: uid=p3cadm,ou=users,cn=P3C,ou=SVC-A-EUDE1-PROD,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example
 gecos: ppp System Administrator
@@ -66,7 +67,8 @@ homeDirectory: /usr/example/P3C/home
 uidNumber: 100000047
 
 (vadb03p3c) cc01v012157:~ #
-# ldapsearch -LLL -o ldif-wrap=no   -H ldaps://ldap-eude1-spc.env-a-spc-tic.plat-a.eu-de-1.cloud.pppdemands.com   -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -W   "(uid=p3cadm)" +
+# ldapsearch -LLL -o ldif-wrap=no   -H ldaps://ldap-eude1-spc.env-a-spc-tic.plat-a.eu-de-1.cloud.pppdemands.com   -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example   -W \
+#   "(uid=p3cadm)" +
 Enter LDAP Password:
 dn: uid=p3cadm,ou=users,cn=P3C,ou=SVC-A-EUDE1-PROD,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-1,dc=cloud,dc=example
 structuralObjectClass: inetOrgPerson

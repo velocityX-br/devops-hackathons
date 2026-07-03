@@ -1,0 +1,40 @@
+# PII / 敏感信息检查 — 在合并前阻止含企业敏感信息的内容进入 main
+name: PII Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'blog/**'
+      - 'docs/**'
+      - 'src/**'
+      - 'static/**'
+      - 'i18n/**'
+      - 'scripts/pii-rules.json'
+      - 'scripts/check-pii.cjs'
+      - '.pii-allowlist.json'
+  push:
+    branches: [main]
+    paths:
+      - 'blog/**'
+      - 'docs/**'
+      - 'src/**'
+      - 'static/**'
+      - 'i18n/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pii-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Run PII scanner
+        run: node scripts/check-pii.cjs

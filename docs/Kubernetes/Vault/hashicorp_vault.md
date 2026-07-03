@@ -34,7 +34,7 @@ Hashicorp Vault中的认证方法
 ```
 vault list auth/approle/role
     Keys
-      i542016
+      example_approle_user
       si_devops_platouser0
       si_devops_platouser1
       test_approle

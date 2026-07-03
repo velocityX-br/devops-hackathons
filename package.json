@@ -16,7 +16,9 @@
     "translate:status": "node scripts/translate-doc.cjs status",
     "translate:scaffold": "node scripts/translate-doc.cjs scaffold",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "check:pii": "node scripts/check-pii.cjs",
+    "prebuild": "node scripts/check-pii.cjs"
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.2",

@@ -8,8 +8,8 @@ export VAULT_NAMESPACE="gcs/pso_team-b/playground"
 export VAULT_ADDR=https://vault.tools.pppdemands.com/
 ```
 
-- https://<internal-pages>/github/features-and-how-tos/features/actions/how-tos/security-hardening#using-github-app-tokens
-- https://<internal-github>/USER002/public_pocs/tree/main/vault-jwt-signing
+- https://example.com/internal-pages/github/features-and-how-tos/features/actions/how-tos/security-hardening#using-github-app-tokens
+- https://example.com/internal-github/USER002/public_pocs/tree/main/vault-jwt-signing
 
 
 

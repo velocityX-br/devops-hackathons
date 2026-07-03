@@ -2,7 +2,7 @@
 
 
 (Likely ppp Internal)
-https://<internal-pages>/kubernetes/gardener/docs/getting-started/introduction/
+https://example.com/internal-pages/kubernetes/gardener/docs/getting-started/introduction/
 https://github.com/gardener
 https://github.com/gardenlinux/gardenlinux   Support: ppp-tech-gardenlinux in slack or Github Issue
 https://github.com/gardener/etcd-druid

@@ -2,7 +2,7 @@
 
 Unsafe sysctl couldn't be applied from node level/Gardener cluster. Gardener don't natively support enablign unsafe sysctl from K8S node's kubelet. 
 
-https://<internal-github>/kubernetes-live/issues-live/issues/7595#issuecomment-14529435
+https://example.com/internal-github/kubernetes-live/issues-live/issues/7595#issuecomment-14529435
 https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/
 
 ```

@@ -1,3 +1,3 @@
 
 
-[Github@ppp](https://<internal-pages>/github/introduction)
+[Github@ppp](https://example.com/internal-pages/github/introduction)

@@ -13,7 +13,7 @@ Enable custom Landscape DNS by enabling `node-local-dns`<br>
 POC ticket:https://jira.tools.pppdemands.com/browse/PROJ-B-14841
 Massive rollout ticket: https://jira.tools.pppdemands.com/browse/PROJ-B-15059
 https://convergedcloud.slack.com/archives/C9CEBQPGE/p1754053063924389 
-https://<internal-pages>/kubernetes/gardener/docs/landscapes/live/gardener/networking/custom-dns-config/
+https://example.com/internal-pages/kubernetes/gardener/docs/landscapes/live/gardener/networking/custom-dns-config/
 https://gardener.cloud/docs/gardener/networking/custom-dns-config/#node-local-dns
 
 Implementation of customizing coreDNS's resolution chain.

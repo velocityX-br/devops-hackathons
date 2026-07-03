@@ -48,8 +48,8 @@ curl -G 'http://127.0.0.1:3100/vali/api/v1/query_range' \
 
 
 
-https://<internal-github>/kubernetes/ops-guide/blob/091e7bebd90ad0cd153e00da207a29b246837d54/docs/operator-section/how-to-guides/operations-and-maintenance/retrieving-logs-via-logcli.md
-https://<internal-github>/kubernetes/gardener-robot/blob/208c0cdf1d8933166c1e6c4957d397294b520718/robot/util/discovery.py
+https://example.com/internal-github/kubernetes/ops-guide/blob/091e7bebd90ad0cd153e00da207a29b246837d54/docs/operator-section/how-to-guides/operations-and-maintenance/retrieving-logs-via-logcli.md
+https://example.com/internal-github/kubernetes/gardener-robot/blob/208c0cdf1d8933166c1e6c4957d397294b520718/robot/util/discovery.py
 
 Gardener Fluent-bit to Vali
-https://<internal-github>/kubernetes/ops-cel-rules/blob/5aa0f3ff297cd1e654d9dfec5756872bfd8c01b9/resources/fluent-bit-ds.yaml
+https://example.com/internal-github/kubernetes/ops-cel-rules/blob/5aa0f3ff297cd1e654d9dfec5756872bfd8c01b9/resources/fluent-bit-ds.yaml

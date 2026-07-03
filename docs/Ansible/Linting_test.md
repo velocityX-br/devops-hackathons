@@ -4,7 +4,7 @@
 docker run --rm -it \
   -v "$PWD":/work \
   -w /work \
-  plat-docker-live.int.repositories.cloud.pppdemands.com/ansible-lint:1.0.7 \
+  <internal-registry>/ansible-lint:1.0.7 \
   ansible-lint --offline \
     --exclude setup/ \
     --exclude docker-compose.yaml \

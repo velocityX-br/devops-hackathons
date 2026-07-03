@@ -52,7 +52,7 @@ docker image history `<imageid>` 查看某个镜像各层内容及对应大小
 USER001@vsa-host001:/tmp> sudo docker images --filter "dangling=true"
 REPOSITORY                                                                        TAG       IMAGE ID       CREATED       SIZE
 <none>                                                                            <none>    aa70b42ace47   7 hours ago   67MB
-plat-a-env-a-automation.int.repositories.cloud.pppdemands.com/env-a-automation-container/sles15_sp3   <none>    a2b7a98627a8   4 days ago    3.82GB
+<internal-registry>/env-a-automation-container/sles15_sp3   <none>    a2b7a98627a8   4 days ago    3.82GB
 
 USER001@vsa-host001:/tmp> sudo docker image history a2b7a98627a8
 IMAGE          CREATED      CREATED BY                                      SIZE      COMMENT
@@ -82,32 +82,32 @@ docker exec -it <容器ID或容器名称> /bin/bash
 #### Config file
 /home/USER001/.docker/config.jsone
 
-docker tag team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic:latest team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic:bkp_latest
+docker tag <internal-registry>/team-b/perl-critic:latest <internal-registry>/team-b/perl-critic:bkp_latest
 
 #### build docker image
-docker build -t team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic:$tag .
+docker build -t <internal-registry>/team-b/perl-critic:$tag .
 
 #### quickly build an image locally.
 docker build -t bindprototype:1.0 .
 
 #### push to remove private githut repo
-docker push team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic
+docker push <internal-registry>/team-b/perl-critic
 
 #### remove container
 docker rm checklib_test 
 
 #### Run container 
-docker run -it --name checklib_test team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic:latest /bin/sh
+docker run -it --name checklib_test <internal-registry>/team-b/perl-critic:latest /bin/sh
 
 #### Check image history
-docker history team-b.int.repositories.cloud.pppdemands.com/team-b/perl-critic
+docker history <internal-registry>/team-b/perl-critic
 
 
 #### remove docker (dangling) volume
 docker volume rm $(docker volume ls -qf dangling=true)
 
 #### move image from one to the other.
-docker tag team-b.int.repositories.cloud.pppdemands.com/team-b/pycheck keppel.eu-de-1.cloud.pppdemands.com/si-cicd/pycheck-081:latest
+docker tag <internal-registry>/team-b/pycheck keppel.eu-de-1.cloud.pppdemands.com/si-cicd/pycheck-081:latest
 ```
 
 About docker authentication

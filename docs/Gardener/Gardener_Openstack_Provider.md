@@ -69,7 +69,7 @@ Question:
 Worker notes AZ should be matching to `Manila AZ ? Compute AZ (zone-1) = Manila AZ (Zone-1)`
 https://github.com/kubernetes/cloud-provider-openstack/blob/master/docs/manila-csi-plugin/using-manila-csi-plugin.md
 
-https://github.tools.pppdemands.com/sdo-toolsandutilities/gardener-addons
+https://<internal-github>/sdo-toolsandutilities/gardener-addons
 
 ### Shoot Cluster Enable DNS provider - Openstack designate
 
@@ -173,7 +173,7 @@ metadata:
 ```
 
 ### Shoot Cluster Enable Custom Certificate
-https://pages.github.tools.pppdemands.com/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#configure-a-custom-certificate-issuer
+https://<internal-pages>/kubernetes/gardener/docs/guides/ppp-internal/networking-lb/managed-certs-from-ppp-ca/#configure-a-custom-certificate-issuer
 
 Known limitation: Wildcard requests are not supported as of now by vendor, according to [pppNETCAG2+ACME+Guide](https://wiki.one.int.pppdemands.com/wiki/display/PKI/pppNETCAG2+ACME+Guide)
 ```jsx title="Configure a custom certificate"

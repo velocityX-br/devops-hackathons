@@ -11,7 +11,7 @@ fluent-bit:
   shoot_name: sit081
   image:
     repository:
-      dockerio.int.repositories.cloud.pppdemands.com/fluent/fluent-bit
+      <internal-registry>/fluent/fluent-bit
   serviceMonitor:
     enabled: true
   annotations:

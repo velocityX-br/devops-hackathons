@@ -5,8 +5,8 @@
 Ref
 ```
 # ref: https://build.opensuse.org/projects/openSUSE:Slowroll:Base/packages/bind-image/files/Dockerfile?expand=1
-# ref: https://github.tools.pppdemands.com/team-a-docker-images/team-b-389ds/blob/main/Dockerfile
-# ref: https://github.tools.pppdemands.com/plat-docker-images/env-a-dns/blob/main/changelog.txt
+# ref: https://<internal-github>/team-a-docker-images/team-b-389ds/blob/main/Dockerfile
+# ref: https://<internal-github>/plat-docker-images/env-a-dns/blob/main/changelog.txt
 ```
 
 ### Single zone transferin default view

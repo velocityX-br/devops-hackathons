@@ -8,7 +8,7 @@ stages:
   - sync
 
 repo-pull-push:
-  image: plat-docker-live.int.repositories.cloud.pppdemands.com/ciea-pipeline-tools:4.0.9
+  image: <internal-registry>/ciea-pipeline-tools:4.0.9
   stage: sync
   script:
     # - env

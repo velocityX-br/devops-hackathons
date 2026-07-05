@@ -46,9 +46,9 @@ ARG CI_COMMIT_SHORT_SHA
 
 # Parameters according to https://github.com/opencontainers/image-spec/blob/main/annotations.md
 LABEL org.opencontainers.image.authors='SNI ppp Allan Yu'
-LABEL org.opencontainers.image.url='https://<internal-github>/team-a-docker-images/team-b-gardener-token-rotation'
+LABEL org.opencontainers.image.url='https://example.com/internal-github/team-a-docker-images/team-b-gardener-token-rotation'
 LABEL org.opencontainers.image.documentation='https://dev-docs.cia.net.pppdemands.com/docs/garm/team-a-docker-images/team-b-gardener-token-rotation'
-LABEL org.opencontainers.image.source='https://<internal-github>/team-a-docker-images/team-b-gardener-token-rotation.git'
+LABEL org.opencontainers.image.source='https://example.com/internal-github/team-a-docker-images/team-b-gardener-token-rotation.git'
 LABEL org.opencontainers.image.version=${VERSION}
 LABEL org.opencontainers.image.revision=${CI_COMMIT_SHORT_SHA}
 LABEL org.opencontainers.image.vendor='ppp SE'

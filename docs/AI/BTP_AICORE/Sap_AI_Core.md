@@ -79,3 +79,17 @@ wheel 中自带的 Sphinx 文档作为唯一可信的数据源，而不是依赖
 
 ⏺ Fetch(https://help.sap.com/doc/generative-ai-hub-sdk/CLOUD/en-US/_reference/orchestration.html)
 ```
+Good article from SAP Community:
+https://community.sap.com/t5/artificial-intelligence-blogs-posts/i-built-an-ai-agent-with-litellm-crewai-and-sap-rpt-1-here-s-what-actually/ba-p/14315663
+https://sap-contributions.github.io/litellm-agentic-examples/
+
+
+Sample Code Repositories:
+1. https://github.com/SAP-samples/codejam-code-based-agents/
+2. 
+
+
+FinOps: Crew (Probably integrate with BTP AI Core)
+https://crewai.com/open-source
+https://jira.tools.sap/browse/TPAITR-73
+https://docs.litellm.ai/docs/providers/sap 

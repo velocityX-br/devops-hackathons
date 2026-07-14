@@ -34,3 +34,46 @@ VPPR 的全称是 Vice President Public Relations（公关副主席 / 公共关�
 协助会员成长 - 
 
 TO-DO: 语言方法论？ 
+
+
+0714 Day 22 - 
+
+Q: 在演讲时,如何抛出疑问问题
+
+A: 
+
+
+Q: 两队辩论时的范式 
+行动瘫痪: analysis paralysis 会显著降低行动效率，这正是过度准备的常见后果。
+
+反证法 - 
+
+
+
+
+--- 
+Free Topic:
+Investment  / 
+
+- currency
+- silver
+- golden
+- Warren Buffett
+- ability to forsee or forcast the future. 
+- Oil 
+
+##### Speech Tip
+0. Start strong
+1. Eyes contact to everyone
+2. Bring the question to audience
+3. 
+4. Move your body a little bit.
+5. 
+
+#### Evaluator 
+1. Recognition 
+2. 
+
+
+Conjunction, 
+1. With this, I'd to handover back to XXX.

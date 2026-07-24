@@ -8,7 +8,7 @@ https://www.ebsco.com/research-starters/communication-and-mass-media/high-contex
 
 - Open question:
 1. Have anyone ever feel Back Pain and Lower Back Pain during work or study life at schocol ?
-<Response preparation>
+**Response preparation**
 A. Few Hands - Most people have their first encounter with back pain when they’re between the ages of 30 and 50 years old
 B. Many Hands - I am very superise of many people as I thought ...
 

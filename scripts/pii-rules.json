@@ -41,7 +41,8 @@
       "severity": "high",
       "description": "SAP 员工/系统用户 ID（如 I123456、C123456）",
       "pattern": "\\b[ICD][0-9]{6,8}\\b",
-      "hint": "替换为 <USER_ID> 或虚构 ID（如 I000000）"
+      "hint": "替换为 <USER_ID> 或虚构 ID（如 I000000）",
+      "replacement": "<USER_ID>"
     },
     {
       "id": "corporate-email",
@@ -49,7 +50,8 @@
       "severity": "high",
       "description": "SAP / 企业内部邮箱地址",
       "pattern": "[a-zA-Z0-9._%+-]+@(?:sap\\.com|pppdemands\\.com|global\\.pppdemands\\.com|cia\\.net\\.pppdemands\\.com|od\\.pppdemands\\.com)",
-      "hint": "替换为 user@example.com 或 svc-account@example.com"
+      "hint": "替换为 user@example.com 或 svc-account@example.com",
+      "replacement": "user@example.com"
     },
     {
       "id": "client-secret-value",
@@ -57,7 +59,8 @@
       "severity": "critical",
       "description": "OIDC/OAuth clientSecret 明文值",
       "pattern": "clientSecret:\\s*[0-9a-fA-F]{16,}",
-      "hint": "替换为 clientSecret: <CLIENT_SECRET> 或从 Vault 引用"
+      "hint": "替换为 clientSecret: <CLIENT_SECRET> 或从 Vault 引用",
+      "replacement": "clientSecret: <CLIENT_SECRET>"
     },
     {
       "id": "json-credential",
@@ -65,7 +68,9 @@
       "severity": "critical",
       "description": "JSON 中的密钥/密码明文（AICORE_CLIENT_SECRET、password 等）",
       "pattern": "\"(?:AICORE_CLIENT_(?:ID|SECRET)|client_secret|api_key|private_key|access_token|refresh_token|password|secret_id|secret-id)\"\\s*:\\s*\"[^\"\\s<][^\"]{7,}\"",
-      "hint": "使用占位符或环境变量引用，勿写入真实值"
+      "hint": "使用占位符或环境变量引用，勿写入真实值",
+      "replacement": "$1\"<REDACTED>\"",
+      "captureRewrite": "(\"(?:AICORE_CLIENT_(?:ID|SECRET)|client_secret|api_key|private_key|access_token|refresh_token|password|secret_id|secret-id)\"\\s*:\\s*)\"[^\"\\s<][^\"]{7,}\""
     },
     {
       "id": "dns-tsig-secret",
@@ -73,7 +78,8 @@
       "severity": "critical",
       "description": "BIND DNS TSIG 共享密钥",
       "pattern": "secret\\s+\"[A-Za-z0-9+/]{20,}={0,2}\"",
-      "hint": "替换为 secret \"<TSIG_SECRET>\"; 并注明从 dnssec-keygen 生成"
+      "hint": "替换为 secret \"<TSIG_SECRET>\"; 并注明从 dnssec-keygen 生成",
+      "replacement": "secret \"<TSIG_SECRET>\""
     },
     {
       "id": "home-path-user-id",
@@ -81,7 +87,8 @@
       "severity": "high",
       "description": "包含真实 SAP 用户 ID 的本地文件路径",
       "pattern": "/(?:Users|home)/[ICD][0-9]{6,8}/",
-      "hint": "替换为 /Users/<USER_ID>/ 或 ~/project/"
+      "hint": "替换为 /Users/<USER_ID>/ 或 ~/project/",
+      "replacement": "/Users/<USER_ID>/"
     },
     {
       "id": "internal-github-url",
@@ -89,7 +96,8 @@
       "severity": "medium",
       "description": "指向企业内部 GitHub 实例的 URL",
       "pattern": "https?://github(?:\\.tools)?\\.pppdemands\\.com/[^\\s\"')\\]]+",
-      "hint": "替换为 https://example.com/internal-github/...（勿用含 <> 的占位符，MDX 无法解析链接）"
+      "hint": "替换为 https://example.com/internal-github/...（勿用含 <> 的占位符，MDX 无法解析链接）",
+      "replacement": "https://example.com/internal-github/redacted"
     },
     {
       "id": "internal-pages-url",
@@ -97,7 +105,8 @@
       "severity": "medium",
       "description": "指向企业内部文档站点的 URL",
       "pattern": "https?://pages\\.github\\.tools\\.pppdemands\\.com/[^\\s\"')\\]]+",
-      "hint": "替换为 https://example.com/internal-pages/...（勿用含 <> 的占位符，MDX 无法解析链接）"
+      "hint": "替换为 https://example.com/internal-pages/...（勿用含 <> 的占位符，MDX 无法解析链接）",
+      "replacement": "https://example.com/internal-pages/redacted"
     },
     {
       "id": "internal-registry",
@@ -105,7 +114,8 @@
       "severity": "medium",
       "description": "企业内部 Docker/镜像仓库地址",
       "pattern": "[a-zA-Z0-9.-]+\\.repositories\\.cloud\\.pppdemands\\.com/[^\\s\"')\\]]+",
-      "hint": "替换为 <internal-registry>/image:tag"
+      "hint": "替换为 <internal-registry>/image:tag",
+      "replacement": "<internal-registry>/image:tag"
     },
     {
       "id": "bearer-token",
@@ -113,7 +123,8 @@
       "severity": "critical",
       "description": "HTTP Authorization Bearer 令牌明文",
       "pattern": "Bearer\\s+[A-Za-z0-9._-]{30,}",
-      "hint": "替换为 Bearer <TOKEN>"
+      "hint": "替换为 Bearer <TOKEN>",
+      "replacement": "Bearer <TOKEN>"
     },
     {
       "id": "aws-access-key",
@@ -121,7 +132,8 @@
       "severity": "critical",
       "description": "AWS 访问密钥 ID",
       "pattern": "AKIA[0-9A-Z]{16}",
-      "hint": "立即轮换密钥并使用占位符"
+      "hint": "立即轮换密钥并使用占位符",
+      "replacement": "<AWS_ACCESS_KEY_ID>"
     },
     {
       "id": "private-key-block",
@@ -129,7 +141,8 @@
       "severity": "critical",
       "description": "PEM 格式私钥块",
       "pattern": "-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----",
-      "hint": "绝不可提交私钥；使用密钥管理服务"
+      "hint": "绝不可提交私钥；使用密钥管理服务",
+      "replacement": "-----BEGIN PRIVATE KEY----- <REDACTED>"
     },
     {
       "id": "ldap-bind-password",
@@ -138,7 +151,8 @@
       "description": "LDAP 命令中的明文密码参数",
       "pattern": "-w\\s+['\"][^'\"\\s$][^'\"]{3,}['\"]",
       "flags": "g",
-      "hint": "使用 -W（交互提示）或 $LDAP_PASSWORD 环境变量"
+      "hint": "使用 -W（交互提示）或 $LDAP_PASSWORD 环境变量",
+      "replacement": "-w \"$LDAP_PASSWORD\""
     }
   ]
 }

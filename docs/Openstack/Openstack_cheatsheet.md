@@ -1,6 +1,7 @@
 
 
 
+
 1. os port list --fixed-ip subnet=env-a-svc-a-eu-de-2-tools-private-01-01 | grep -c ip_address
 2. openstack network list --long | --external
 3. 

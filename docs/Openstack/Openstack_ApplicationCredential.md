@@ -67,7 +67,7 @@ openstack application credential create \
 ## 4. 认证换取 Token
 
 ```bash
-openstack --os-auth-url https://identity-3.<region>.https://example.com/redacted \
+openstack --os-auth-url https://identity-3.<region>.example.com/v3 \
   --os-auth-type v3applicationcredential \
   --os-application-credential-id <credential-id> \
   --os-application-credential-secret <secret> \
@@ -77,7 +77,7 @@ openstack --os-auth-url https://identity-3.<region>.https://example.com/redacted
 ### 应用端环境变量（openrc）
 
 ```bash
-export OS_AUTH_URL="https://identity-3.<region>.https://example.com/redacted"
+export OS_AUTH_URL="https://identity-3.<region>.example.com/v3"
 export OS_AUTH_TYPE=v3applicationcredential
 export OS_APPLICATION_CREDENTIAL_ID=<credential-id>
 export OS_APPLICATION_CREDENTIAL_SECRET=<secret>

@@ -45,6 +45,8 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive
       - name: PII / sensitive data check
         run: yarn check:pii
+      - name: MDX syntax check
+        run: yarn check:mdx
       - name: Build
         run: yarn build
       - name: Setup Pages

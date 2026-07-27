@@ -53,8 +53,8 @@
       "description": "公开内容中的企业品牌域名（*.sap.com、*.cloud.sap、*.tools.sap）",
       "pattern": "(?:https?://)?(?:[a-zA-Z0-9-]+\\.)+sap\\.com(?:/[^\\s\"')\\]]*)?|(?:https?://)?(?:[a-zA-Z0-9-]+\\.)*(?:cloud|tools)\\.sap(?:/[^\\s\"')\\]]*)?",
       "flags": "g",
-      "hint": "替换为 https://example.com/redacted",
-      "replacement": "https://example.com/redacted",
+      "hint": "替换为 example.com（仅替换主机名片段，避免破坏 dashboard.<region>.… 一类占位 URL）",
+      "replacement": "example.com",
       "applyOnPlaceholderLines": true
     },
     {

@@ -13,6 +13,7 @@ on:
       - 'i18n/**'
       - 'scripts/pii-rules.json'
       - 'scripts/check-pii.cjs'
+      - 'scripts/check-mdx-jsx.cjs'
       - '.pii-allowlist.json'
   push:
     branches: [main]
@@ -48,6 +49,10 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 22
+          cache: yarn
+      - name: Install dependencies
+        # @mdx-js/mdx 用于 commit/PR 前的 MDX 编译检查（随 docusaurus 引入）
+        run: yarn install --frozen-lockfile --non-interactive
       - name: Auto-mask PII
         id: fix
         # --fix 就地脱敏并写回；退出码非 0 表示仍有残留需人工处理（不在此步中断）。
@@ -78,6 +83,9 @@ jobs:
       - name: Verify no residual findings
         # 复扫兜底：自动脱敏后仍有命中（如 critical 无 replacement 项）则阻断合并。
         run: node scripts/check-pii.cjs
+      - name: MDX syntax check
+        # 防止 PII --fix 破坏反引号后，<region> 等被 MDX 当成 JSX
+        run: node scripts/check-mdx-jsx.cjs
 
   # main push / 手动触发：仅检测阻断，绝不修改仓库。
   pii-check:
@@ -90,5 +98,10 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 22
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
       - name: Run PII scanner
         run: node scripts/check-pii.cjs
+      - name: MDX syntax check
+        run: node scripts/check-mdx-jsx.cjs

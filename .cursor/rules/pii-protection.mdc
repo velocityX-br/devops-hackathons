@@ -13,7 +13,7 @@ alwaysApply: false
 | 类别 | 示例 | 应替换为 |
 |------|------|----------|
 | 企业品牌名 | `SAP` / `Sap` | `PPP` |
-| 企业品牌域名 | `*.sap.com` / `*.cloud.sap` / `*.tools.sap` | `https://example.com/redacted` |
+| 企业品牌域名 | `*.sap.com` / `*.cloud.sap` / `*.tools.sap` | `example.com`（保留 `dashboard.<region>.…` 等主机名前缀） |
 | 企业品牌前缀 | `sap-ai-sdk` | `ppp-ai-sdk` |
 | 产品名 | `Converged Cloud` | `C Cloud` |
 | 企业用户 ID | `I532341` | `<USER_ID>` 或 `I000000` |
@@ -29,7 +29,8 @@ alwaysApply: false
 - 代码块中的凭证一律使用占位符：`$ENV_VAR`、`<TOKEN>`、`your_password_here`
 - 截图/日志先脱敏再引用
 - 内部系统名称可用泛化描述（如 "internal GitHub Enterprise"）
-- `git commit` 会经 husky pre-commit 自动执行 `fix:pii` + `check:pii`；也可手动运行 `yarn fix:pii && yarn check:pii`
+- `git commit` 会经 husky pre-commit 自动执行 `fix:pii` + `check:pii` + `check:mdx`；也可手动运行 `yarn fix:pii && yarn check:pii && yarn check:mdx`
+- MDX 中占位符如 `<region>` 必须包在反引号内，否则构建会失败
 
 ## 修改 docs/blog 后
 

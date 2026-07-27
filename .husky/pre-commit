@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
-# Commit 前自动脱敏公开内容中的企业品牌/PII，并把改动纳入本次提交。
-# 若仍有无法自动修复的残留（如 critical 密钥），则阻断 commit。
+# Commit 前：PII 自动脱敏 + MDX JSX 占位检查，失败则阻断提交。
 set -e
 
 node scripts/check-pii.cjs --fix
@@ -9,3 +8,4 @@ node scripts/check-pii.cjs --fix
 git add -u -- blog docs src static i18n 2>/dev/null || true
 
 node scripts/check-pii.cjs
+node scripts/check-mdx-jsx.cjs

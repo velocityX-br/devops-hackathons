@@ -19,7 +19,8 @@
     "typecheck": "tsc",
     "check:pii": "node scripts/check-pii.cjs",
     "fix:pii": "node scripts/check-pii.cjs --fix",
-    "prebuild": "node scripts/check-pii.cjs"
+    "prebuild": "node scripts/check-pii.cjs",
+    "prepare": "husky"
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.2",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@tsconfig/docusaurus": "^1.0.5",
+    "husky": "9.1.7",
     "typescript": "^4.7.4"
   },
   "browserslist": {

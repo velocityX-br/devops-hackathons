@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Commit 前自动脱敏公开内容中的企业品牌/PII，并把改动纳入本次提交。
+# 若仍有无法自动修复的残留（如 critical 密钥），则阻断 commit。
+set -e
+
+node scripts/check-pii.cjs --fix
+
+# 将脱敏写回结果重新纳入暂存区（仅扫描目录内已跟踪文件的改动）
+git add -u -- blog docs src static i18n 2>/dev/null || true
+
+node scripts/check-pii.cjs

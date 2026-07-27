@@ -27,8 +27,8 @@
 
   What was set up
 
-  - uv project in /Users/<USER_ID>/Workdir/Github/POC/btp_ai_orchestration/ with sap-ai-sdk-gen, ai-core-sdk, jupyter
-  - main.ipynb implementing Step 3 (Python SDK) of the SAP tutorial
+  - uv project in /Users/<USER_ID>/Workdir/Github/POC/btp_ai_orchestration/ with ppp-ai-sdk-gen, ai-core-sdk, jupyter
+  - main.ipynb implementing Step 3 (Python SDK) of the PPP tutorial
   - Scenario: orchestration • Executable: orchestration • Config name: config-new-orchestration
 
   Note

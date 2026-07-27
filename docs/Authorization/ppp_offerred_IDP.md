@@ -24,8 +24,8 @@ https://help.pppdemands.com/docs/cloud-identity-services/cloud-identity-services
 
 ### PPP Tenant
 https://ajobbwdvt.accounts.ondemand.com/ui/protected/userData
-https://accounts.sap.com/ui/protected/profilemanagement
+https://example.com/redacted
 
 
 MFA / TOTP
-https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/user-guide-multi-factor-authentication?version=Cloud
+https://example.com/redacted

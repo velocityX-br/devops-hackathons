@@ -74,7 +74,7 @@ USER001 @ eu-nl-1 > cloudtenant01 > DEV_TEAM > openstack network show 00000000-0
 ```
 
 
-#### Converged Cloud ASN 
+#### C Cloud ASN 
 
 Calculate: &lt;REGION_ASN&gt; * 65536 + 4
 The route-target value generated from 4-byte dotted representation of region's ASn by formula: (&lt;REGION_ASN&gt; * 65536 + 4):&lt;UNIQUE_ID&gt;. In this example 65130.4:2000 converted to 4268359684:2000

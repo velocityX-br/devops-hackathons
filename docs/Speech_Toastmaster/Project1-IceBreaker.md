@@ -8,7 +8,7 @@ My name is Bryan. I'm 31 years old, and I am originally from Liaoning Province i
 
 My __journey__ has taken me across several cities in China. I studied in Dalian, later moved to Hangzhou, and eventually settled in Shanghai, where I've been living and working for the past six years.
 
-I'm currently working in the SAP Cloud Infrastructure Platform Delivery System Team, where I help build and support LOB's central infrastructure services. At work, I'm __fascinated by__ system design and cutting edge technologies. I love __figuring out__ how to bring together traditional virtual machines and modern Kubernetes platforms into one __reliable, scalable hybrid environment__. There's something incredibly satisfying about __turning a complex architecture__ into a system that simply works.
+I'm currently working in the PPP Cloud Infrastructure Platform Delivery System Team, where I help build and support LOB's central infrastructure services. At work, I'm __fascinated by__ system design and cutting edge technologies. I love __figuring out__ how to bring together traditional virtual machines and modern Kubernetes platforms into one __reliable, scalable hybrid environment__. There's something incredibly satisfying about __turning a complex architecture__ into a system that simply works.
 
 Well, it is just about work. I'd like share more about myself.
 

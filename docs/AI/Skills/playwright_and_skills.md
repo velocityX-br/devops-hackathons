@@ -23,16 +23,16 @@
 ```
 
 ```
-  串起来看 sap-authentication 的完整数据流
+  串起来看 ppp-authentication 的完整数据流
 
-  你在 Claude Code 触发 sap-authentication
+  你在 Claude Code 触发 ppp-authentication
           │
           ▼
   [1] Claude Code 启动 Playwright MCP（已配置在 .mcp.json）
       npx @playwright/mcp@latest --browser msedge --headless --caps storage
           │
           ▼
-  [2] AI 调用 mcp__playwright-headless__browser_navigate("https://jira.tools.sap/")
+  [2] AI 调用 mcp__playwright-headless__browser_navigate("https://example.com/redacted")
           │
           ▼
   [3] Playwright MCP server 收到 JSON-RPC 请求

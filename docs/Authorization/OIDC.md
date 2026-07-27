@@ -23,9 +23,9 @@ https://example.com/redacted/wiki/spaces/idservice/overview
 - 在 Kubernetes 语境中：
 1. API Server 把某个 OIDC provider 配为“外部认证源”，用它签发的 ID Token 来识别用户身份与群组
 2. 工作负载与外部服务的联邦也依赖 OIDC provider 作为可信发行方
-- SAP IAS 与 OIDC 的关系
-1. SAP Identity Authentication Service（SAP IAS）是 SAP 的云身份认证服务，支持 OIDC 与 SAML 2.0 等标准协议，可作为企业统一 IdP 或“代理 IdP”（与企业 AD/其他 IdP 打通），并向各类应用和平台（包括 Kubernetes）提供标准 OIDC 能力。
-2. 因此，SAP IAS 可以作为“OIDC provider”，为 Kubernetes 集群登录与 RBAC、以及与外部资源的联邦访问提供标准的 OIDC Token。
+- PPP IAS 与 OIDC 的关系
+1. PPP Identity Authentication Service（PPP IAS）是 PPP 的云身份认证服务，支持 OIDC 与 SAML 2.0 等标准协议，可作为企业统一 IdP 或“代理 IdP”（与企业 AD/其他 IdP 打通），并向各类应用和平台（包括 Kubernetes）提供标准 OIDC 能力。
+2. 因此，PPP IAS 可以作为“OIDC provider”，为 Kubernetes 集群登录与 RBAC、以及与外部资源的联邦访问提供标准的 OIDC Token。
 
 | 技术            | 回答的问题                       | Kubernetes 是否直接使用                             |
 | ------------- | --------------------------- | --------------------------------------------- |
@@ -59,7 +59,7 @@ connectors:
 - config:
     clientID: abc
     clientSecret: abc
-    hostName: github.tools.sap
+    hostName: https://example.com/redacted
     orgs:
     - name: SIDEVOPS
       teams:

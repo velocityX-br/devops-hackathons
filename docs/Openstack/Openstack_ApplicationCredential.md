@@ -67,7 +67,7 @@ openstack application credential create \
 ## 4. 认证换取 Token
 
 ```bash
-openstack --os-auth-url https://identity-3.<region>.cloud.sap/v3 \
+openstack --os-auth-url https://identity-3.<region>.https://example.com/redacted \
   --os-auth-type v3applicationcredential \
   --os-application-credential-id <credential-id> \
   --os-application-credential-secret <secret> \
@@ -77,7 +77,7 @@ openstack --os-auth-url https://identity-3.<region>.cloud.sap/v3 \
 ### 应用端环境变量（openrc）
 
 ```bash
-export OS_AUTH_URL="https://identity-3.<region>.cloud.sap/v3"
+export OS_AUTH_URL="https://identity-3.<region>.https://example.com/redacted"
 export OS_AUTH_TYPE=v3applicationcredential
 export OS_APPLICATION_CREDENTIAL_ID=<credential-id>
 export OS_APPLICATION_CREDENTIAL_SECRET=<secret>
@@ -130,7 +130,7 @@ resource "openstack_identity_application_credential_v3" "app_cred_1" {
 output "openrc" {
   value = <<EOF
 
-export OS_AUTH_URL="https://identity-3.eu-nl-1.cloud.sap/v3"
+export OS_AUTH_URL="https://example.com/redacted"
 export OS_AUTH_TYPE=v3applicationcredential
 export OS_APPLICATION_CREDENTIAL_ID=${openstack_identity_application_credential_v3.app_cred_1.id}
 export OS_APPLICATION_CREDENTIAL_SECRET=${openstack_identity_application_credential_v3.app_cred_1.secret}

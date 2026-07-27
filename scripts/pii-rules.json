@@ -36,10 +36,54 @@
   ],
   "rules": [
     {
+      "id": "brand-sap",
+      "name": "企业品牌名 SAP",
+      "severity": "medium",
+      "description": "公开内容中的企业品牌字样 SAP / Sap（域名由 brand-sap-domain 处理）",
+      "pattern": "\\bS[Aa][Pp]\\b",
+      "flags": "g",
+      "hint": "替换为 PPP",
+      "replacement": "PPP",
+      "applyOnPlaceholderLines": true
+    },
+    {
+      "id": "brand-sap-domain",
+      "name": "企业品牌域名 *.sap.com / *.cloud.sap / *.tools.sap",
+      "severity": "medium",
+      "description": "公开内容中的企业品牌域名（*.sap.com、*.cloud.sap、*.tools.sap）",
+      "pattern": "(?:https?://)?(?:[a-zA-Z0-9-]+\\.)+sap\\.com(?:/[^\\s\"')\\]]*)?|(?:https?://)?(?:[a-zA-Z0-9-]+\\.)*(?:cloud|tools)\\.sap(?:/[^\\s\"')\\]]*)?",
+      "flags": "g",
+      "hint": "替换为 https://example.com/redacted",
+      "replacement": "https://example.com/redacted",
+      "applyOnPlaceholderLines": true
+    },
+    {
+      "id": "brand-sap-prefix",
+      "name": "企业品牌前缀 sap-",
+      "severity": "medium",
+      "description": "公开内容中以 sap- 开头的包名/技能名/模型名",
+      "pattern": "\\bsap-",
+      "flags": "g",
+      "hint": "替换为 ppp-",
+      "replacement": "ppp-",
+      "applyOnPlaceholderLines": true
+    },
+    {
+      "id": "brand-converged-cloud",
+      "name": "产品名 Converged Cloud",
+      "severity": "medium",
+      "description": "公开内容中的产品名 Converged Cloud",
+      "pattern": "Converged Cloud",
+      "flags": "g",
+      "hint": "替换为 C Cloud",
+      "replacement": "C Cloud",
+      "applyOnPlaceholderLines": true
+    },
+    {
       "id": "sap-user-id",
-      "name": "SAP 用户 ID",
+      "name": "企业用户 ID",
       "severity": "high",
-      "description": "SAP 员工/系统用户 ID（如 I123456、C123456）",
+      "description": "企业员工/系统用户 ID（如 I123456、C123456）",
       "pattern": "\\b[ICD][0-9]{6,8}\\b",
       "hint": "替换为 <USER_ID> 或虚构 ID（如 I000000）",
       "replacement": "<USER_ID>"
@@ -48,7 +92,7 @@
       "id": "corporate-email",
       "name": "企业邮箱",
       "severity": "high",
-      "description": "SAP / 企业内部邮箱地址",
+      "description": "企业内部邮箱地址（含 sap.com / pppdemands.com 等）",
       "pattern": "[a-zA-Z0-9._%+-]+@(?:sap\\.com|pppdemands\\.com|global\\.pppdemands\\.com|cia\\.net\\.pppdemands\\.com|od\\.pppdemands\\.com)",
       "hint": "替换为 user@example.com 或 svc-account@example.com",
       "replacement": "user@example.com"
@@ -85,7 +129,7 @@
       "id": "home-path-user-id",
       "name": "含用户 ID 的本地路径",
       "severity": "high",
-      "description": "包含真实 SAP 用户 ID 的本地文件路径",
+      "description": "包含真实企业用户 ID 的本地文件路径",
       "pattern": "/(?:Users|home)/[ICD][0-9]{6,8}/",
       "hint": "替换为 /Users/<USER_ID>/ 或 ~/project/",
       "replacement": "/Users/<USER_ID>/"

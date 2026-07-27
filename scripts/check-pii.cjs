@@ -80,7 +80,13 @@ function scanFile(filePath, config, allowlist) {
     const regex = new RegExp(rule.pattern, rule.flags || 'gi');
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-      if (isPlaceholderLine(line, config.placeholderPatterns)) continue;
+      // 品牌脱敏等规则可设 applyOnPlaceholderLines，避免同行已有 example.com 时整行被跳过
+      if (
+        !rule.applyOnPlaceholderLines &&
+        isPlaceholderLine(line, config.placeholderPatterns)
+      ) {
+        continue;
+      }
 
       let match;
       regex.lastIndex = 0;
@@ -127,10 +133,12 @@ function fixFile(filePath, config, allowlist) {
   const changes = [];
 
   for (let i = 0; i < lines.length; i++) {
-    if (isPlaceholderLine(lines[i], config.placeholderPatterns)) continue;
+    const skipPlaceholders =
+      isPlaceholderLine(lines[i], config.placeholderPatterns);
 
     for (const rule of config.rules) {
       if (!rule.replacement) continue;
+      if (skipPlaceholders && !rule.applyOnPlaceholderLines) continue;
 
       // 先用检测 pattern 判断该行是否命中且未被豁免
       const detectRegex = new RegExp(rule.pattern, rule.flags || 'gi');

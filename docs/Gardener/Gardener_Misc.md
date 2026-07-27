@@ -5,7 +5,7 @@ Gardener Environments:
 - https://dashboard.k8s.cn40.platform.pppdemands.cn/
 - https://dashboard.garden.live.k8s.ppdemands.com/
 - https://dashboard.garden.canary.k8s.ppdemands.com/ 
-- [Gardener@ppp Converged Cloud](https://example.com/internal-pages/kubernetes/gardener/docs/guides/ppp-internal/cluster-operations/gardener-ccee/)
+- [Gardener@ppp C Cloud](https://example.com/internal-pages/kubernetes/gardener/docs/guides/ppp-internal/cluster-operations/gardener-ccee/)
 
 GitHub Repositories:
 - [Gardener Landscape Setup](https://github.wdf.pppdemands.com/kubernetes/landscape-setup)

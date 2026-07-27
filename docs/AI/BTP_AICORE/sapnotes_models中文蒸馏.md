@@ -1,8 +1,8 @@
-# SAP Note 3437766 — SAP Generative AI Hub 可用模型整理
+# PPP Note 3437766 — PPP Generative AI Hub 可用模型整理
 
-> **来源**：[SAP Note 3437766](https://me.sap.com/notes/3437766)  
+> **来源**：[PPP Note 3437766](https://example.com/redacted)  
 > **版本**：152 · **发布日期**：2026-07-01  
-> **相关文档**：[Available Models API](https://ai-docs.portal.hyperspace.tools.sap/llm-proxy/configuration/api-endpoints/#available-models)
+> **相关文档**：[Available Models API](https://example.com/redacted)
 
 ---
 
@@ -51,7 +51,7 @@
 |------|--------|------|------|
 | `amazon--titan-embed-text` | AWS Bedrock | 1.2 / 2 (latest) | 文本嵌入 |
 | `amazon--titan-embed-image` | AWS Bedrock | 1 (latest) | 图像嵌入（多模态） |
-| `nvidia--llama-3.2-nv-embedqa-1b` | NVIDIA (SAP-managed) | 2 (latest) | 问答检索嵌入 |
+| `nvidia--llama-3.2-nv-embedqa-1b` | NVIDIA (PPP-managed) | 2 (latest) | 问答检索嵌入 |
 | `text-embedding-3-large` | Azure OpenAI | 1 (latest) | 高精度文本嵌入 |
 | `text-embedding-3-small` | Azure OpenAI | 1 (latest) | 轻量文本嵌入 |
 | `text-embedding-ada-002` | Azure OpenAI | 2 (latest) | ⚠️ 已弃用 → `3-small` / `3-large` |
@@ -77,7 +77,7 @@
 | `gemini-3.1-flash-lite` | 001 |
 | `gemini-embedding` | 001 (latest) |
 
-### 🇪🇺 Mistral AI（SAP-hosted）
+### 🇪🇺 Mistral AI（PPP-hosted）
 
 | 模型 | 版本 |
 |------|------|
@@ -93,12 +93,12 @@
 | `cohere--command-a-reasoning` (2508) | 🧠 推理对话模型 |
 | `cohere-reranker` (3.5) | 🔁 重排序模型（Reranker，按 search_units 计费，非典型 embedding） |
 
-### 🅢 SAP 自研模型（SAP-hosted）
+### 🅢 PPP 自研模型（PPP-hosted）
 
 | 模型 | 说明 |
 |------|------|
-| `sap-rpt-1-small` / `sap-rpt-1-large` | 📊 表格数据预测模型（按 cells 计费） |
-| `sap-abap-1` | 💻 ABAP 代码专用模型（仅通过 orchestration 访问） |
+| `ppp-rpt-1-small` / `ppp-rpt-1-large` | 📊 表格数据预测模型（按 cells 计费） |
+| `ppp-abap-1` | 💻 ABAP 代码专用模型（仅通过 orchestration 访问） |
 
 ### 🔍 Perplexity（联网搜索型对话）
 
@@ -119,8 +119,8 @@
 | 🖼️ 图像/多模态 | titan-embed-image, gemini-2.5-flash-image, nova 系列 |
 | 🎙️ 语音（Audio/Realtime） | gpt-realtime（唯一） |
 | 🌐 联网搜索 | perplexity sonar / sonar-pro |
-| 💻 代码专用 | gpt-5.3-codex, sap-abap-1 |
-| 📊 表格预测 | sap-rpt-1-small, sap-rpt-1-large |
+| 💻 代码专用 | gpt-5.3-codex, ppp-abap-1 |
+| 📊 表格预测 | ppp-rpt-1-small, ppp-rpt-1-large |
 
 ---
 

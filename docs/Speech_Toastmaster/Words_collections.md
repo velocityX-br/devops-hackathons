@@ -19,3 +19,11 @@ July 21th
 
 July 22th
 1. Their whole comp structure, pensions, succession planning, everything is going through an existential crisis due to a frigging chatbot.
+
+
+Taking a backforward is also a step forward.
+#### Reseachings:
+
+- Metaphor: In a Toastmasters speech, The Metaphor is a literary device where you compare your real-life problem (lower back pain) to something completely different but easily understood (a traffic red light)
+- Transition: Structures Your Narrative
+

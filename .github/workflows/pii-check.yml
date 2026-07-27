@@ -1,4 +1,5 @@
 # PII / 敏感信息检查 — 在合并前阻止含企业敏感信息的内容进入 main
+# PR 场景：自动脱敏并把修复提交回 PR 分支；main/手动场景：仅检测阻断。
 name: PII Check
 
 on:
@@ -27,7 +28,60 @@ permissions:
   contents: read
 
 jobs:
+  # PR 触发：尝试自动脱敏并把修复提交回 PR 的 head 分支。
+  # 若仍有无法自动脱敏的残留（如 critical 私钥/来自 fork 的 PR），则失败阻断。
+  pii-autofix:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout PR head branch
+        uses: actions/checkout@v6
+        with:
+          # PR 事件默认 checkout 的是 merge ref（detached HEAD），无法 push 回去。
+          # 显式 checkout head 分支，fetch-depth: 0 便于 commit/push。
+          ref: ${{ github.head_ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Auto-mask PII
+        id: fix
+        # --fix 就地脱敏并写回；退出码非 0 表示仍有残留需人工处理（不在此步中断）。
+        run: |
+          set +e
+          node scripts/check-pii.cjs --fix
+          echo "fix_exit=$?" >> "$GITHUB_OUTPUT"
+      - name: Detect changes
+        id: diff
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Commit & push auto-mask
+        if: steps.diff.outputs.changed == 'true'
+        # 来自 fork 的 PR 无写权限，push 会失败；用 || 提示改由人工处理，不遮蔽真正错误。
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore(pii): auto-mask sensitive data [skip ci]"
+          git push origin HEAD:${{ github.head_ref }} || {
+            echo "::error::无法 push 自动脱敏改动（可能是来自 fork 的 PR）。请本地运行 'yarn fix:pii' 后重新提交。"
+            exit 1
+          }
+      - name: Verify no residual findings
+        # 复扫兜底：自动脱敏后仍有命中（如 critical 无 replacement 项）则阻断合并。
+        run: node scripts/check-pii.cjs
+
+  # main push / 手动触发：仅检测阻断，绝不修改仓库。
   pii-check:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

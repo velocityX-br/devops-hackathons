@@ -30,7 +30,7 @@ alwaysApply: false
 - 截图/日志先脱敏再引用
 - 内部系统名称可用泛化描述（如 "internal GitHub Enterprise"）
 - `git commit` 会经 husky pre-commit 自动执行 `fix:pii` + `check:pii` + `check:mdx`；也可手动运行 `yarn fix:pii && yarn check:pii && yarn check:mdx`
-- MDX 中占位符如 `<region>` 必须包在反引号内，否则构建会失败
+- MDX 中占位符如 `<region>` 必须包在反引号内，且反引号必须成对闭合；不要写 `{region}`（会被当成 JS 变量，SSG 报 `region is not defined`）
 
 ## 修改 docs/blog 后
 

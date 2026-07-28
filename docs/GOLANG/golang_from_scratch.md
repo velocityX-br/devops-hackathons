@@ -335,19 +335,14 @@ go mod init, go mod tidy: 管理模块用的命令
 ```
 
 匿名函数 
-```
+```go
 (func(m string) { ... })(msg)
 
-
-
-msg := "Hello" 
+msg := "Hello"
 func printMsg(m string) {
     fmt.Println(m)
-}{msg}
-go printMsg(msg)
-
-
-
+}
+printMsg(msg)
 ```
 
 Golang中 make和new的区别

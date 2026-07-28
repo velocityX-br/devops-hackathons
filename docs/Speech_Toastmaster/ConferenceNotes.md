@@ -48,6 +48,9 @@ Q: 两队辩论时的范式
 
 反证法 - 
 
+0728 Regular meeting 
+
+#### adjective to describe fruits
 
 
 

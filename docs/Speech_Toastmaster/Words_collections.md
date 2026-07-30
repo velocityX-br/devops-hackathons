@@ -20,6 +20,8 @@ July 21th
 July 22th
 1. Their whole comp structure, pensions, succession planning, everything is going through an existential crisis due to a frigging chatbot.
 
+July 29th
+1. ventured into this unknown territory, forged ahead through twists and turns, and made breakthroughs with persistent hard work.
 
 Taking a backforward is also a step forward.
 #### Reseachings:

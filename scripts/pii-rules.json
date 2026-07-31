@@ -120,8 +120,8 @@
       "description": "训练/实验室 Guacamole 明文口令",
       "pattern": "guacamole_password\\s*=\\s*(?!<)\\S+",
       "flags": "g",
-      "hint": "替换为 guacamole_password=<GUACAMOLE_PASSWORD>
-      "replacement": "guacamole_password=<GUACAMOLE_PASSWORD>
+      "hint": "替换为 guacamole_password=GUACAMOLE_PASSWORD_PLACEHOLDER",
+      "replacement": "guacamole_password=<GUACAMOLE_PASSWORD>"
     },
     {
       "id": "inline-password-assignment",

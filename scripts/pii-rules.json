@@ -13,7 +13,12 @@
     "node_modules",
     "build",
     ".docusaurus",
-    "i18n/**/code.json"
+    "i18n/**/code.json",
+    "docs/Openstack/SCI_*.md",
+    "docs/Cloud/SCI",
+    "docs/Openstack/Hammer_Tool.md",
+    "docs/Openstack/Hammer_NetCheck_ASR.md",
+    "local-private"
   ],
   "placeholderPatterns": [
     "<[^>]+>",
@@ -92,10 +97,42 @@
       "id": "corporate-email",
       "name": "企业邮箱",
       "severity": "high",
-      "description": "企业内部邮箱地址（含 sap.com / pppdemands.com 等）",
-      "pattern": "[a-zA-Z0-9._%+-]+@(?:sap\\.com|pppdemands\\.com|global\\.pppdemands\\.com|cia\\.net\\.pppdemands\\.com|od\\.pppdemands\\.com)",
+      "description": "企业内部邮箱地址（含 sap.com / corp.sap / pppdemands.com 等）",
+      "pattern": "[a-zA-Z0-9._%+-]+@(?:(?:global\\.)?corp\\.sap|sap\\.com|pppdemands\\.com|global\\.pppdemands\\.com|cia\\.net\\.pppdemands\\.com|od\\.pppdemands\\.com)",
       "hint": "替换为 user@example.com 或 svc-account@example.com",
       "replacement": "user@example.com"
+    },
+    {
+      "id": "internal-sap-corp-host",
+      "name": "企业内部主机 *.sap.corp / *.int.sap / *.corp.sap / example.com/internal-github/redacted",
+      "severity": "high",
+      "description": "企业内部主机名与 Wiki/GHE 域名",
+      "pattern": "(?:https?://)?(?:[a-zA-Z0-9-]+\\.)*(?:sap\\.corp|int\\.sap|corp\\.sap|wdf\\.sap\\.corp)(?:/[^\\s\"')\\]]*)?",
+      "flags": "g",
+      "hint": "替换为 example.com/redacted 或删除内部链接",
+      "replacement": "example.com/redacted",
+      "applyOnPlaceholderLines": true
+    },
+    {
+      "id": "guacamole-password",
+      "name": "Guacamole 明文密码",
+      "severity": "critical",
+      "description": "训练/实验室 Guacamole 明文口令",
+      "pattern": "guacamole_password\\s*=\\s*(?!<)\\S+",
+      "flags": "g",
+      "hint": "替换为 guacamole_password=<GUACAMOLE_PASSWORD>
+      "replacement": "guacamole_password=<GUACAMOLE_PASSWORD>
+    },
+    {
+      "id": "inline-password-assignment",
+      "name": "明文 password= 赋值",
+      "severity": "high",
+      "description": "代码/配置中的明文 password= 赋值（排除已是占位符）",
+      "pattern": "(?:^|[\\s\"'`])password\\s*=\\s*['\"]?(?!<|\\$|your)[^\\s'\"]{8,}",
+      "flags": "gi",
+      "hint": "替换为 password=<PASSWORD> 或环境变量",
+      "replacement": " password=<PASSWORD>",
+      "captureRewrite": "([\\s\"'`]?)password\\s*=\\s*['\"]?(?!<|\\$|your)[^\\s'\"]{8,}"
     },
     {
       "id": "client-secret-value",
@@ -193,7 +230,7 @@
       "name": "LDAP 绑定密码",
       "severity": "high",
       "description": "LDAP 命令中的明文密码参数",
-      "pattern": "-w\\s+['\"][^'\"\\s$][^'\"]{3,}['\"]",
+      "pattern": "-w\\s+['\"](?!your[_-]?password)[^'\"\\s$][^'\"]{3,}['\"]",
       "flags": "g",
       "hint": "使用 -W（交互提示）或 $LDAP_PASSWORD 环境变量",
       "replacement": "-w \"$LDAP_PASSWORD\""

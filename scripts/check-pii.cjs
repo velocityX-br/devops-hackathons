@@ -57,6 +57,20 @@ function isPlaceholderLine(line, placeholderPatterns) {
   return placeholderPatterns.some((p) => new RegExp(p, 'i').test(line));
 }
 
+function isPlaceholderMatch(text, placeholderPatterns) {
+  return placeholderPatterns.some((p) => {
+    const re = new RegExp(`^(?:${p})$`, 'i');
+    return re.test(text.trim());
+  });
+}
+
+/** high/critical 永不因同行占位符整行跳过；其余规则可设 applyOnPlaceholderLines。 */
+function shouldSkipLineForRule(rule, line, placeholderPatterns) {
+  if (rule.applyOnPlaceholderLines) return false;
+  if (rule.severity === 'high' || rule.severity === 'critical') return false;
+  return isPlaceholderLine(line, placeholderPatterns);
+}
+
 function maskMatch(text) {
   if (text.length <= 8) return '***';
   return text.slice(0, 4) + '…' + text.slice(-4);
@@ -80,11 +94,7 @@ function scanFile(filePath, config, allowlist) {
     const regex = new RegExp(rule.pattern, rule.flags || 'gi');
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-      // 品牌脱敏等规则可设 applyOnPlaceholderLines，避免同行已有 example.com 时整行被跳过
-      if (
-        !rule.applyOnPlaceholderLines &&
-        isPlaceholderLine(line, config.placeholderPatterns)
-      ) {
+      if (shouldSkipLineForRule(rule, line, config.placeholderPatterns)) {
         continue;
       }
 
@@ -92,6 +102,10 @@ function scanFile(filePath, config, allowlist) {
       regex.lastIndex = 0;
       while ((match = regex.exec(line)) !== null) {
         const matchedText = match[0];
+        // 命中本身已是占位符（如 <USER_ID>）则跳过，避免假阳性
+        if (isPlaceholderMatch(matchedText, config.placeholderPatterns)) {
+          continue;
+        }
         const id = findingId(rel, i + 1, rule.id, matchedText);
         const allowed = allowlist.entries?.some(
           (e) =>
@@ -133,18 +147,18 @@ function fixFile(filePath, config, allowlist) {
   const changes = [];
 
   for (let i = 0; i < lines.length; i++) {
-    const skipPlaceholders =
-      isPlaceholderLine(lines[i], config.placeholderPatterns);
-
     for (const rule of config.rules) {
       if (!rule.replacement) continue;
-      if (skipPlaceholders && !rule.applyOnPlaceholderLines) continue;
+      if (shouldSkipLineForRule(rule, lines[i], config.placeholderPatterns)) {
+        continue;
+      }
 
       // 先用检测 pattern 判断该行是否命中且未被豁免
       const detectRegex = new RegExp(rule.pattern, rule.flags || 'gi');
       detectRegex.lastIndex = 0;
       const m = detectRegex.exec(lines[i]);
       if (!m) continue;
+      if (isPlaceholderMatch(m[0], config.placeholderPatterns)) continue;
 
       const id = findingId(rel, i + 1, rule.id, m[0]);
       const allowed = allowlist.entries?.some(

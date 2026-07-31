@@ -35,7 +35,7 @@ vault auth list
   cat > dns-config.json << EOF
   {
     "api_endpoint": "https://dns.example.com",
-    "api_key": "sk-xxxxxxxxxxxx",
+    "api_key": "<REDACTED>",
     "zone_id": "123456789",
     "ttl": 3600,
     "proxied": true,

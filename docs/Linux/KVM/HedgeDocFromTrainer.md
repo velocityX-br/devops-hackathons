@@ -33,42 +33,24 @@ user@example.com
 training_url=training.example.com
 (best browser is Chrome)
 
-- [user0] Tom (Trainer)
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-0=10.0.0.1
-- [user1] Adam K.
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-1=10.0.0.2
-- [user2] Furong
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-2=10.0.0.3
-- [user3] Nagadeesh 
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-3=10.0.0.4
-- [user4] user04 
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-4=10.0.0.5
-- [user5] Emma
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-5=10.0.0.6
-- [user6] Boyu
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-6=10.0.0.7
-- [user7] - Nina 
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-7=10.0.0.8
-- [user8] - Bryan
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-8=10.0.0.9
-- [user9 - Vlad]
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-9=10.0.0.10
-- [user10] Konstantin
-    guacamole_password=<GUACAMOLE_PASSWORD>
-    hypervisor-10=10.0.0.11
+Lab accounts use Guacamole. Credentials are issued per class — **never commit real passwords**.
 
-Hypervisor root password 
-- `b1s`
+| Slot | Role | Guacamole password | Hypervisor |
+|------|------|--------------------|------------|
+| user0 | Trainer | `<GUACAMOLE_PASSWORD>` | 10.0.0.1 |
+| user1 | Participant | `<GUACAMOLE_PASSWORD>` | 10.0.0.2 |
+| user2 | Participant | `<GUACAMOLE_PASSWORD>` | 10.0.0.3 |
+| user3 | Participant | `<GUACAMOLE_PASSWORD>` | 10.0.0.4 |
+| user4 | Participant | `<GUACAMOLE_PASSWORD>` | 10.0.0.5 |
+| user5 | Participant | `<GUACAMOLE_PASSWORD>` | 10.0.0.6 |
+| user6 | Participant | `<GUACAMOLE_PASSWORD>` | 10.0.0.7 |
+| user7 | Participant | `<GUACAMOLE_PASSWORD>` | 10.0.0.8 |
+| user8 | Participant | `<GUACAMOLE_PASSWORD>` | 10.0.0.9 |
+| user9 | Participant | `<GUACAMOLE_PASSWORD>` | 10.0.0.10 |
+| user10 | Participant | `<GUACAMOLE_PASSWORD>` | 10.0.0.11 |
+
+Hypervisor root password
+- `<HYPERVISOR_ROOT_PASSWORD>`
 
 Connect from local SSH client like putty:
 ```
@@ -655,7 +637,7 @@ useradd -g 466 -c "User for cockpit web service" -d /nonexisting -s /sbin/nologi
 
 systemctl enable --now cockpit.socket
 https://localhost:9090/
-login is tux b1s
+login is tux / `<HYPERVISOR_ROOT_PASSWORD>`
 
 
 ### change root password with guestfish

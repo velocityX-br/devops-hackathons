@@ -17,13 +17,13 @@
 ```
 vault kv put -mount=vso config \
     username='vso-user' \
-    password='vso-suP3rsec(et!' \
+    password='<PASSWORD>' \
     ttl='30s'
 
 # Update password
 vault kv put -mount=agent config \
     username='agent-user' \
-    password='agent-R0tated' \
+    password='<PASSWORD>' \
     ttl='30s'
 ```
 

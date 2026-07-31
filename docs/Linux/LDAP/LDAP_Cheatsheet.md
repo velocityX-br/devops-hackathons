@@ -14,7 +14,7 @@ ldapsearch -ZZ -LLL \
   "(proxyAddresses=SMTP:DL_0176000ppp@global.corp.ppp)"
 
 # Global accurate search or vague search
-bash-4.4$ ldapsearch -ZZ -LLL -h adldap.global.corp.ppp -b DC=global,DC=corp,DC=ppp -D i577081@global.corp.ppp -w $pwd  CN=6A1A0F56BC548ACE3Fppp
+bash-4.4$ ldapsearch -ZZ -LLL -h adldap.global.corp.ppp -b DC=global,DC=corp,DC=ppp -D <USER_ID>@global.corp.ppp -w $pwd  CN=6A1A0F56BC548ACE3Fppp
 ```
 
 Experience
@@ -74,7 +74,7 @@ ldapsearch -o ldif-wrap=no -LLL \
   -H ldaps://ldap-eude2-spc.env-a-spc-tic.plat-a.eu-de-2.cloud.pppdemands.com \
   -b dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example \
   -D cn=slave,ou=users,ou=SYS,dc=env-a-spc-tic,dc=plat-a,dc=eu-de-2,dc=cloud,dc=example \
-  -w 'your_password_here' \  or -W # Prompt asking pass
+  -W \  # Prompt for password (do not embed plaintext)
   "(objectClass=organizationalUnit)" ou
 
 ```

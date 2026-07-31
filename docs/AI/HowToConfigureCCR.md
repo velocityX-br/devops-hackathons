@@ -103,7 +103,7 @@ https://open.bigmodel.cn/usercenter/proj-mgmt/apikeys
     {
       "name": "zhipu",
       "api_base_url": "https://open.bigmodel.cn/api/coding/paas/v4/chat/completions",
-      "api_key": "d00xxxPvNLj5",
+      "api_key": "<REDACTED>",
       "models": [
         "glm-4.7",
         "glm-4.6",

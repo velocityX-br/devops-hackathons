@@ -23,4 +23,10 @@ docker buildx create --name remote --driver docker-container \
   ssh://user@company-vm
 docker buildx use remote
 docker buildx build -t ... --push .   # 可直接推送到 keppel
+
+   TAG=$(cat /tmp/bindop_tag.txt) && REPO="example.com" && docker buildx build --platform linux/amd64 -t "$REPO:$TAG" -t "$REPO:dev" --push . 2>&1
+
+   docker buildx imagetools inspect example.com 2>&1 | grep -E "Digest|Platform" | head -6
+
+  docker buildx build --platform linux/amd64 -t "example.com" --push . 2>&1 
 ```

@@ -1,27 +1,25 @@
-
 Kubebuilder 是一个基于 Controller-Runtime 库的框架，用于快速构建 Kubernetes API（CRD）和控制器（Controller）。它遵循 Kubernetes 的标准设计理念，通过生成脚手架代码来简化开发。
 
 `Controller-runtime`的设计目标就是将 Kubernetes 控制循环抽象为一个运行时容器（Manager）
-
-
 
 Kubebuilder 的 Controller 开发流程是：
 定义 API（Types） → 实现调和逻辑（Reconcile） → 本地验证 → 构建部署 → 迭代优化
 
 开发前应该问自己的问题：
+
 1. 这个东西需要长期跑着管状态吗？
 2. 状态错了，要不要自动修？
 3. 是否需要 .status 给人 / 系统看
 
 Concepts:
-1. Operator: a controller that manages custom resources. 
-    - CRD: podTracker
+
+1. Operator: a controller that manages custom resources.
+  - CRD: podTracker
 2. Controller: CONTROLLERS ARE THE CORE OF KUBERNETES AND OF ANY OPERATOR - QUOTE FROM KUBERBUILDER BOOK
-    - Controller is __reconcilation__ loop as the fundamental concept of kubernetes
+  - Controller is **reconcilation** loop as the fundamental concept of kubernetes
 
 Reference:
-https://book.kubebuilder.io/
-
+[https://book.kubebuilder.io/](https://book.kubebuilder.io/)
 
 ```
 
@@ -65,7 +63,6 @@ make deploy	部署 controller 到集群
 
 ```
 
-
 20260115 Kick-Off Bind-Operator development
 
 ```
@@ -93,15 +90,14 @@ $ make manifests
 
 ```
 
-
 `podtracker_types.go` 的设计思想，核心是 “声明式 API + 资源状态分离
 `Declarative`声明式而非`Imperative`命令式
-
 
 #### Handson Practice
 
 `ctrl` package is the entrypoint package of `controller-runtime`
 Below code snippets is the core entry point for `controller-runtime` to start the entire `Operator/Controller`
+
 ```
 	mgr, err := ctrl.NewManager(ctrl.GetConfigOrDie(), ctrl.Options{
 		Scheme: scheme,
@@ -154,7 +150,7 @@ Manager
 - 生命周期管理器
 
 NewManager()只是帮你把“控制循环”搭好。
-核心逻辑在 reconsile()
+核心逻辑在 reconcile()
 
 mgr.start()
 1. 启动 cache
@@ -178,6 +174,7 @@ WorkQueue
 Reconcile()   ← 业务逻辑在这里
 ```
 
+
 | 组件             | 需要理解到什么程度？          |
 | -------------- | ------------------- |
 | REST Client    | 知道读写路径和 cache 行为    |
@@ -186,8 +183,16 @@ Reconcile()   ← 业务逻辑在这里
 | Webhook Server | 知道是 HTTPS admission |
 | Health Server  | 知道是探针接口             |
 | Scheme         | 知道是类型注册             |
-| 生命周期管理     | 知道 Start() 启动所有组件   |
+| 生命周期管理         | 知道 Start() 启动所有组件   |
 
 
 - controller-runtime 的 Client 采用读走缓存、写走 API Server 的设计，这会带来性能提升，但也会带来最终一致性特性。
+- Controller-runtime uses the client-go/util/workqueue library to implement its underlying reconciliation queue. 
 - Shared Informer Cache 它是一个 基于 Watch 机制的本地内存数据库，负责持续同步 Kubernetes 资源状态。
+
+Some good documents:
+
+1. [https://dev.to/sklarsa/how-do-kubernetes-operators-handle-concurrency-47n5](https://dev.to/sklarsa/how-do-kubernetes-operators-handle-concurrency-47n5)
+2. [https://github.com/kubernetes-sigs/controller-runtime](https://github.com/kubernetes-sigs/controller-runtime)
+3. [https://www.freecodecamp.org/news/how-to-build-kubernetes-operators-a-handbook-for-devs/](https://www.freecodecamp.org/news/how-to-build-kubernetes-operators-a-handbook-for-devs/)
+

@@ -349,25 +349,31 @@
   "postEngagement.giscusHint": {
     "message": "评论已启用，但 Giscus 尚未完整配置。请在 docusaurus.config.js 中设置 repoId 与 categoryId。"
   },
-  "homepage.cta.docs": {
-    "message": "云原生文档 — 5 分钟入门 ⏱️"
+  "homepage.eyebrow": {
+    "message": "个人知识库"
   },
-  "homepage.feature.easy.title": {
-    "message": "易于使用"
+  "homepage.cta.about": {
+    "message": "关于我"
   },
-  "homepage.feature.easy.description": {
-    "message": "Docusaurus 从设计之初就注重易安装、易上手，让你快速搭建并运行文档站点。"
+  "homepage.cta.blog": {
+    "message": "阅读博客"
   },
-  "homepage.feature.focus.title": {
-    "message": "专注内容"
+  "homepage.feature.about.title": {
+    "message": "关于我"
   },
-  "homepage.feature.focus.description": {
-    "message": "把文档放进 docs 目录，其余琐事交给 Docusaurus，你可以专心写好内容。"
+  "homepage.feature.about.description": {
+    "message": "我是谁、我在做什么，以及通往 DNS、Kubernetes、Linux、Gardener 等主题的索引。"
   },
-  "homepage.feature.react.title": {
-    "message": "基于 React"
+  "homepage.feature.notes.title": {
+    "message": "技术笔记"
   },
-  "homepage.feature.react.description": {
-    "message": "通过复用 React 组件扩展或定制站点布局，在统一页眉页脚的同时灵活扩展功能。"
+  "homepage.feature.notes.description": {
+    "message": "面向生产的设计与运维笔记：BIND on K8s、混合基础设施、Operator、平台排障。"
+  },
+  "homepage.feature.blog.title": {
+    "message": "博客"
+  },
+  "homepage.feature.blog.description": {
+    "message": "更长篇幅：Operator、多集群 GitOps、网络边界场景，以及 AI 辅助交付。"
   }
 }

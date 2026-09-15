@@ -1,15 +1,19 @@
 {
   "title": {
-    "message": "DevOps 站点",
+    "message": "Bryan Chen",
     "description": "The title in the navbar"
   },
   "logo.alt": {
-    "message": "站点 Logo",
+    "message": "Bryan Chen",
     "description": "The alt text of navbar logo"
   },
-  "item.label.Cloud-Native": {
-    "message": "云原生",
-    "description": "Navbar item with label Cloud-Native"
+  "item.label.About": {
+    "message": "关于我",
+    "description": "Navbar item with label About"
+  },
+  "item.label.Notes": {
+    "message": "技术笔记",
+    "description": "Navbar item with label Notes"
   },
   "item.label.Blog": {
     "message": "博客",

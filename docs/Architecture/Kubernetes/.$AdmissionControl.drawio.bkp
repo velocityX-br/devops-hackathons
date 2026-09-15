@@ -1,0 +1,56 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
+  <diagram name="Page-1" id="vosrl4t31w8lQv36ghaw">
+    <mxGraphModel dx="2916" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="MbU5uru1sVN3UMceqhsn-2" value="Kube-api Server" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="250" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="MbU5uru1sVN3UMceqhsn-3" value="ValidationWebhookConfiguration&lt;div&gt;(VWC)&lt;/div&gt;&lt;div&gt;clientconfig.service.path:/validate&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="420" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="MbU5uru1sVN3UMceqhsn-4" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.542;entryY=0.033;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="MbU5uru1sVN3UMceqhsn-2" target="MbU5uru1sVN3UMceqhsn-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="410" as="sourcePoint" />
+            <mxPoint x="310" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MbU5uru1sVN3UMceqhsn-5" value="AdmissionReview (HTTP)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="MbU5uru1sVN3UMceqhsn-4">
+          <mxGeometry x="-0.1503" y="-4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MbU5uru1sVN3UMceqhsn-6" value="(Go) ServeMux :8443&lt;div&gt;/validate&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="630" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="MbU5uru1sVN3UMceqhsn-7" value="Cert-Manager" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="250" width="150" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="MbU5uru1sVN3UMceqhsn-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="MbU5uru1sVN3UMceqhsn-7" target="MbU5uru1sVN3UMceqhsn-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="490" as="sourcePoint" />
+            <mxPoint x="530" y="440" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="575" y="465" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MbU5uru1sVN3UMceqhsn-10" value="Issue Server Cert &amp;amp; CA Injector" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="MbU5uru1sVN3UMceqhsn-8">
+          <mxGeometry x="0.2267" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MbU5uru1sVN3UMceqhsn-11" value="MutatingWebhook" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="420" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="MbU5uru1sVN3UMceqhsn-12" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="MbU5uru1sVN3UMceqhsn-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="322" y="510" as="sourcePoint" />
+            <mxPoint x="400" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

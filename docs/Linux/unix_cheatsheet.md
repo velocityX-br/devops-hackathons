@@ -29,7 +29,7 @@ Analyzing CPU
 ```
 
 top to find out PID
-top -Hp <PID>
+top -Hp `<PID>`
 
 perf top -p 4181
 
@@ -46,7 +46,7 @@ fuser -v /ctxmnt
 
 # 5. 极端情况：fuser -k /ctxmnt （仅当明确可中断）
  
-# 6. 最后手段（NFS 卡死时）： <20251116> 测试有效
+# 6. 最后手段（NFS 卡死时）： `<20251116>` 测试有效
 umount -f -l /ctxmnt   # -f + -l 组合有时更有效
 [root@ws-host001 ~]# umount -f /ctxmnt --force
 umount.nfs: /ctxmnt: device is busy

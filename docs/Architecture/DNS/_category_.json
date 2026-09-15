@@ -1,0 +1,8 @@
+{
+  "label": "DNS",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "DNS / BIND architecture diagrams"
+  }
+}

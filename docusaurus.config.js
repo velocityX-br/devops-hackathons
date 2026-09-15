@@ -8,8 +8,8 @@ const projectName = "devops-hackathons";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Welcome to DevOps-Hackathons",
-  tagline: "Dinosaurs are cool, hackathons are cooler",
+  title: "Bryan Chen — DevOps Hackathons",
+  tagline: "Linux · Kubernetes · DNS · Hybrid Cloud Infrastructure",
   url: `https://${organizationName}.github.io`,
   baseUrl: `/${projectName}/`,
   onBrokenLinks: "throw",
@@ -49,6 +49,10 @@ const config = {
         anonymizeIP: true,
       },
     ],
+    [
+      'drawio',
+      {},
+    ],
   ],
 
   markdown: {
@@ -87,9 +91,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "DevOps Site",
+        title: "Bryan Chen",
         logo: {
-          alt: "My Site Logo",
+          alt: "Bryan Chen",
           src: "img/logo.svg",
         },
         items: [
@@ -97,11 +101,17 @@ const config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "Cloud-Native",
+            label: "About",
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "tutorialSidebar",
+            position: "left",
+            label: "Notes",
           },
           { to: "/blog", label: "Blog", position: "left" },
           {
-            href: `https://github.com/${organizationName}/${projectName}`,
+            href: "https://github.com/velocityX-br",
             label: "GitHub",
             position: "right",
           },
@@ -115,28 +125,36 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "Me",
             items: [
               {
-                label: "Cloud-Native",
+                label: "About",
                 to: "/docs/intro",
+              },
+              {
+                label: "Blog",
+                to: "/blog",
+              },
+              {
+                label: "GitHub",
+                href: "https://github.com/velocityX-br",
               },
             ],
           },
           {
-            title: "Community",
+            title: "Notes",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                label: "DNS Architecture",
+                to: "/docs/Architecture/DNS/2026_DNS_Design",
               },
               {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
+                label: "Kubernetes",
+                to: "/docs/Kubernetes/kubernetes_cheatsheet",
               },
               {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                label: "Linux",
+                to: "/docs/Linux/unix_cheatsheet",
               },
             ],
           },
@@ -144,17 +162,13 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
-                to: "/blog",
-              },
-              {
-                label: "GitHub",
+                label: "This repo",
                 href: `https://github.com/${organizationName}/${projectName}`,
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Bryan Chen. Built with Docusaurus.`,
       },
       prism: {
         theme: themes.github,

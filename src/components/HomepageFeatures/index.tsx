@@ -1,61 +1,61 @@
 import React from 'react';
 import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: JSX.Element;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: JSX.Element;
+  to: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: (
-      <Translate id="homepage.feature.easy.title">Easy to Use</Translate>
+      <Translate id="homepage.feature.about.title">About</Translate>
     ),
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    to: '/docs/intro',
     description: (
-      <Translate id="homepage.feature.easy.description">
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+      <Translate id="homepage.feature.about.description">
+        Who I am, what I build, and a curated index into DNS, Kubernetes,
+        Linux, Gardener, and more.
       </Translate>
     ),
   },
   {
     title: (
-      <Translate id="homepage.feature.focus.title">Focus on What Matters</Translate>
+      <Translate id="homepage.feature.notes.title">Technical notes</Translate>
     ),
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    to: '/docs/Architecture/DNS/2026_DNS_Design',
     description: (
-      <Translate id="homepage.feature.focus.description">
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the docs directory.
+      <Translate id="homepage.feature.notes.description">
+        Production-oriented runbooks and designs — BIND on K8s, hybrid
+        infrastructure, operators, and platform troubleshooting.
       </Translate>
     ),
   },
   {
     title: (
-      <Translate id="homepage.feature.react.title">Powered by React</Translate>
+      <Translate id="homepage.feature.blog.title">Blog</Translate>
     ),
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    to: '/blog',
     description: (
-      <Translate id="homepage.feature.react.description">
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+      <Translate id="homepage.feature.blog.description">
+        Longer write-ups on operators, multi-cluster GitOps, networking
+        edge cases, and AI-assisted delivery.
       </Translate>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, description, to}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
+      <div className={clsx('text--center padding-horiz--md', styles.featureCard)}>
+        <h3>
+          <Link to={to}>{title}</Link>
+        </h3>
         <p>{description}</p>
       </div>
     </div>

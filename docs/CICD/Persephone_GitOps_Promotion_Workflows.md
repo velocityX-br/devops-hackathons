@@ -73,6 +73,46 @@ on:
 于是完整链路为：**源码仓库构建镜像 → 发 `deployment-params` 事件（带 sha）→ 部署仓库 010
 被唤醒 → 写 qa/ 并提交 → ArgoCD 同步 prt-q**。
 
+### IMAGE_SHA 是什么、如何获得
+
+`IMAGE_SHA` = **上游源码仓库那次构建对应的 Git commit SHA**（40 位十六进制），它同时被用作
+镜像 tag（`newTag`）和远程 config 的 `?ref=`，实现「代码 commit = 镜像版本 = 配置版本」三者对齐。
+
+它一路从源码仓库传来：源码仓库侧 `client-payload` 里的 `sha` 取自内置的 `${{ github.sha }}`，
+经 `repository_dispatch` 事件传到部署仓库后，用 `github.event.client_payload.sha` 读出：
+
+```
+源码仓库 github.sha ─写进 client-payload.sha─▶ repository_dispatch 事件
+   ─传到部署仓库─▶ github.event.client_payload.sha ─赋值─▶ IMAGE_SHA
+```
+
+> ⚠️ **坑：job 顶层的 `env` 只在自动触发时有值。**
+> ```yaml
+> env:
+>   IMAGE_SHA: ${{ github.event.client_payload.sha }}
+> ```
+> `client_payload` 只有 `repository_dispatch`（自动触发）时才存在；手动 `workflow_dispatch`
+> 触发时该上下文为空，这行会把 `IMAGE_SHA` 设成空字符串。
+
+因此 010 用两个「Override」步骤按触发方式兜底，写进 `$GITHUB_ENV`（对同 job 后续 step 可见）：
+
+```yaml
+- name: Override variables for triggered workflow
+  if: github.event_name == 'repository_dispatch'
+  run: echo "IMAGE_SHA=${{ github.event.client_payload.sha }}" >> $GITHUB_ENV
+
+- name: Override variables for manual workflow
+  if: github.event_name == 'workflow_dispatch'
+  run: echo "IMAGE_SHA=${{ github.event.inputs.sha_commit }}" >> $GITHUB_ENV
+```
+
+`IMAGE_SHA` 的最终值由触发方式决定：
+
+| 触发方式 | `IMAGE_SHA` 来源 |
+|----------|------------------|
+| 自动 `repository_dispatch` | `github.event.client_payload.sha`（即源码仓库的 `github.sha`） |
+| 手动 `workflow_dispatch` | `github.event.inputs.sha_commit`（人工输入框，默认 `latest`） |
+
 关键步骤：
 1. 用 `create-github-app-token` 动态申请只带 `contents: write` 的**短期 App token**
    （不用长期 PAT）。

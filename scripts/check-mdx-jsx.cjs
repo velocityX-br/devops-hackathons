@@ -50,13 +50,27 @@ async function checkCompile(filePath) {
   }
 }
 
+/** 收集 `import ident from '...'` 的默认导入名（如 Drawio / chefArch）。 */
+function collectImportedIdents(source) {
+  const names = new Set();
+  for (const m of source.matchAll(/^import\s+(\w+)\s+from\s+/gm)) {
+    names.add(m[1]);
+  }
+  return names;
+}
+
 /**
  * 去掉 fenced / 成对 inline code 后，残留的 {ident} 会在 MDX 里变成 JS 表达式，
  * 编译通过但 SSG 时报 ReferenceError（正是 SCI_Barbican 的失败模式）。
+ *
+ * 例外（合法 MDX，不得当泄漏）：
+ * - 本文件 import 的标识符，如 content={chefArch}
+ * - JSX 属性值 attr={ident}（即使未匹配到 import 行）
  */
 function checkExprLeak(filePath) {
   const raw = fs.readFileSync(filePath, 'utf8');
   const rel = path.relative(ROOT, filePath).split(path.sep).join('/');
+  const imported = collectImportedIdents(raw);
   const lines = raw.split('\n');
   const issues = [];
   let inFence = false;
@@ -77,7 +91,9 @@ function checkExprLeak(filePath) {
     exprRe.lastIndex = 0;
     while ((m = exprRe.exec(stripped)) !== null) {
       const name = m[1];
-      if (ALLOWED_EXPR.has(name)) continue;
+      if (ALLOWED_EXPR.has(name) || imported.has(name)) continue;
+      const before = stripped.slice(0, m.index);
+      if (/[A-Za-z_][\w:-]*\s*=\s*$/.test(before)) continue;
       issues.push({
         file: rel,
         kind: 'expr',

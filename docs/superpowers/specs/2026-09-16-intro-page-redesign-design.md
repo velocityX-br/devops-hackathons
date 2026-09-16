@@ -40,7 +40,7 @@ Rewrite the site About page so professional positioning is immediately clear: ce
 
 | Area | Primary link(s) |
 |------|-----------------|
-| DNS | `/docs/Solution_Architect/DNS/2026_DNS_Design` · `/docs/DNS/Bind_K8S_design` |
+| DNS | `/docs/Solution_Architect/DNS/DNS_K8S_Solution` · `/docs/DNS/Bind_K8S_design` |
 | Kubernetes | `/docs/Kubernetes/kubernetes_cheatsheet` |
 | Linux | `/docs/Linux/unix_cheatsheet` or `/docs/Linux/Linux_boot_procedure` |
 | Gardener | `/docs/Gardener/Gardener_DNS` |
@@ -94,7 +94,7 @@ Hands-on **Customer Technical Relationship Management (CTRM)** style support: pa
 
 | Area | Start here |
 |------|------------|
-| **DNS / BIND** | [2026 DNS Design](/docs/Solution_Architect/DNS/2026_DNS_Design) · [Bind K8s design](/docs/DNS/Bind_K8S_design) |
+| **DNS / BIND** | [HA DNS on Kubernetes](/docs/Solution_Architect/DNS/DNS_K8S_Solution) · [Bind K8s design](/docs/DNS/Bind_K8S_design) |
 | **Kubernetes** | [Cheatsheet](/docs/Kubernetes/kubernetes_cheatsheet) |
 | **Linux** | [Unix cheatsheet](/docs/Linux/unix_cheatsheet) · [Boot procedure](/docs/Linux/Linux_boot_procedure) |
 | **Gardener** | [Gardener DNS](/docs/Gardener/Gardener_DNS) |

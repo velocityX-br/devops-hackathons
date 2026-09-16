@@ -23,6 +23,10 @@
     "message": "GitHub",
     "description": "The label of footer link with label=GitHub"
   },
+  "link.item.label.HA DNS on Kubernetes": {
+    "message": "Kubernetes 上的 HA DNS",
+    "description": "The label of footer link with label=HA DNS on Kubernetes"
+  },
   "link.item.label.DNS Architecture": {
     "message": "DNS 架构",
     "description": "The label of footer link with label=DNS Architecture"

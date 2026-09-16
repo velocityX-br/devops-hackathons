@@ -145,8 +145,8 @@ const config = {
             title: "Notes",
             items: [
               {
-                label: "DNS Architecture",
-                to: "/docs/Solution_Architect/DNS/2026_DNS_Design",
+                label: "HA DNS on Kubernetes",
+                to: "/docs/Solution_Architect/DNS/DNS_K8S_Solution",
               },
               {
                 label: "Kubernetes",

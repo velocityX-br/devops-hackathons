@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: About Bryan Chen
-description: Solution architect and cloud-native engineer — CKA, ITIL 4, CET-6; Kubernetes migrations, Linux ops, and customer technical engagement across PPP and banking
+description: Solution architect and cloud-native engineer — CKA, ITIL 4, CET-6; Kubernetes migrations, Linux ops, and customer technical engagement across SAP and banking
 ---
 
 # Bryan Chen
@@ -29,8 +29,8 @@ Hands-on **Customer Technical Relationship Management (CTRM)** style support: pa
 
 ## Industry experience
 
-- **~4 years** in PPP-related environments
-- **~2 years** supporting banking systems
+- **~4 years** in SAP-related environments
+- **~2 years** on Citibank systems (Global Consumer Banking)
 
 ## Knowledge shortcuts
 

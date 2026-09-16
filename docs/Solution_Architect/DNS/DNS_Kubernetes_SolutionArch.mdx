@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: DNS_K8S_Solution
 title: Running HA DNS Service in Kubernetes
-description: Interactive draw.io architecture for running a highly available DNS service on Kubernetes
+description: Interactive draw.io architecture for running a highly available DNS service on Kubernetes, plus MultidcDNSCluster operator design
 ---
 
 import Drawio from '@theme/Drawio'
@@ -18,3 +18,55 @@ The diagram below is rendered from the `.drawio` source — zoom, toggle layers,
   toolbar="zoom layers lightbox"
   maxHeight={900}
 />
+
+## Operator design — MultidcDNSCluster (single dynamic zone)
+
+```mermaid
+flowchart LR
+    subgraph GitOps["GitOps / Helm"]
+      H["Static topology<br/>STS · HPSA · named.conf · NFS"]
+      CR["Declarative CR Spec<br/>MultidcDNSCluster · DNSZone"]
+    end
+
+    subgraph Ctrl["bind-operator"]
+      C1["1. Elect sole writable primary"]
+      C2["2. Install zone on leader"]
+      C3["3. Refresh NOTIFY + observe SOA"]
+    end
+
+    subgraph Data["BIND data plane"]
+      VIP[HPSA ClusterIP]
+      L[Leader named]
+      NFS[("Shared dyn/")]
+      S["Landscape slaves<br/>Helm static zones"]
+    end
+
+    H --> VIP
+    H --> L
+    H --> NFS
+    H --> S
+    CR --> Ctrl
+    C1 -->|"label hidden-primary-leader"| L
+    C1 -.->|"selector follows label"| VIP
+    C2 -->|"rndc + cold-start file"| L
+    L --- NFS
+    VIP --> L
+    C3 -->|"also-notify IPs"| L
+    L -->|NOTIFY| S
+    S -->|"AXFR / IXFR"| VIP
+    C3 -->|"dig :53"| S
+    C3 -->|"Status DownstreamCaughtUp"| CR
+```
+
+### Core design (four invariants)
+
+1. **Two planes:** Helm installs the static topology once. The operator only converges state that keeps changing after install (who is writable, whether the zone is on the leader, NOTIFY targets, whether downstreams caught up). The operator does **not** create StatefulSets/Services and does **not** send `rndc` to landscape slaves.
+2. **Single writer:** At most one master carries `hidden-primary-leader` at any time. HPSA write ingress and downstream AXFR both target this Service — never a hard-coded Pod name. Failover must **flush the journal to shared NFS, `addzone` on the new primary, then retag**; if promote fails, do not move traffic.
+3. **Zone lives on the leader:** A `DNSZone` Spec is identity plus a cold-start SOA/NS skeleton. Live serial and record content belong to BIND. Materialize `dyn/<zone>.zone` only on cold start; never overwrite an existing file. Deleting the CR ≠ unloading BIND; unload requires an explicit annotation.
+4. **NOTIFY follows Pod IPs; convergence watches serial:** Landscape zone definitions stay with landscape Helm (`masters` → HPSA). The operator only writes Ready slave Pod IPs into the master's `also-notify`, then compares SOA serials via UDP/53 `dig`, and records `DownstreamCaughtUp`.
+
+### Three primary flows
+
+1. **Install:** Helm brings up Master STS, HPSA, NFS, Lease shell, and initial CRs → `MultidcDNSClusterReconciler` ensures the Lease exists and aggregates Pod Status → `LeaderController` elects a Ready master and applies the label → HPSA has Endpoints.
+2. **Zone lifecycle:** Create `DNSZone` → wait for `status.leader.podIP` → PodExec write file if needed → `rndc modzone/addzone` → refresh `also-notify` → `dig` SOA into Status. Unload: annotation `unload-from-leader` → `delzone` on the leader only; NFS files are retained.
+3. **Failover:** Current leader NotReady → pick next Ready master by name → old primary freeze/sync/`delzone` (failures do not block) → new primary `addzone` from NFS → **only on success** strip old label, apply new label, write `status.leader` → `DNSZone` requeues on leader change and re-applies zone / `also-notify` on the new IP.

@@ -139,6 +139,16 @@
   color: var(--ifm-color-emphasis-800);
 }
 
+.about-chip--emphasis {
+  border-color: var(--ifm-color-primary);
+  background: color-mix(in srgb, var(--ifm-color-primary) 14%, transparent);
+  color: var(--ifm-color-primary-darkest);
+}
+
+[data-theme='dark'] .about-chip--emphasis {
+  color: var(--ifm-color-primary-lightest);
+}
+
 .about-highlights {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));

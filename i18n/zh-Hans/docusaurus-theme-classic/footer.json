@@ -39,6 +39,10 @@
     "message": "本仓库",
     "description": "The label of footer link with label=This repo"
   },
+  "link.item.label.MCP servers": {
+    "message": "MCP Servers",
+    "description": "The label of footer link with label=MCP servers"
+  },
   "copyright": {
     "message": "Copyright © 2026 Bryan Chen. 基于 Docusaurus 构建。",
     "description": "The footer copyright"

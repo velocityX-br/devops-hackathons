@@ -43,7 +43,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title="Home"
-      description="Bryan Chen — DevOps / Cloud-Native engineer. Linux, Kubernetes, DNS, hybrid infrastructure notes and blog.">
+      description="Bryan Chen — solution architect & DevOps engineer. Kubernetes, hybrid infrastructure, plus MCP, RAG, agent skills, and orchestration.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

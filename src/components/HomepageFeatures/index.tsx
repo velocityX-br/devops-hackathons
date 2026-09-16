@@ -18,8 +18,8 @@ const FeatureList: FeatureItem[] = [
     to: '/docs/intro',
     description: (
       <Translate id="homepage.feature.about.description">
-        Who I am, what I build, and a curated index into DNS, Kubernetes,
-        Linux, Gardener, and more.
+        Solution architecture, cloud-native ops, and hands-on AI engineering —
+        MCP servers, RAG, skills, and agent orchestration.
       </Translate>
     ),
   },
@@ -43,7 +43,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <Translate id="homepage.feature.blog.description">
         Longer write-ups on operators, multi-cluster GitOps, networking
-        edge cases, and AI-assisted delivery.
+        edge cases, and applied AI (MCP, agents, delivery workflows).
       </Translate>
     ),
   },

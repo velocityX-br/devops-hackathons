@@ -331,7 +331,7 @@
     "description": "The title of the site"
   },
   "tagline": {
-    "message": "恐龙很酷，黑客马拉松更酷",
+    "message": "Linux · Kubernetes · DNS · 混合云 · AI Agents（MCP / RAG / Skills）",
     "description": "The tagline of the site"
   },
   "postEngagement.title": {
@@ -362,7 +362,7 @@
     "message": "关于我"
   },
   "homepage.feature.about.description": {
-    "message": "我是谁、我在做什么，以及通往 DNS、Kubernetes、Linux、Gardener 等主题的索引。"
+    "message": "解决方案架构、云原生运维，以及落地的 AI 工程能力：MCP Server、RAG、Skills 与 Agent 编排。"
   },
   "homepage.feature.notes.title": {
     "message": "技术笔记"
@@ -374,6 +374,6 @@
     "message": "博客"
   },
   "homepage.feature.blog.description": {
-    "message": "更长篇幅：Operator、多集群 GitOps、网络边界场景，以及 AI 辅助交付。"
+    "message": "更长篇幅：Operator、多集群 GitOps、网络边界场景，以及落地 AI（MCP、Agents、交付工作流）。"
   }
 }

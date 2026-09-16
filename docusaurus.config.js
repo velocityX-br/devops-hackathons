@@ -9,7 +9,7 @@ const projectName = "devops-hackathons";
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Bryan Chen — DevOps Hackathons",
-  tagline: "Linux · Kubernetes · DNS · Hybrid Cloud Infrastructure",
+  tagline: "Linux · Kubernetes · DNS · Hybrid Cloud · AI Agents (MCP / RAG / Skills)",
   url: `https://${organizationName}.github.io`,
   baseUrl: `/${projectName}/`,
   onBrokenLinks: "throw",
@@ -164,6 +164,10 @@ const config = {
               {
                 label: "This repo",
                 href: `https://github.com/${organizationName}/${projectName}`,
+              },
+              {
+                label: "MCP servers",
+                href: "https://github.com/velocityX-br/velocityX-ai-journey/tree/main/mcp-servers",
               },
             ],
           },

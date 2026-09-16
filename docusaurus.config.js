@@ -146,7 +146,7 @@ const config = {
             items: [
               {
                 label: "DNS Architecture",
-                to: "/docs/Architecture/DNS/2026_DNS_Design",
+                to: "/docs/Solution_Architect/DNS/2026_DNS_Design",
               },
               {
                 label: "Kubernetes",

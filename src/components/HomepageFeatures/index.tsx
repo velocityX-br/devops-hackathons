@@ -27,7 +27,7 @@ const FeatureList: FeatureItem[] = [
     title: (
       <Translate id="homepage.feature.notes.title">Technical notes</Translate>
     ),
-    to: '/docs/Architecture/DNS/2026_DNS_Design',
+    to: '/docs/Solution_Architect/DNS/2026_DNS_Design',
     description: (
       <Translate id="homepage.feature.notes.description">
         Production-oriented runbooks and designs — BIND on K8s, hybrid

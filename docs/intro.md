@@ -1,51 +1,45 @@
 ---
 sidebar_position: 1
 title: About Bryan Chen
-description: Personal introduction — DevOps / Cloud-Native engineer focused on Linux, Kubernetes, DNS, and hybrid infrastructure
+description: Solution architect and cloud-native engineer — CKA, ITIL 4, CET-6; Kubernetes migrations, Linux ops, and customer technical engagement across PPP and banking
 ---
 
 # Bryan Chen
 
-**Innovation junkie. Linux & Kubernetes obsessed.**
+**Solution architect · Cloud-Native & platform engineer**
 
-DevOps / Cloud-Native engineer based in Shanghai. I build and operate platform infrastructure — bridging traditional VMs and modern Kubernetes into reliable, scalable hybrid systems.
+I design and operate hybrid infrastructure — connecting traditional VM estates with Kubernetes platforms that hold up in production. Much of my work sits at the intersection of solution architecture and customer technical engagement: helping teams run complex cloud environments and applications with clarity and reliability.
 
-## Who I am
+## Certifications
 
-| | |
-|---|---|
-| **Name** | Bryan Chen |
-| **Location** | Shanghai (from Liaoning → Dalian → Hangzhou → Shanghai) |
-| **Focus** | Cloud infrastructure delivery, system design, hybrid VM + K8s platforms |
-| **GitHub** | [velocityX-br](https://github.com/velocityX-br) |
-| **Site** | [devops-hackathons](https://velocityX-br.github.io/devops-hackathons/) |
+- **CKA** (Certified Kubernetes Administrator)
+- **ITIL 4**
+- **CET-6** (College English Test — Band 6)
 
-## What I work on
+## Core strengths
 
-I care about systems that *actually run in production*: DNS at scale, Kubernetes operators, Gardener / OpenStack landscapes, Linux troubleshooting, and the glue that makes LOB platforms dependable.
+- **Solution architecture** — end-to-end platform and migration designs that balance operability, risk, and delivery
+- **Cloud-native / Kubernetes** — cluster platforms and migrations of traditional VM-based applications onto Kubernetes
+- **OS administration & operations** — SLES, RHEL, CentOS
+- **Configuration management & IaC** — Ansible, Chef, Terraform
 
-Outside work: basketball, hiking, swimming, and exploring China through food and travel.
+## Customer technical engagement
 
-## Knowledge index
+Hands-on **Customer Technical Relationship Management (CTRM)** style support: partnering with customers on complex cloud landscapes, clarifying architecture trade-offs, and keeping production applications healthy under real operational pressure.
 
-Jump into the notes I publish most often:
+## Industry experience
+
+- **~4 years** in PPP-related environments
+- **~2 years** supporting banking systems
+
+## Knowledge shortcuts
 
 | Area | Start here |
 |------|------------|
-| **DNS / BIND** | [Architecture — 2026 DNS Design](/docs/Architecture/DNS/2026_DNS_Design) · [Bind K8s design](/docs/DNS/Bind_K8S_design) · [Ops troubleshoot](/docs/DNS/bind_ops_troubleshoot) |
-| **Kubernetes** | [Cheatsheet](/docs/Kubernetes/kubernetes_cheatsheet) · [KubeBuilder](/docs/Kubernetes/KubeBuilder_Controller/KubeBuilder_Startup) · [Vault](/docs/Kubernetes/Vault/vault_cheatsheet) |
-| **Gardener** | [Gardener DNS](/docs/Gardener/Gardener_DNS) · [SCI Integration](/docs/Gardener/SCI_Gardener_Integration/Persephone) |
-| **Linux** | [Boot procedure](/docs/Linux/Linux_boot_procedure) · [Unix cheatsheet](/docs/Linux/unix_cheatsheet) · [Net troubleshoot](/docs/Linux/Net_Troubleshoot) |
-| **OpenStack** | [Cheatsheet](/docs/Openstack/Openstack_cheatsheet) · [Network](/docs/Openstack/Openstack_network) |
-| **AI / Agents** | [AI Concepts](/docs/AI/AI_Concepts) · [Skills](/docs/AI/Skills/Bootstramp) |
-| **AuthN / AuthZ** | [OIDC](/docs/Authorization/OIDC) · [Gardener Structured Auth](/docs/Authorization/Gardener_Structured_Authentication) |
-| **Speaking** | [Toastmasters Ice Breaker](/docs/Speech_Toastmaster/Project1-IceBreaker) |
-
-## Latest writing
-
-Prefer long-form posts? → **[Blog](/blog)**
-
-Highlights: DNS administration, K8s operators, Argo CD multi-cluster, source-IP preservation, AI tooling bottlenecks.
+| **DNS / BIND** | [2026 DNS Design](/docs/Solution_Architect/DNS/2026_DNS_Design) · [Bind K8s design](/docs/DNS/Bind_K8S_design) |
+| **Kubernetes** | [Cheatsheet](/docs/Kubernetes/kubernetes_cheatsheet) |
+| **Linux** | [Unix cheatsheet](/docs/Linux/unix_cheatsheet) · [Boot procedure](/docs/Linux/Linux_boot_procedure) |
+| **Gardener** | [Gardener DNS](/docs/Gardener/Gardener_DNS) |
 
 ## Contact / follow
 

@@ -1,0 +1,20 @@
+---
+sidebar_position: 1
+slug: AdmissionControl
+title: Dynamic Admission Control
+description: Interactive draw.io diagram — Kubernetes Dynamic Admission Control with ValidatingWebhookConfiguration and Cert-Manager
+---
+
+import Drawio from '@theme/Drawio'
+import admissionControl from '!!raw-loader!./AdmissionControl.drawio'
+
+# Dynamic Admission Control
+
+Kubernetes Dynamic Admission Control flow — kube-apiserver, ValidatingWebhookConfiguration (VWC), MutatingWebhook, Cert-Manager, and related handlers.
+The diagram below is rendered from the `.drawio` source — zoom, toggle layers, and open fullscreen via lightbox.
+
+<Drawio
+  content={admissionControl}
+  toolbar="zoom layers lightbox"
+  maxHeight={900}
+/>

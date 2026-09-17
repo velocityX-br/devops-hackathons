@@ -72,7 +72,7 @@
           <mxGeometry x="-70" y="80" width="360" height="30" as="geometry" />
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-9" value="ETCD" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" vertex="1" parent="1">
-          <mxGeometry x="-390" y="530" width="110" height="80" as="geometry" />
+          <mxGeometry x="-390" y="570" width="110" height="80" as="geometry" />
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="MbU5uru1sVN3UMceqhsn-6">
           <mxGeometry relative="1" as="geometry">

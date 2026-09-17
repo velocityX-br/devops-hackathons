@@ -1,0 +1,131 @@
+---
+sidebar_position: 1
+title: 关于 Bryan Chen
+description: AI 落地型解决方案架构师与资深 DevOps 工程师 — Kubernetes Operators、DNS on Kubernetes、大规模 VM OS 升级、CKA/ITIL 4/CET-6、Go/TypeScript/Python、MCP/RAG Agents
+---
+
+import Link from '@docusaurus/Link';
+
+<div className="about-hero">
+
+<h1>Bryan Chen</h1>
+
+<p className="about-role">
+  Solution Architect · Senior DevOps Engineer · AI-fluent Platform Builder
+</p>
+
+<p className="about-lede">
+  我负责设计与运维混合基础设施——把传统 VM 环境与可在生产稳定运行的
+  Kubernetes 平台衔接起来，其中包括为平台自动化{' '}
+  <strong>开发 Kubernetes Operators</strong>。同时持续跟进落地型 AI
+  （MCP、RAG、Skills、Agent Orchestration），让交付更贴近真正重要的系统与知识。
+</p>
+
+<div className="about-chips">
+  <span className="about-chip">CKA</span>
+  <span className="about-chip">ITIL 4</span>
+  <span className="about-chip">CET-6</span>
+  <span className="about-chip">Go · TypeScript · Python</span>
+  <span className="about-chip about-chip--emphasis">Kubernetes Operators</span>
+  <span className="about-chip">Kubernetes · Argo CD</span>
+  <span className="about-chip">Chef · Ansible · Terraform</span>
+</div>
+
+</div>
+
+## 重点交付
+
+两条能体现规模化能力的主线——向云原生平台迁移，以及在超大规模 VM 资产上严谨推进 Guest OS 生命周期。
+
+<div className="about-highlights">
+
+<div className="about-highlight">
+
+<h3>DNS → Kubernetes</h3>
+
+<p>
+  具备<strong>将传统 DNS 基础设施迁入 Kubernetes 环境</strong>的实战经验——把
+  BIND / multi-DC DNS 从以 VM 为中心的运维形态，推进到容器化、GitOps
+  友好的平台（设计、迁移切换与 day-2 运维）。
+</p>
+
+<p>
+  <Link to="/docs/Solution_Architect/DNS/DNS_K8S_Solution">Running HA DNS Service in Kubernetes</Link>
+  {' · '}
+  <Link to="/docs/DNS/Bind_K8S_design">Bind on K8s</Link>
+</p>
+
+</div>
+
+<div className="about-highlight">
+
+<h3>大规模 VM OS 升级</h3>
+
+<p>
+  亲手主导<strong>对数十万台运行在 ESXi 上的虚拟机进行操作系统升级</strong>——覆盖{' '}
+  <strong>小版本与大版本</strong>发布。工作贯穿 <strong>Chef / Ansible</strong>{' '}
+  的 OS 配置管理、<strong>VM Orchestration Platform</strong> 依赖协同、协调的{' '}
+  <strong>OS Patching</strong>，以及在 Guest OS 版本向前推进时保持资产稳定所需的操作编排。
+</p>
+
+</div>
+
+</div>
+
+## 核心能力
+
+| 领域 | 侧重点 |
+|------|--------|
+| **Solution Architecture** | 端到端平台与迁移设计，平衡可运维性、风险与交付 |
+| **Kubernetes Operators** | 设计并**开发 Operators**（CRDs、Controllers、Reconcile Loops），自动化 Kubernetes 上的平台与应用生命周期 |
+| **Cloud-native / Kubernetes** | 集群平台；VM → Kubernetes 迁移；**K8s CI/CD**（Argo CD、GitHub Actions / Workflows） |
+| **CI/CD** | Jenkins、GitLab — Pipelines、Shared Libraries、交付自动化 |
+| **OS Administration** | SLES、RHEL、CentOS — Patching、加固与生产运维 |
+| **Config Management & IaC** | Ansible、Chef、Terraform — 含 OS CM 与编排平台依赖 |
+
+## 语言与脚本
+
+| | |
+|---|---|
+| **主要** | Go、TypeScript、Python、Groovy、Shell |
+| **亦使用** | 少量 Perl（遗留自动化维护） |
+| **IaC DSLs** | Terraform HCL、Ansible YAML、Chef DSL，以及相关 Pipeline / 配置语言 |
+
+## AI 工程与 Agentic 工具链
+
+不只是 AI 的使用者，更是动手构建者——公开成果见 [MCP servers](https://github.com/velocityX-br/velocityX-ai-journey/tree/main/mcp-servers)：
+
+| 能力 | 产出 |
+|------|------|
+| **MCP Servers** | 面向生产的 Model Context Protocol 集成（Gardener RAG、Confluence/Wiki、Plato、Proxies 等） |
+| **RAG** | 面向文档、Issues、代码与知识库的检索增强助手 |
+| **Skills** | 将可复用工程工作流沉淀为 Agent Skills |
+| **Orchestration Dashboard** | 用于编排、观测与扩展多 Agent 工作流的界面 |
+| **A2A & A2P** | Agent-to-Agent / Agent-to-Platform 可扩展编排的实践模式 |
+
+## 客户协同与行业经历
+
+:::info Customer Technical Relationship (CTRM)
+与客户并肩处理复杂云环境——澄清架构取舍，并在真实运维压力下保持生产应用健康。
+:::
+
+| 年限 | 领域 |
+|------|------|
+| **约 4+ 年** | SAP — BTP NEO（Central Infrastructure Services）与 SAP Cloud Infrastructure |
+| **约 2+ 年** | Citibank — Global Consumer Banking |
+
+## 知识入口
+
+| 领域 | 从这里开始 |
+|------|------------|
+| **DNS / BIND** | [HA DNS on Kubernetes](/docs/Solution_Architect/DNS/DNS_K8S_Solution) · [Hybrid DNS](/docs/Solution_Architect/DNS/Hybrid_DNS_Infra) · [Bind K8s design](/docs/DNS/Bind_K8S_design) |
+| **Kubernetes** | [Cheatsheet](/docs/Kubernetes/kubernetes_cheatsheet) · [KubeBuilder / Operators](/docs/Kubernetes/KubeBuilder_Controller/KubeBuilder_Startup) |
+| **Linux** | [Unix cheatsheet](/docs/Linux/unix_cheatsheet) · [Boot procedure](/docs/Linux/Linux_boot_procedure) |
+| **Gardener** | [Gardener DNS](/docs/Gardener/Gardener_DNS) |
+| **AI / Agents** | [AI Concepts](/docs/AI/AI_Concepts) · [Explore MCP](/docs/AI/Explore_MCP) · [Skills](/docs/AI/Skills/Bootstramp) |
+
+## 联系 / 关注
+
+- GitHub: [github.com/velocityX-br](https://github.com/velocityX-br)
+- AI journey（MCP Servers）: [velocityX-br/velocityX-ai-journey](https://github.com/velocityX-br/velocityX-ai-journey/tree/main/mcp-servers)
+- 本仓库: [velocityX-br/devops-hackathons](https://github.com/velocityX-br/devops-hackathons)

@@ -16,6 +16,7 @@
     "i18n/**/code.json",
     "docs/intro.md",
     "docs/intro.mdx",
+    "i18n/zh-Hans/docusaurus-plugin-content-docs/current/intro.mdx",
     "docs/Openstack/SCI_*.md",
     "docs/Cloud/SCI",
     "docs/Openstack/Hammer_Tool.md",

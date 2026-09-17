@@ -30,7 +30,7 @@ alwaysApply: false
 - 截图/日志先脱敏再引用
 - 内部系统名称可用泛化描述（如 "internal GitHub Enterprise"）
 - `git commit` 会经 husky pre-commit 自动执行 `fix:pii` + `check:pii` + `check:mdx`；也可手动运行 `yarn fix:pii && yarn check:pii && yarn check:mdx`
-- **例外：** `docs/intro.md` / `docs/intro.mdx`（自我介绍页）已列入 `scripts/pii-rules.json` 的 `ignorePaths`，允许保留真实雇主/品牌字样（如 SAP）；其余 docs/blog 仍须脱敏
+- **例外：** `docs/intro.md` / `docs/intro.mdx` 及其中文翻译 `i18n/zh-Hans/.../intro.mdx`（自我介绍页）已列入 `scripts/pii-rules.json` 的 `ignorePaths`，允许保留真实雇主/品牌字样（如 SAP）；其余 docs/blog 仍须脱敏
 - MDX 中占位符如 `<region>` 必须包在反引号内，且反引号必须成对闭合；不要写 `{region}`（会被当成 JS 变量，SSG 报 `region is not defined`）
 
 ## 修改 docs/blog 后

@@ -167,6 +167,18 @@
     "message": "Kubernetes",
     "description": "The label for category 'Kubernetes' in sidebar 'tutorialSidebar'"
   },
+  "sidebar.tutorialSidebar.category.kubernetes-root": {
+    "message": "Kubernetes",
+    "description": "The label for category 'Kubernetes' (key kubernetes-root) in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.solution-architect-kubernetes": {
+    "message": "Kubernetes",
+    "description": "The label for category 'Kubernetes' (key solution-architect-kubernetes) in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.solution-architect-dns": {
+    "message": "DNS",
+    "description": "The label for category 'DNS' (key solution-architect-dns) in sidebar 'tutorialSidebar'"
+  },
   "sidebar.tutorialSidebar.category.CloudAuthorization_IAS": {
     "message": "CloudAuthorization_IAS",
     "description": "The label for category 'CloudAuthorization_IAS' in sidebar 'tutorialSidebar'"

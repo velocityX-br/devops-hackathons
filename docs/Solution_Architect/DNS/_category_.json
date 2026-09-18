@@ -1,5 +1,6 @@
 {
   "label": "DNS",
+  "key": "solution-architect-dns",
   "position": 1,
   "link": {
     "type": "generated-index",

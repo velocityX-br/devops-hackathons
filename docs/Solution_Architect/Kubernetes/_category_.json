@@ -1,5 +1,6 @@
 {
   "label": "Kubernetes",
+  "key": "solution-architect-kubernetes",
   "position": 2,
   "link": {
     "type": "generated-index",

@@ -1,0 +1,8 @@
+{
+  "label": "Kubernetes",
+  "key": "kubernetes-root",
+  "link": {
+    "type": "generated-index",
+    "description": "Kubernetes notes — networking, operators, security, and platform operations"
+  }
+}

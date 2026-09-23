@@ -1,0 +1,191 @@
+---
+sidebar_position: 1
+slug: Cosign
+title: Cosign Image Signing & Admission Validation
+description: Kaniko + Cosign sign/verify in CI, Cosign-validator ValidatingWebhook with Cert-Manager — architecture diagram and implementation notes
+---
+
+import Drawio from '@theme/Drawio'
+import cosignValidator from '!!raw-loader!./Cosign-validator.drawio'
+
+# Cosign Image Signing & Admission Validation
+
+End-to-end flow: **sign** images in the CI pipeline with Cosign, then **enforce** signatures at Pod admission via a ValidatingWebhook (`/validate`) backed by Cert-Manager.
+
+## Architecture
+
+The diagram below is rendered from the `.drawio` source — zoom, toggle layers, and open fullscreen via lightbox.
+
+<Drawio
+  content={cosignValidator}
+  toolbar="zoom layers lightbox"
+  maxHeight={900}
+/>
+
+## 1. Kaniko build + Cosign sign / verify (GitLab Pipeline)
+
+Kaniko builds and pushes the image; Cosign signs by digest and verifies signatures (internal registry hard-fail; external registry warn-only while signature lookup is incomplete).
+
+Source reference: `pipelines/.../docker-images/pipeline.yml` (devel image job).
+
+```yaml
+devel image:
+  stage: build
+  tags:
+    - size-m
+  cache:
+    <<: *global_cache
+  image:
+    name: example.com/cia-kaniko:2.1.46@sha256:3258ba8ef735b73c8e4118b774cefc2ff6c2e39be9159e3d853b78df30708854
+    entrypoint: [""]
+  script:
+    - !reference [.vaultsecrets, before_script]
+    # Kaniko replaces the root filesystem with the base image during build,
+    # wiping /tmp, /root, etc. The /kaniko/ directory is the only path kaniko
+    # explicitly preserves (its own runtime lives there). Files placed here
+    # do NOT enter built image layers (kaniko only includes --context paths).
+    - mkdir -p /kaniko/cosign-keys
+    - chmod 0700 /kaniko/cosign-keys
+    - install -m 0400 "$IMAGE_SIGNING_PRIVATE_KEY" /kaniko/cosign-keys/cosign.key
+    - install -m 0444 "$IMAGE_SIGNING_PUBLIC_KEY" /kaniko/cosign-keys/cosign.pub
+    - |
+      mkdir -p /kaniko/.docker
+      cat <<EOF > /kaniko/.docker/config.json
+      {
+        "auths":{
+          "$AF_REPO_DOCKER_DEVEL.$AF_EXT_DOMAIN":{
+             "username":"$AF_USER_DEVEL",
+             "password":"<AF_EXT_TOKEN>"
+          },
+          "$AF_REPO_DOCKER_DEVEL.$AF_INT_DOMAIN":{
+             "username":"$AF_USER_DEVEL",
+             "password":"<AF_INT_TOKEN>"
+          }
+        }
+      }
+      EOF
+    - |
+      if ! eval '/kaniko/executor --context ${BUILD_CONTEXT} \
+      --dockerfile ${DOCKERFILE_PATH} \
+      --build-arg "AF_DOCKER_URL=$AF_DOCKER_URL" \
+      --build-arg "PIP_INDEX_URL=${PIP_EXTRA_INDEX_URL}" \
+      --build-arg "PIP_EXTRA_INDEX_URL=${PIP_INDEX_URL}" \
+      --build-arg "CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA" $(eval echo $EXTRA_ARGS) \
+      --build-arg "TAG=dev-${CI_COMMIT_SHORT_SHA}" \
+      --destination $AF_REPO_DOCKER_DEVEL.$AF_INT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHORT_SHA \
+      --destination $AF_REPO_DOCKER_DEVEL.$AF_INT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:latest \
+      --destination $AF_REPO_DOCKER_DEVEL.$AF_EXT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHORT_SHA \
+      --destination $AF_REPO_DOCKER_DEVEL.$AF_EXT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:latest'
+      then
+        echo "Error: Kaniko build/push failed!"
+        exit 1
+      fi
+    # Ensure cosign is on PATH and set empty password for non-interactive signing
+    - export PATH="/kaniko:$PATH" COSIGN_PASSWORD=""
+    # Sign all pushed images with cosign
+    # cosign triangulate is deprecated in cosign v4 (sigstore/cosign#4696) — revisit on next major bump
+    - |
+      for IMAGE in \
+        "$AF_REPO_DOCKER_DEVEL.$AF_INT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHORT_SHA" \
+        "$AF_REPO_DOCKER_DEVEL.$AF_INT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:latest" \
+        "$AF_REPO_DOCKER_DEVEL.$AF_EXT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHORT_SHA" \
+        "$AF_REPO_DOCKER_DEVEL.$AF_EXT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:latest"
+      do
+        IMAGE_BY_DIGEST=$(cosign triangulate --type=digest "$IMAGE")
+        echo "Signing ${IMAGE} -> ${IMAGE_BY_DIGEST}"
+        cosign sign --yes --key /kaniko/cosign-keys/cosign.key "$IMAGE_BY_DIGEST"
+      done
+    # Verify internal signatures while external Artifactory signature lookup is unavailable.
+    - |
+      for IMAGE in \
+        "$AF_REPO_DOCKER_DEVEL.$AF_INT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHORT_SHA" \
+        "$AF_REPO_DOCKER_DEVEL.$AF_INT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:latest"
+      do
+        IMAGE_BY_DIGEST=$(cosign triangulate --type=digest "$IMAGE")
+        echo "Verifying ${IMAGE_BY_DIGEST}"
+        cosign verify --key /kaniko/cosign-keys/cosign.pub "$IMAGE_BY_DIGEST"
+      done
+    # Temporary: do not block builds while external Artifactory hides signatures.
+    - |
+      for IMAGE in \
+        "$AF_REPO_DOCKER_DEVEL.$AF_EXT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHORT_SHA" \
+        "$AF_REPO_DOCKER_DEVEL.$AF_EXT_DOMAIN/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG:latest"
+      do
+        IMAGE_BY_DIGEST=$(cosign triangulate --type=digest "$IMAGE")
+        echo "Verifying ${IMAGE_BY_DIGEST}"
+        if ! cosign verify --key /kaniko/cosign-keys/cosign.pub "$IMAGE_BY_DIGEST"; then
+          echo "WARNING: external signature verification failed for ${IMAGE_BY_DIGEST}."
+        fi
+      done
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+      exists:
+        - Dockerfile
+```
+
+## 2. Flask HTTPS `/validate` (ValidatingWebhook readiness)
+
+Expose an HTTPS `/validate` handler (Flask) that consumes `AdmissionReview` requests — ready to back a `ValidatingWebhookConfiguration`.
+
+Source reference: `cosign-validator/.../cosign-validation-webhook.py`.
+
+Webhook logic (high level):
+
+1. Receive `AdmissionReview` on `/validate` (listen TLS, e.g. `:8443`).
+2. Inspect Pod images from the admission request.
+3. Verify Cosign signatures with the public key (e.g. from Vault).
+4. Return `AdmissionReview` with `allowed: true|false`.
+
+## 3. Helm — Cert-Manager + Cosign webhook + VWC
+
+Deploy Cert-Manager `Certificate`, the cosign-validator workload/Service, and a `ValidatingWebhookConfiguration` that routes Pod CREATE/UPDATE (namespace-selected) to `/validate`.
+
+```yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.certificate.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  secretName: {{ .Values.tlsSecretName }}
+  dnsNames:
+    - cosign-validator.{{ .Values.namespace }}.svc
+    - cosign-validator.{{ .Values.namespace }}.svc.cluster.local
+  issuerRef:
+    name: {{ .Values.issuer.name }}
+    kind: Issuer
+
+# ... Workloads / Deployments running the cosign-webhook ...
+# ... Expose SVC endpoints so the API server can call /validate ...
+
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: {{ .Values.webhook.name }}
+  annotations:
+    cert-manager.io/inject-ca-from: {{ .Values.namespace }}/{{ .Values.certificate.name }}
+webhooks:
+- name: validate-signatures.{{ .Values.namespace }}.svc
+  clientConfig:
+    service:
+      name: {{ .Values.service.name }}
+      namespace: {{ .Values.namespace }}
+      path: /validate
+    caBundle: ""
+  rules:
+  - operations: ["CREATE", "UPDATE"]
+    apiGroups: [""]
+    apiVersions: ["v1"]
+    resources: ["pods"]
+  admissionReviewVersions: ["v1"]
+  sideEffects: None
+  failurePolicy: Fail
+  namespaceSelector:
+    matchLabels:
+      image-signature-required: "true"
+```
+
+:::tip Related
+See also [Dynamic Admission Control](/docs/Solution_Architect/Kubernetes/AdmissionControl) for the generic VWC / Cert-Manager pattern.
+:::

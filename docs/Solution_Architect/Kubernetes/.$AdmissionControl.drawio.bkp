@@ -1,19 +1,30 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
   <diagram name="Page-1" id="vosrl4t31w8lQv36ghaw">
-    <mxGraphModel dx="2916" dy="1244" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="4646" dy="1244" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="fiEYfogUBNGlvIFLMNEV-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1240" y="160" width="1240" height="1140" as="geometry" />
+        </mxCell>
+        <mxCell id="fiEYfogUBNGlvIFLMNEV-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=65;exitDy=80;exitPerimeter=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="MbU5uru1sVN3UMceqhsn-2" target="MbU5uru1sVN3UMceqhsn-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fiEYfogUBNGlvIFLMNEV-7" value="HTTPs" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="fiEYfogUBNGlvIFLMNEV-6">
+          <mxGeometry x="-0.1106" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="MbU5uru1sVN3UMceqhsn-2" value="Kube-api Server" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
-          <mxGeometry x="110" y="250" width="110" height="80" as="geometry" />
+          <mxGeometry x="-800" y="250" width="110" height="80" as="geometry" />
         </mxCell>
         <mxCell id="MbU5uru1sVN3UMceqhsn-3" value="&lt;b&gt;ValidationWebhookConfiguration&lt;/b&gt;&lt;div&gt;(VWC)&lt;/div&gt;&lt;div&gt;clientconfig.service.path:/validate&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="210" y="420" width="190" height="90" as="geometry" />
+          <mxGeometry x="-700" y="420" width="190" height="90" as="geometry" />
         </mxCell>
         <mxCell id="MbU5uru1sVN3UMceqhsn-4" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.542;entryY=0.033;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="MbU5uru1sVN3UMceqhsn-2" target="MbU5uru1sVN3UMceqhsn-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="260" y="410" as="sourcePoint" />
-            <mxPoint x="310" y="360" as="targetPoint" />
+            <mxPoint x="-650" y="410" as="sourcePoint" />
+            <mxPoint x="-600" y="360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="MbU5uru1sVN3UMceqhsn-5" value="AdmissionReview Request (HTTPS)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="MbU5uru1sVN3UMceqhsn-4" vertex="1" connectable="0">
@@ -23,7 +34,7 @@
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="MbU5uru1sVN3UMceqhsn-6" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="365" y="780" as="targetPoint" />
+            <mxPoint x="-545" y="780" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-13" value="Allow:false" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="JT2s3ODVslsfIcApS96u-12" vertex="1" connectable="0">
@@ -32,17 +43,17 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="MbU5uru1sVN3UMceqhsn-6" value="(Go) ServeMux :8443&lt;div&gt;/validate handler&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="280" y="610" width="170" height="70" as="geometry" />
+          <mxGeometry x="-630" y="610" width="170" height="70" as="geometry" />
         </mxCell>
         <mxCell id="MbU5uru1sVN3UMceqhsn-7" value="Cert-Manager" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="500" y="250" width="150" height="90" as="geometry" />
+          <mxGeometry x="-410" y="250" width="150" height="90" as="geometry" />
         </mxCell>
         <mxCell id="MbU5uru1sVN3UMceqhsn-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="MbU5uru1sVN3UMceqhsn-7" target="MbU5uru1sVN3UMceqhsn-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="480" y="490" as="sourcePoint" />
-            <mxPoint x="530" y="440" as="targetPoint" />
+            <mxPoint x="-430" y="490" as="sourcePoint" />
+            <mxPoint x="-380" y="440" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="575" y="465" />
+              <mxPoint x="-335" y="465" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -52,12 +63,12 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="MbU5uru1sVN3UMceqhsn-11" value="MutatingWebhook" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-450" y="420" width="190" height="90" as="geometry" />
+          <mxGeometry x="-340" y="1500" width="190" height="90" as="geometry" />
         </mxCell>
         <mxCell id="MbU5uru1sVN3UMceqhsn-12" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="MbU5uru1sVN3UMceqhsn-6" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="322" y="510" as="sourcePoint" />
-            <mxPoint x="400" y="600" as="targetPoint" />
+            <mxPoint x="-588" y="510" as="sourcePoint" />
+            <mxPoint x="-510" y="600" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-1" value="Logical Hander" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="MbU5uru1sVN3UMceqhsn-12" vertex="1" connectable="0">
@@ -66,41 +77,50 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="FTwm8UCfc6gtRTB6XrzO-1" value="&lt;span style=&quot;color: rgb(33, 37, 41); font-family: &amp;quot;Open Sans&amp;quot;, -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;, &amp;quot;Segoe UI Symbol&amp;quot;; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;&quot;&gt;Admission webhooks are HTTP callbacks that receive admission requests and do something with them.&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-160" y="110" width="560" height="60" as="geometry" />
+          <mxGeometry x="-200" y="100" width="560" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FTwm8UCfc6gtRTB6XrzO-2" value="&lt;b&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Dynamic Admission Control&lt;/font&gt;&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="-70" y="80" width="360" height="30" as="geometry" />
+          <mxGeometry x="-100" y="70" width="360" height="30" as="geometry" />
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-9" value="ETCD" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" parent="1" vertex="1">
-          <mxGeometry x="-390" y="570" width="110" height="80" as="geometry" />
+          <mxGeometry x="-280" y="1650" width="110" height="80" as="geometry" />
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="MbU5uru1sVN3UMceqhsn-6" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="75" y="820" as="targetPoint" />
+            <mxPoint x="-835" y="820" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-11" value="&lt;div&gt;Allowed:true + go handleDNSManagement&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="JT2s3ODVslsfIcApS96u-10" vertex="1" connectable="0">
           <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
-            <mxPoint x="25" y="3" as="offset" />
+            <mxPoint x="11" y="-2" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-14" value="Drop" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="335" y="780" width="60" height="30" as="geometry" />
+          <mxGeometry x="-575" y="780" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-16" value="&lt;div&gt;CRD Metadata:&lt;/div&gt;1. Rule in resources: svc/ingress/vs/gw&lt;div&gt;2.&amp;nbsp;Ignore + timeout:10&lt;/div&gt;&lt;div&gt;3.&amp;nbsp;namespaceSelector&lt;/div&gt;&lt;div&gt;4. f&lt;span style=&quot;font-size: 11px; text-wrap-mode: nowrap; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;ailurePolicy: Ignore&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 11px; text-wrap-mode: nowrap; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;5.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; font-size: 11px; text-wrap-mode: nowrap; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;matchPolicy: Equivalent&lt;/span&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="620" y="500" width="220" height="90" as="geometry" />
+          <mxGeometry x="-370" y="500" width="220" height="90" as="geometry" />
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-20" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&amp;nbsp; ① 准入投票 Allowed:true&amp;nbsp; → API Server 把【原始 Service 对象】写进 etcd&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; (annotation 原样保存,status 仍为空,无任何 webhook 附加字段)&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&amp;nbsp; ② go handleDNSManagement → 异步调 GMP HTTP API 建 A 记录&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; (写的是【外部 GMP 系统】,跟 etcd 毫无关系)&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&amp;nbsp; - etcd 里:只有那个普通的 Service 对象。DNS 注解作为用户自己写的 annotation被保存,但 webhook 没有因此往对象里塞任何东西(没有 finalizer、没有 status patch、没有额外 annotation)。&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&amp;nbsp; - GMP 里:A 记录 = FQDN → IP。这是对外部 DNS 系统的副作用,kubectl get svc -o yaml 里看不到它。&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&amp;nbsp; 四、一句话总结&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&amp;nbsp; Allowed:true 不写 etcd,只是放行——真正写进 etcd 的是用户提交的原始对象,webhook 一字未改(validating 阶段本就无权改,响应里没有 patch)。而 A 记录建在外部 GMP,是异步副作用,与 etcd 无关。所以 Allowed:true 的效果是:etcd&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&amp;nbsp; 得到原对象 + GMP(异步)得到一条 A 记录,两者互不干涉。&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;&lt;font color=&quot;#cc0000&quot;&gt;&lt;b&gt;在这里，VWC 的价值正是提供了那个其他机制给不了的&quot;最早触发点&quot;,而把可靠性交给 informer。&lt;/b&gt;&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=left;verticalAlign=middle;rounded=0;fontColor=#333333;" parent="1" vertex="1">
-          <mxGeometry x="-10" y="900" width="700" height="270" as="geometry" />
+          <mxGeometry x="-920" y="980" width="700" height="270" as="geometry" />
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-21" value="Asynchronously&amp;nbsp; Call GMP-API to create A record" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="-10" y="820" width="170" height="60" as="geometry" />
+          <mxGeometry x="-920" y="820" width="170" height="60" as="geometry" />
         </mxCell>
         <mxCell id="JT2s3ODVslsfIcApS96u-22" value="The following diagram depicts a non-typical VWC. It takes the advantage of being involved (&quot;/validate&quot;) before persisting to ETCD to sense the resources that contains the specific DNS annotations&amp;nbsp; and asynchronously create A record" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="140" y="180" width="460" height="50" as="geometry" />
+          <mxGeometry x="-770" y="180" width="460" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="cF35fM7zZp2-tWiY-Lv4-1" value="Warning:&#xa;GMP-DNS-Webhook 的目标(读原生资源注解、配外部 DNS)根本不需要 VWC。 更好的形态是 纯 controller(informer watch + 周期 reconcile),像 external-dns 那样——去掉 VWC,保留并强化 ServiceController,给它加上&quot;周期性比对 GMP 实际态&quot;的 reconcile 能力。CRD 是可选的锦上添花(带来期望态/可观测),但即使不引入CRD,光是把 VWC 换成&quot;informer + reconcile&quot;就已优于现状" style="text;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="-700" y="880" width="560" height="80" as="geometry" />
+        <mxCell id="cF35fM7zZp2-tWiY-Lv4-1" value="Warning:&#xa;GMP-DNS-Webhook 的目标(读原生资源注解、配外部 DNS)根本不需要 VWC。 更好的形态是 纯 controller(informer watch + 周期 reconcile),像 external-dns 那样——去掉 VWC,保留并强化 ServiceController,给它加上&quot;周期性比对 GMP 实际态&quot;的 reconcile 能力。CRD 是可选的锦上添花(带来期望态/可观测),但即使不引入CRD,光是把 VWC 换成&quot;informer + reconcile&quot;就已优于现状" style="text;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="-1220" y="520" width="560" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="cF35fM7zZp2-tWiY-Lv4-2" value="技术点:它没有声明式 reconcile,但用了 client-go 最底层的 informer + workqueue 原语——这套原语本身就是&quot;watch + 事件驱动执行&quot;,只是没有 controller-runtime 那层 Reconcile(req) 的声明式封装" style="text;whiteSpace=wrap;fontColor=#CC0000;fontStyle=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="-920" y="920" width="560" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="fiEYfogUBNGlvIFLMNEV-2" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Scenario1 - DNS-Webhook-GMP&lt;/font&gt;&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-1190" y="185" width="290" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fiEYfogUBNGlvIFLMNEV-4" value="VWC&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="315" y="360" width="220" height="130" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

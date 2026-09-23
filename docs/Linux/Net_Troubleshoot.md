@@ -1,6 +1,14 @@
 
 
 
+Capture DNS Msg sent to specifc IP
+```
+tcpdump -i eth0 -nn -s 0 -w /tmp/relay_tcpdump.pcap \
+  'host 100.114.88.41 and (tcp port 53 or udp port 53)'
+```
+
+
+
 Source:
 sudo tcpdump -i any host hana-a3q-factory-reg-4-vtdfvhfu.us4.scp.net.pppdemands.com and port 30013 -nn -vv -s 0 -w client_test.pcap
 

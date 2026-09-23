@@ -1,0 +1,9 @@
+{
+  "label": "Docker",
+  "key": "solution-architect-docker",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Container image signing, Cosign, and related supply-chain architecture"
+  }
+}

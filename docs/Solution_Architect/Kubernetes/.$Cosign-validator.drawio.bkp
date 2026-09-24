@@ -1,42 +1,37 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
   <diagram name="Page-1" id="1-Zzhp_ovh2ME8PCdO38">
-    <mxGraphModel dx="1964" dy="1929" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1018" dy="1839" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="y-woEJmO1qLSLA19WQWR-40" value="" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-66" value="" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#ffff88;strokeColor=#36393d;" parent="1" vertex="1">
+          <mxGeometry x="700" y="-90" width="510" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="y-woEJmO1qLSLA19WQWR-40" value="" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="242.5" y="430" width="425" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-2" value="VWC" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-2" value="VWC" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="380" y="270" width="190" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-3" target="y-woEJmO1qLSLA19WQWR-4">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="y-woEJmO1qLSLA19WQWR-3" target="y-woEJmO1qLSLA19WQWR-4" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="800" y="495" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-7" value="Auto-sign TLS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-woEJmO1qLSLA19WQWR-6">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-7" value="Auto-sign TLS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-6" vertex="1" connectable="0">
           <mxGeometry x="-0.2582" relative="1" as="geometry">
             <mxPoint y="-23" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-3" target="y-woEJmO1qLSLA19WQWR-2">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="y-woEJmO1qLSLA19WQWR-3" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="720" y="210" width="490" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-60" value="Inject Self-signed CA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-woEJmO1qLSLA19WQWR-59">
-          <mxGeometry x="0.2356" y="1" relative="1" as="geometry">
-            <mxPoint x="13" y="-1" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-3" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="720" y="220" width="490" height="140" as="geometry" />
-        </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-4" value="Cosign-validator webhook&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;443&lt;/span&gt;&lt;div&gt;&lt;div&gt;&lt;b&gt;https://validate-signatures.cosign-validator.svc/validate&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;admission_review = admission_review[&#39;request&#39;]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-4" value="Cosign-validator webhook&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;443&lt;/span&gt;&lt;div&gt;&lt;div&gt;&lt;b&gt;https://validate-signatures.cosign-validator.svc/validate&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;admission_review = admission_review[&#39;request&#39;]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="280" y="460" width="350" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="100" y="340" as="sourcePoint" />
             <mxPoint x="280" y="495" as="targetPoint" />
@@ -45,33 +40,33 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-9" value="HTTPs Post /validate&lt;div&gt;body= AdmissionReview{request:{...}}&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-woEJmO1qLSLA19WQWR-8">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-9" value="HTTPs Post /validate&lt;div&gt;body= AdmissionReview{request:{...}}&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-8" vertex="1" connectable="0">
           <mxGeometry x="-0.3433" y="-1" relative="1" as="geometry">
             <mxPoint x="71" y="-40" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-5" target="y-woEJmO1qLSLA19WQWR-2">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="y-woEJmO1qLSLA19WQWR-5" target="y-woEJmO1qLSLA19WQWR-2" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-22" value="AdmissionReviewRequest&lt;div&gt;Check VWC register to filter&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-woEJmO1qLSLA19WQWR-21">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-22" value="AdmissionReviewRequest" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-21" vertex="1" connectable="0">
           <mxGeometry x="-0.0125" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-5">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="y-woEJmO1qLSLA19WQWR-5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="105" y="200" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-38" value="Post Pod Metadata" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-woEJmO1qLSLA19WQWR-32">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-38" value="Post Pod Metadata" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-32" vertex="1" connectable="0">
           <mxGeometry x="0.025" y="1" relative="1" as="geometry">
             <mxPoint x="1" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-5" value="API Server" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-5" value="API Server" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="40" y="280" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-14" target="y-woEJmO1qLSLA19WQWR-5">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="1" source="y-woEJmO1qLSLA19WQWR-14" target="y-woEJmO1qLSLA19WQWR-5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="385" y="250" />
@@ -79,94 +74,195 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-34" value="Request" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-woEJmO1qLSLA19WQWR-33">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-34" value="Request" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-33" vertex="1" connectable="0">
           <mxGeometry x="-0.1194" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-14" value="Pod Create/Update" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-14" value="Pod Create/Update" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="305" y="110" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-17" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-4">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-17" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" parent="1" source="y-woEJmO1qLSLA19WQWR-4" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="270" y="780" as="sourcePoint" />
             <mxPoint x="350" y="550" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-23" target="y-woEJmO1qLSLA19WQWR-5">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="1" source="y-woEJmO1qLSLA19WQWR-23" target="y-woEJmO1qLSLA19WQWR-5" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-29" value="HTTPs Response.allowed" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-woEJmO1qLSLA19WQWR-28">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-29" value="HTTPs Response.allowed" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-28" vertex="1" connectable="0">
           <mxGeometry x="-0.3971" y="3" relative="1" as="geometry">
             <mxPoint x="-67" y="-23" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-23" value="Validate signed Image&amp;nbsp;&lt;br&gt;&lt;div&gt;(public key in Vault)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-23" value="Validate signed Image&amp;nbsp;&lt;br&gt;&lt;div&gt;(public key in Vault)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="280" y="550" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.559;entryY=0.007;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-2" target="y-woEJmO1qLSLA19WQWR-4">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.559;entryY=0.007;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="y-woEJmO1qLSLA19WQWR-2" target="y-woEJmO1qLSLA19WQWR-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-27" value="Route (Namespace Selector)&lt;div&gt;Rule: Pod Create/Update + Label&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-woEJmO1qLSLA19WQWR-26">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-27" value="Route (Namespace Selector)&lt;div&gt;Rule: Pod Create/Update + Label&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-26" vertex="1" connectable="0">
           <mxGeometry x="-0.0557" y="1" relative="1" as="geometry">
             <mxPoint y="1" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-41" value="&lt;b&gt;App Pod (&lt;/b&gt;&lt;b&gt;Gunicorn WSGI + (framewok)&lt;/b&gt;&lt;b&gt;flask) :8443&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-41" value="&lt;span&gt;App Pod (&lt;/span&gt;&lt;span&gt;Gunicorn WSGI + (framewok)&lt;/span&gt;&lt;span&gt;flask) :8443&lt;/span&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=0" parent="1" vertex="1">
           <mxGeometry x="460" y="600" width="200" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-43" value="ETCD (KV Store)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-43" value="ETCD (KV Store)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
           <mxGeometry x="57.5" y="130" width="95" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-44" target="y-woEJmO1qLSLA19WQWR-14">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="y-woEJmO1qLSLA19WQWR-44" target="y-woEJmO1qLSLA19WQWR-14" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-46" value="Build and Sign Image" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-woEJmO1qLSLA19WQWR-45">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-46" value="Build and Sign Image" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-45" vertex="1" connectable="0">
           <mxGeometry x="0.0947" y="-1" relative="1" as="geometry">
             <mxPoint x="29" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-44" value="kaniko / CICD" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-44" value="Kaniko / CICD" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="425" y="-40" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-50" value="&lt;div&gt;&amp;nbsp; annotations:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; cert-manager.io/inject-ca-from: cosign-validator/cosign-webhook-cert&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-50" value="&lt;div&gt;&amp;nbsp; annotations:&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; cert-manager.io/inject-ca-from: cosign-validator/cosign-webhook-cert&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="690" y="480" width="390" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-51" value="&lt;b&gt;Issuer&lt;/b&gt;&lt;div&gt;cosign-webhook-selfsigned-issuer&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1010" y="230" width="180" height="60" as="geometry" />
+        <mxCell id="y-woEJmO1qLSLA19WQWR-51" value="&lt;b&gt;Issuer (self-Signed) - local PKI&lt;/b&gt;&lt;div&gt;cosign-webhook-selfsigned-issuer&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1020" y="230" width="180" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-52" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Organizational Docker Image Sign Solution&amp;nbsp;&lt;/font&gt;&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;gradientColor=#b3b3b3;" vertex="1" parent="1">
-          <mxGeometry x="60" y="-120" width="660" height="50" as="geometry" />
+        <mxCell id="y-woEJmO1qLSLA19WQWR-52" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Organizational Docker Image Sign Solution&amp;nbsp;&lt;/font&gt;&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;rounded=0;gradientColor=#b3b3b3;" parent="1" vertex="1">
+          <mxGeometry x="55" y="-140" width="660" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-53" value="&lt;div&gt;&lt;div&gt;&lt;b&gt;&amp;nbsp; cert-manager.io/inject-ca-from: cosign-validator/cosign-webhook-cert&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;└─ namespace ─┘ └─ Certificate 名 ─┘&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; 它指向的是 Certificate 资源(不是 Secret,也不是 CA 文件路径)。CA Injector 的解析过程:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; ① 读注解 → 找到 Certificate: cosign-validator/cosign-webhook-cert&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;/div&gt;&lt;div&gt;&amp;nbsp; ② 查这个 Certificate 的 spec.secretName → cosign-webhook-tls&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;/div&gt;&lt;div&gt;&amp;nbsp; ③ 到 Secret cosign-webhook-tls 里取 ca.crt 字段&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;/div&gt;&lt;div&gt;&amp;nbsp; ④ 把 ca.crt 内容(base64)写进 VWC 的 clientConfig.caBundle&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; VWC annotation&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; inject-ca-from: cosign-validator/cosign-webhook-cert&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │ (指路,不含 CA 本身)&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ▼&lt;/div&gt;&lt;div&gt;&amp;nbsp; Certificate: cosign-webhook-cert&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; spec.secretName: cosign-webhook-tls&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ▼&lt;/div&gt;&lt;div&gt;&amp;nbsp; Secret: cosign-webhook-tls&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ← CA 真正存放处&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; data.ca.crt: &amp;lt;base64 CA 证书&amp;gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;← ★ CA 从这里取&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │ CA Injector 复制&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ▼&lt;/div&gt;&lt;div&gt;&amp;nbsp; VWC.webhooks[].clientConfig.caBundle: &amp;lt;填入 ca.crt&amp;gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ▼&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&amp;nbsp; API Server 用它验证 webhook 的 tls.crt&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="700" y="580" width="530" height="430" as="geometry" />
-        </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-54" value="Controller" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-54" value="Controller" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="750" y="240" width="60" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-55" value="CA Injector" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="830" y="240" width="60" height="60" as="geometry" />
+        <mxCell id="y-woEJmO1qLSLA19WQWR-55" value="CA Injector" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="835" y="240" width="60" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-56" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;CA bundles&lt;/span&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=#36393d;fillColor=#eeeeee;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-56" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;CA bundles&lt;/span&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=#36393d;fillColor=#eeeeee;align=center;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="390" y="280" width="60" height="15" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-57" value="Cert-Manager&amp;nbsp;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-57" value="Cert-Manager&amp;nbsp;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1090" y="330" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-58" value="Webhook" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-58" value="Webhook" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="910" y="240" width="60" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-61" value="" style="endArrow=none;html=1;rounded=0;exitX=0.995;exitY=0.106;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-5" target="y-woEJmO1qLSLA19WQWR-56">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-61" value="" style="endArrow=none;html=1;rounded=0;exitX=0.995;exitY=0.106;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" parent="1" source="y-woEJmO1qLSLA19WQWR-5" target="y-woEJmO1qLSLA19WQWR-56" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="180" y="300" as="sourcePoint" />
             <mxPoint x="230" y="250" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="y-woEJmO1qLSLA19WQWR-62" value="Build CA Trust&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="y-woEJmO1qLSLA19WQWR-61">
+        <mxCell id="y-woEJmO1qLSLA19WQWR-62" value="Build CA Trust&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-61" vertex="1" connectable="0">
           <mxGeometry x="-0.0546" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="y-woEJmO1qLSLA19WQWR-63" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="y-woEJmO1qLSLA19WQWR-54" target="y-woEJmO1qLSLA19WQWR-65" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="790" y="210" as="sourcePoint" />
+            <mxPoint x="840" y="160" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="780" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-woEJmO1qLSLA19WQWR-64" value="&lt;b&gt;ACME CertAutomation, SAP PKI&lt;/b&gt; - DNS01 ACME Challenge (rfc2136) Flow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-63" vertex="1" connectable="0">
+          <mxGeometry x="-0.2429" relative="1" as="geometry">
+            <mxPoint x="175" y="-279" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-65" target="3aCiBKkC7WA8m6Gg0PLg-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="870" y="80" />
+              <mxPoint x="795" y="80" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-4" value="1. Submit Order" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="3aCiBKkC7WA8m6Gg0PLg-3">
+          <mxGeometry x="0.0378" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="y-woEJmO1qLSLA19WQWR-65" target="3aCiBKkC7WA8m6Gg0PLg-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-9" value="3. Add Txt Record via 2136" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="3aCiBKkC7WA8m6Gg0PLg-8">
+          <mxGeometry x="0.2276" y="-1" relative="1" as="geometry">
+            <mxPoint x="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-woEJmO1qLSLA19WQWR-65" value="ClusterIssuer" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="840" y="110" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y-woEJmO1qLSLA19WQWR-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.993;entryY=0.621;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="y-woEJmO1qLSLA19WQWR-55" target="y-woEJmO1qLSLA19WQWR-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="290" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="860" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y-woEJmO1qLSLA19WQWR-60" value="Inject Self-signed CA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="y-woEJmO1qLSLA19WQWR-59" vertex="1" connectable="0">
+          <mxGeometry x="0.2356" y="1" relative="1" as="geometry">
+            <mxPoint x="13" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-1" value="ACME Issuer (SAP)&lt;div&gt;&lt;u&gt;acme.pki.net.sap&amp;nbsp;&lt;/u&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="735" y="-10" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-5" value="DNS-API HiddenPrimary" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="3aCiBKkC7WA8m6Gg0PLg-1" target="y-woEJmO1qLSLA19WQWR-65">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="890" y="70" as="sourcePoint" />
+            <mxPoint x="940" y="20" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="885" y="20" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-7" value="2. Return DNS01 Challenge token" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="3aCiBKkC7WA8m6Gg0PLg-6">
+          <mxGeometry x="-0.1833" y="-1" relative="1" as="geometry">
+            <mxPoint x="16" y="21" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-10" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" target="3aCiBKkC7WA8m6Gg0PLg-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="855" y="13" as="sourcePoint" />
+            <mxPoint x="910" y="-50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-11" value="4. Verify Challenge/Txt record" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="3aCiBKkC7WA8m6Gg0PLg-10">
+          <mxGeometry x="-0.2276" relative="1" as="geometry">
+            <mxPoint x="19" y="-13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-12" value="Leaf certificate" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="895" y="-80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-14" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="3aCiBKkC7WA8m6Gg0PLg-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="790" y="-10" as="sourcePoint" />
+            <mxPoint x="840" y="-60" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="790" y="-50" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3aCiBKkC7WA8m6Gg0PLg-15" value="Issue Certificate" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="3aCiBKkC7WA8m6Gg0PLg-14">
+          <mxGeometry x="-0.0759" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="&lt;div&gt;&lt;b&gt;CertAutomation - self-Signed Issuer Flow&lt;/b&gt;&lt;/div&gt;cert-manager 内部是多资源、多组件协作的 reconcile 链。self-signed 的完整流程如下:&lt;br&gt;&lt;br&gt;&lt;br&gt;&amp;nbsp; ① ArgoCD/Helm apply chart&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;├─ 创建 Issuer:&amp;nbsp; cosign-webhook-selfsigned-issuer (selfSigned: {})&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;└─ 创建 Certificate: cosign-webhook-cert&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;br&gt;&amp;nbsp; ② cert-manager 的 certificates controller 监听到 Certificate&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&amp;nbsp; 检查:secretName(cosign-webhook-tls)里还没有有效证���&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;br&gt;&amp;nbsp; ③ controller 生成私钥,并创建一个 CertificateRequest (CR)&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&amp;nbsp; CR 里含 CSR(证书签名请求),issuerRef 指向 selfSigned Issuer&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;br&gt;&amp;nbsp; ④ certificaterequests controller 按 issuerRef 找到 selfSigned Issuer&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;br&gt;&amp;nbsp; ⑤ ★ selfSigned 签发逻辑:&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&amp;nbsp; 用【第③步刚生成的那把私钥】给 CSR 签名&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&amp;nbsp; → subject == issuer(自己签自己),无上级 CA&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&amp;nbsp; → 证书 SAN = dnsNames 里的两个 .svc 名&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;br&gt;&amp;nbsp; ⑥ 签发结果写回 CertificateRequest.status.certificate&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;br&gt;&amp;nbsp; ⑦ certificates controller 把最终材料写入 Secret: cosign-webhook-tls&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&amp;nbsp; &amp;nbsp; &amp;nbsp;├─ tls.crt&amp;nbsp; (leaf,自签)&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&amp;nbsp; &amp;nbsp; &amp;nbsp;├─ tls.key&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&amp;nbsp; &amp;nbsp; &amp;nbsp;└─ ca.crt&amp;nbsp; &amp;nbsp;(self-signed 场景下 ≈ leaf 自身)&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;br&gt;&amp;nbsp; ⑧ cainjector 读该 Secret 的 ca.crt → 注入 VWC 的 caBundle&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; │&lt;br&gt;&amp;nbsp; ⑨ webhook Pod mount cosign-webhook-tls → gunicorn 用 tls.crt/tls.key 起 HTTPS" link="cert-manager 内部是多资源、多组件协作的 reconcile 链。self-signed 的完整流程如下:&#xa;&#xa;&#xa;  ① ArgoCD/Helm apply chart&#xa;     ├─ 创建 Issuer:  cosign-webhook-selfsigned-issuer (selfSigned: {})&#xa;     └─ 创建 Certificate: cosign-webhook-cert&#xa;          │&#xa;  ② cert-manager 的 certificates controller 监听到 Certificate&#xa;          │  检查:secretName(cosign-webhook-tls)里还没有有效证���&#xa;          │&#xa;  ③ controller 生成私钥,并创建一个 CertificateRequest (CR)&#xa;          │  CR 里含 CSR(证书签名请求),issuerRef 指向 selfSigned Issuer&#xa;          │&#xa;  ④ certificaterequests controller 按 issuerRef 找到 selfSigned Issuer&#xa;          │&#xa;  ⑤ ★ selfSigned 签发逻辑:&#xa;          │  用【第③步刚生成的那把私钥】给 CSR 签名&#xa;          │  → subject == issuer(自己签自己),无上级 CA&#xa;          │  → 证书 SAN = dnsNames 里的两个 .svc 名&#xa;          │&#xa;  ⑥ 签发结果写回 CertificateRequest.status.certificate&#xa;          │&#xa;  ⑦ certificates controller 把最终材料写入 Secret: cosign-webhook-tls&#xa;          │     ├─ tls.crt  (leaf,自签)&#xa;          │     ├─ tls.key&#xa;          │     └─ ca.crt   (self-signed 场景下 ≈ leaf 自身)&#xa;          │&#xa;  ⑧ cainjector 读该 Secret 的 ca.crt → 注入 VWC 的 caBundle&#xa;          │&#xa;  ⑨ webhook Pod mount cosign-webhook-tls → gunicorn 用 tls.crt/tls.key 起 HTTPS" id="3aCiBKkC7WA8m6Gg0PLg-16">
+          <mxCell style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+            <mxGeometry x="1220" y="210" width="490" height="460" as="geometry" />
+          </mxCell>
+        </UserObject>
       </root>
     </mxGraphModel>
   </diagram>

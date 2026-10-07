@@ -68,3 +68,8 @@ Nevertheless VS However VS depite X,Y happened
 
 Sep 4th
 monologize 
+
+Sep 29th 
+Compound over time 
+
+Under the hood. 
